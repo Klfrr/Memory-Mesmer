@@ -12,7 +12,8 @@ public class MenuScript : MonoBehaviour
 
 
     // Always starts at main menu
-    void Awake(){
+    void Awake()
+    {
         currentState = MenuStates.Start;
     }
 
@@ -36,25 +37,61 @@ public class MenuScript : MonoBehaviour
     
     }
 
-    public void onSettings()
+    public void onButtonLog()
     {
-        Debug.Log("You Pressed Settings");
+        Debug.Log("Pressed");
     
         //Change menu state
     }
 
-    public void onStartScreen()
+    public void deactivateScreens()
     {
-        startMenu.SetActive(true);
-
         settingsMenu.SetActive(false);
-    }
-
-        public void onSettingsScreen()
-    {
         startMenu.SetActive(false);
 
+    }
+
+    public void onStartScreen()
+    {
+        deactivateScreens();
+        startMenu.SetActive(true);
+    }
+
+    public void onSettingsScreen()
+    {
+        deactivateScreens();
+
         settingsMenu.SetActive(true);
+    }
+
+    public void toTutorialMain()
+    {
+        deactivateScreens();
+
+        
+    }
+
+    public void toImages()
+    {
+        deactivateScreens();
+
+    }
+
+    public void toGames()
+    {
+        deactivateScreens();
+    }
+
+    public void toSimonSays()
+    {
+        deactivateScreens();
+
+    }
+
+    public void toScoresScreen()
+    {
+        deactivateScreens();
+        
     }
 
 
