@@ -10,6 +10,7 @@ public class MenuScript : MonoBehaviour
     public GameObject startMenu;
     public GameObject settingsMenu;
 
+
     // Always starts at main menu
     void Awake(){
         currentState = MenuStates.Start;
@@ -26,17 +27,35 @@ public class MenuScript : MonoBehaviour
     {
         switch (currentState){
             case MenuStates.Start:
+
                 break;
             case MenuStates.Settings:
+
                 break;
         }
     
     }
 
-    public void onSettings(){
+    public void onSettings()
+    {
         Debug.Log("You Pressed Settings");
     
         //Change menu state
     }
+
+    public void onStartScreen()
+    {
+        startMenu.SetActive(true);
+
+        settingsMenu.SetActive(false);
+    }
+
+        public void onSettingsScreen()
+    {
+        startMenu.SetActive(false);
+
+        settingsMenu.SetActive(true);
+    }
+
 
 }
