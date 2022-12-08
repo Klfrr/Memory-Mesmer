@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class MenuScript : MonoBehaviour
 {
-    public enum MenuStates {Start, Settings}
+    public enum MenuStates {Start, Settings, Play, Import, Tutorial}
     public MenuStates currentState;
 
     public GameObject startMenu;
     public GameObject settingsMenu;
+    public GameObject playMenu;
+    public GameObject importMenu;
+    public GameObject tutorialMenu;
 
 
     // Always starts at main menu
@@ -30,7 +33,20 @@ public class MenuScript : MonoBehaviour
             case MenuStates.Start:
 
                 break;
+
             case MenuStates.Settings:
+
+                break;
+
+            case MenuStates.Play:
+
+                break;
+
+            case MenuStates.Import:
+
+                break;
+            
+            case MenuStates.Tutorial:
 
                 break;
         }
@@ -48,6 +64,9 @@ public class MenuScript : MonoBehaviour
     {
         settingsMenu.SetActive(false);
         startMenu.SetActive(false);
+        playMenu.SetActive(false);
+        importMenu.SetActive(false);
+        tutorialMenu.SetActive(false);
 
     }
 
@@ -68,7 +87,7 @@ public class MenuScript : MonoBehaviour
     {
         deactivateScreens();
 
-        
+        tutorialMenu.SetActive(true);
     }
 
     public void toImages()
@@ -92,6 +111,28 @@ public class MenuScript : MonoBehaviour
     {
         deactivateScreens();
         
+    }
+
+    public void toPlayScreen()
+    {
+        deactivateScreens();
+
+        playMenu.SetActive(true);
+    }
+
+    public void exitGame()
+    {
+        Application.Quit();
+
+        Debug.Log("Exit Successful");
+    }
+
+    public void toImport()
+    {
+        deactivateScreens();
+
+        importMenu.SetActive(true);
+
     }
 
 
