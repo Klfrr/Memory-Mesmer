@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MenuScript : MonoBehaviour
 {
-    public enum MenuStates {Start, Settings, Play, Import, Tutorial}
+    public enum MenuStates {Start, Settings, Play, Import, Tutorial, Games, Scores}
     public MenuStates currentState;
 
     public GameObject startMenu;
@@ -12,6 +12,9 @@ public class MenuScript : MonoBehaviour
     public GameObject playMenu;
     public GameObject importMenu;
     public GameObject tutorialMenu;
+    public GameObject scoreMenu;
+    public GameObject selectGameMenu; 
+
 
 
     // Always starts at main menu
@@ -49,6 +52,14 @@ public class MenuScript : MonoBehaviour
             case MenuStates.Tutorial:
 
                 break;
+
+            case MenuStates.Scores:
+
+                break;
+
+            case MenuStates.Games:
+
+                break;
         }
     
     }
@@ -64,7 +75,10 @@ public class MenuScript : MonoBehaviour
     {
         settingsMenu.SetActive(false);
         startMenu.SetActive(false);
+
         playMenu.SetActive(false);
+            scoreMenu.SetActive(false);
+            selectGameMenu.SetActive(false);
         importMenu.SetActive(false);
         tutorialMenu.SetActive(false);
 
@@ -99,6 +113,7 @@ public class MenuScript : MonoBehaviour
     public void toGames()
     {
         deactivateScreens();
+        selectGameMenu.SetActive(true);
     }
 
     public void toSimonSays()
@@ -110,6 +125,7 @@ public class MenuScript : MonoBehaviour
     public void toScoresScreen()
     {
         deactivateScreens();
+        scoreMenu.SetActive(true);
         
     }
 
