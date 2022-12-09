@@ -14,6 +14,7 @@ public class MenuScript : MonoBehaviour
     public GameObject tutorialMenu;
     public GameObject scoreMenu;
     public GameObject selectGameMenu; 
+    public GameObject patternScreen;
 
 
 
@@ -32,35 +33,6 @@ public class MenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (currentState){
-            case MenuStates.Start:
-
-                break;
-
-            case MenuStates.Settings:
-
-                break;
-
-            case MenuStates.Play:
-
-                break;
-
-            case MenuStates.Import:
-
-                break;
-            
-            case MenuStates.Tutorial:
-
-                break;
-
-            case MenuStates.Scores:
-
-                break;
-
-            case MenuStates.Games:
-
-                break;
-        }
     
     }
 
@@ -119,7 +91,13 @@ public class MenuScript : MonoBehaviour
     public void toSimonSays()
     {
         deactivateScreens();
+        
+    }
 
+    public void toPattern()
+    {
+        deactivateScreens();
+        patternScreen.SetActive(true);
     }
 
     public void toScoresScreen()
