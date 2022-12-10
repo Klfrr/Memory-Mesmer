@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MenuScript : MonoBehaviour
 {
-    public enum MenuStates {Start, Settings, Play, Import, Tutorial, Games, Scores}
+    public enum MenuStates {Start, Settings, Play, Import, Tutorial, Games, Scores};
     public MenuStates currentState;
 
     public GameObject startMenu;
