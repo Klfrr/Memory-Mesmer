@@ -15,7 +15,7 @@ public class MenuScript : MonoBehaviour
     public GameObject scoreMenu;
     public GameObject selectGameMenu; 
     public GameObject patternScreen;
-
+    public GameObject patternGame;
 
 
     // Always starts at main menu
@@ -49,10 +49,12 @@ public class MenuScript : MonoBehaviour
         startMenu.SetActive(false);
 
         playMenu.SetActive(false);
-            scoreMenu.SetActive(false);
-            selectGameMenu.SetActive(false);
+        scoreMenu.SetActive(false);
+        selectGameMenu.SetActive(false);
         importMenu.SetActive(false);
         tutorialMenu.SetActive(false);
+
+        patternGame.SetActive(false);
 
     }
 
@@ -94,7 +96,7 @@ public class MenuScript : MonoBehaviour
         
     }
 
-    public void toPattern()
+    public void toPatternScreen()
     {
         deactivateScreens();
         patternScreen.SetActive(true);
@@ -129,5 +131,11 @@ public class MenuScript : MonoBehaviour
 
     }
 
+    public void toPatternGame()
+    {
+        deactivateScreens();
+
+        patternGame.SetActive(true);
+    }
 
 }

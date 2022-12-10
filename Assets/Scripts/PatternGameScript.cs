@@ -9,11 +9,12 @@ public class PatternGameScript : MonoBehaviour
     bool[] blackWhiteList;
     public GameObject[] buttonList;
     public GameObject WatchLabel;
-
+    public int timer;
 
     // Start is called before the first frame update
     void Start()
     {
+        WatchLabel.SetActive(true);
 
         blackWhiteList = new bool[buttonList.Length];
 
@@ -31,21 +32,45 @@ public class PatternGameScript : MonoBehaviour
                 setWhite(buttonList[i]);
             }
         }
-        
+        StartCoroutine(startWatchTimer());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        
 
         
     }
 
-    void checkButton()
+    public IEnumerator startWatchTimer()
     {
+        while(timer > 0)
+        {
+/*             for(int i = 0; i < buttonList.Length; i++)
+                buttonList[i].interactable = false; */
+
+            for(int i = 0; i < timer; i++)
+            {
+                timer--;
+                yield return new WaitForSeconds(1f);
+            }
+        }
         
+        WatchLabel.SetActive(false);
+/*         for(int i = 0; i < buttonList.Length; i++)
+            buttonList[i].interactable = true; */
+    }
+
+    void checkButton(GameObject button, int b)
+    {
+        if(blackWhiteList[b])
+        {
+            setTextCorrect(button);
+        }
+        else {
+            setTextIncorrect(button);
+        }
+        setWhite(button);
     }
 
     //Set colors
@@ -57,5 +82,17 @@ public class PatternGameScript : MonoBehaviour
     public void setWhite(GameObject button)
     {
         button.GetComponent<Image>().color = Color.white;
+    }
+
+    public void setTextIncorrect(GameObject button)
+    {
+        button.GetComponent<Text>().color = Color.red;
+        button.GetComponent<Text>().text = "WRONG";
+    }
+
+    public void setTextCorrect(GameObject button)
+    {
+        button.GetComponent<Text>().color = Color.green;
+        button.GetComponent<Text>().text = "CORRECT";
     }
 }
