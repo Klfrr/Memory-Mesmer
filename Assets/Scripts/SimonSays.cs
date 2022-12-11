@@ -6,22 +6,18 @@ using UnityEngine.UI;
 public class SimonSays : MonoBehaviour
 {
 
-    public GameObject[] buttons;
-    int[] currentTest;
+    [SerializeField] public GameObject[] buttons;
+    GameObject[] currentTest;
     int[] currentOrder;
     int level = 0;
     int buttonClicked = 0;
     bool alive = true;
     bool passed = false;
-    Color32 red = new Color32(255,0,0,255);
-    Color32 blue = new Color32(0, 0, 255, 255);
-    Color32 green = new Color32(0, 255, 0, 255);
-    Color32 purple = new Color32(255, 0, 255, 255);
 
     // Start is called before the first frame update
     void Start()
     {
-        currentTest = new int[20];
+        currentTest = new GameObject[20];
         currentOrder = new int[20];
     }
 
@@ -40,7 +36,18 @@ public class SimonSays : MonoBehaviour
 
     void addNextPattern()
     {
-        currentTest[level] = Random.Range(0, 3);
+        int testValue = Random.Range(0, 3);
+        currentTest[level] = buttons[testValue];
+    }
+
+    void flashPattern()
+    {
+        disableButtons();
+        for(int i = 0; i < level; i++)
+        {
+            blinkColor(buttons[i], 3);
+        }
+        enableButtons();
     }
 
     void resetLevel()
@@ -56,10 +63,10 @@ public class SimonSays : MonoBehaviour
     {
         //K: Changed from button to parameter click
         //K: GetComponent capitalized
-        Image image = click.GetComponent<Image>(); 
-        var tempColor = image.color;
-        tempColor.a = 1f;
-        image.color = tempColor;
+        //Image image = click.GetComponent<Image>(); 
+        //var tempColor = image.color;
+        //tempColor.a = 1f;
+        //image.color = tempColor;
         //K: Color has to be changed all together, not just alpha
         /*
           image = GetComponent<Image>();
@@ -67,18 +74,47 @@ public class SimonSays : MonoBehaviour
           tempColor.a = 1f;
           image.color = tempColor;
           */
-        //yield return new WaitForSeconds(2); //K: New wait is reserved for functions with type public IEnumerator
-        //click.GetComponent<Image>().color.a = ;
 
+        //Calls blink color which lights up the square and dims the light, user is unable to click during  this time.
+        disableButtons();
+        timer(2); //K: New wait is reserved for functions with type public IEnumerator
+        blinkColor(click, 2);
         buttonClicked += 1;
-
+        enableButtons();
     }
 
 
     void blinkColor(GameObject button,int duration)
     {
-       //button.GetComponent<Image>().color.a = ;
-       //yield return new WaitForSeconds(duration);
-       //button.GetComponent<Image>().color.a = 0;
+        Image temp = button.GetComponent<Image>();
+        var tempColor = temp.color;
+        tempColor.a = 1f;
+        temp.color = tempColor;
+        timer(duration);
+        tempColor.a = 0f;
+        temp.color = tempColor;
     }
+
+    public IEnumerator timer(int delay)
+    {
+        yield return new WaitForSeconds(delay);
+    }
+
+    void  enableButtons()
+    {
+        for(int i = 0; i < buttons.Length;i++)
+        {
+            buttons[i].GetComponent<Button>().interactable = true;
+        }
+    }
+
+    void disableButtons()
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].GetComponent<Button>().interactable = false;
+        }
+    }
+
+
 }
