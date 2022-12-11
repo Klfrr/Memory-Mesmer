@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using unityEngine.UI;
+using UnityEngine.UI;
 
 public class SimonSays : MonoBehaviour
 {
@@ -13,10 +13,10 @@ public class SimonSays : MonoBehaviour
     int buttonClicked = 0;
     bool alive = true;
     bool passed = false;
-    Color32 red = new Color32(255,0,0,255)
-    Color32 blue = new Color32(0, 0, 255, 255)
-    Color32 green = new Color32(0, 255, 0, 255)
-    Color32 purple = new Color32(255, 0, 255, 255)
+    Color32 red = new Color32(255,0,0,255);
+    Color32 blue = new Color32(0, 0, 255, 255);
+    Color32 green = new Color32(0, 255, 0, 255);
+    Color32 purple = new Color32(255, 0, 255, 255);
 
     // Start is called before the first frame update
     void Start()
@@ -54,9 +54,21 @@ public class SimonSays : MonoBehaviour
 
     void eachClick(GameObject click)
     {
-        button.getComponent<Image>().color.a = 255;
-        yield return new WaitForSeconds(2);
-        button.getComponent<Image>().color.a = 0;
+        //K: Changed from button to parameter click
+        //K: GetComponent capitalized
+        Image image = click.GetComponent<Image>(); 
+        var tempColor = image.color;
+        tempColor.a = 1f;
+        image.color = tempColor;
+        //K: Color has to be changed all together, not just alpha
+        /*
+          image = GetComponent<Image>();
+          var tempColor = image.color;
+          tempColor.a = 1f;
+          image.color = tempColor;
+          */
+        //yield return new WaitForSeconds(2); //K: New wait is reserved for functions with type public IEnumerator
+        //click.GetComponent<Image>().color.a = ;
 
         buttonClicked += 1;
 
@@ -65,8 +77,8 @@ public class SimonSays : MonoBehaviour
 
     void blinkColor(GameObject button,int duration)
     {
-       button.getComponent<Image>().color.a = 255;
-       yield return new WaitForSeconds(duration);
-       button.getComponent<Image>().color.a = 0;
+       //button.GetComponent<Image>().color.a = ;
+       //yield return new WaitForSeconds(duration);
+       //button.GetComponent<Image>().color.a = 0;
     }
 }
