@@ -9,6 +9,7 @@ public class PatternGameScript : MonoBehaviour
     bool[] blackWhiteList;
     public GameObject[] buttonList;
     public GameObject WatchLabel;
+
     public int timer;
 
     // Start is called before the first frame update
@@ -61,9 +62,9 @@ public class PatternGameScript : MonoBehaviour
             buttonList[i].interactable = true; */
     }
 
-    void checkButton(GameObject button, int b)
+    public void CheckButton(GameObject button, int b)
     {
-        if(blackWhiteList[b])
+        if(blackWhiteList[0])
         {
             setTextCorrect(button);
         }
@@ -71,6 +72,7 @@ public class PatternGameScript : MonoBehaviour
             setTextIncorrect(button);
         }
         setWhite(button);
+
     }
 
     //Set colors
