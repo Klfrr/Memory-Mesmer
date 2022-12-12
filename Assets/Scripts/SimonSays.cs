@@ -8,6 +8,8 @@ public class SimonSays : MonoBehaviour
 
     [SerializeField] public GameObject[] buttons;
     private GameObject[] currentTest;
+    public  Text levelText; 
+    public Text gameOver;
     private  int level = 0;
     private int buttonClicked = 0;
     private bool alive = true;
@@ -19,6 +21,8 @@ public class SimonSays : MonoBehaviour
         currentTest = new GameObject[10];
         passed = true; 
         addNextPattern();
+        string temp = "Level:" + (level).ToString();
+        levelText.text =  temp;
     }
 
     // Update is called once per frame
@@ -27,9 +31,12 @@ public class SimonSays : MonoBehaviour
         if(!alive)
         {
             disableButtons();
+            disableVisibility();
         }
         if(passed)
         {
+            string temp = "Level:" + (level+1).ToString();
+            levelText.text =  temp;
             StartCoroutine(nextPatternDelay());
         }
     }
@@ -68,6 +75,10 @@ public class SimonSays : MonoBehaviour
         else
         {
             alive = false; 
+            blinkColor(click, 1);
+            buttonClicked += 1;
+            
+
         }
     }
 
@@ -142,6 +153,15 @@ public class SimonSays : MonoBehaviour
         {
                tempButton = buttons[i].GetComponent<Button>();
                tempButton.interactable = false; 
+        }
+    }
+    
+    private void disableVisibility()
+    {
+        gameOver.enabled = true;
+        for(int i = 0; i <  buttons.Length;i++)
+        {
+            buttons[i].gameObject.SetActive(false);
         }
     }
 }
