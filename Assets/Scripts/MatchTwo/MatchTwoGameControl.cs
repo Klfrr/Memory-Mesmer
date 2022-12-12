@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MatchTwoGameLayout : MonoBehaviour
+public class MatchTwoGameControl : MonoBehaviour
 {
     GameObject token;
     List<int> faceIndexes = new List<int> {0, 1, 2, 3, 0, 1, 2, 3};
@@ -31,6 +31,7 @@ public class MatchTwoGameLayout : MonoBehaviour
                 yPos = -2.3f;
             }
         }
+        token.GetComponent<MatchTwoToken>().faceIndex = faceIndexes[0];
     }
 
     //returns true if two cards up and false if not
@@ -53,6 +54,30 @@ public class MatchTwoGameLayout : MonoBehaviour
         {
             visibleFaces[1] = index;
         }
+    }
+
+    public void removeVisibileFace(int index)
+    {
+        if(visibleFaces[0] == -1)
+        {
+            visibleFaces[0] = -1;
+        }
+        else if(visibleFaces[1] == -2)
+        {
+            visibleFaces[1] = -2;
+        }
+    }
+
+    public bool checkMatch()
+    {
+        if(visibleFaces[0] == visibleFaces[1])
+        {
+            visibleFaces[0] = -1;
+            visibleFaces[1] = -2;
+            return true;
+        }
+        return false;
+
     }
 
     private void Awake() 
