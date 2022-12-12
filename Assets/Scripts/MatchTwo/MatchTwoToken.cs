@@ -19,7 +19,7 @@ public class MatchTwoToken : MonoBehaviour
             //Check to see side
             if(spriteRender.sprite == back)
             {
-                //Check to see if another card is already flipped
+                //Check to see if too many cards flipped
                 if(gameControl.GetComponent<MatchTwoGameControl>().TwoCardsUp() == false)
                 {
                     spriteRender.sprite = face[faceIndex];

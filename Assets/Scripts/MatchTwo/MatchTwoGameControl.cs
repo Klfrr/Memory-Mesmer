@@ -5,7 +5,7 @@ using UnityEngine;
 public class MatchTwoGameControl : MonoBehaviour
 {
     GameObject token;
-    List<int> faceIndexes = new List<int> {0, 1, 2, 3, 0, 1, 2, 3};
+    List<int> faceIndexes = new List<int> {0, 0, 1, 1, 2, 2, 3, 3};
     public static System.Random rng = new System.Random();
     public int shuffleNum = 0;
     int[] visibleFaces = {-1, -2};
@@ -44,6 +44,8 @@ public class MatchTwoGameControl : MonoBehaviour
         return false;
     }
 
+    //visibleFaces stores currently shown faces
+    //add is when a new one is shown, remove is for when is flipped back onto its back
     public void addVisibleFace(int index)
     {
         if(visibleFaces[0] == -1)
@@ -55,19 +57,19 @@ public class MatchTwoGameControl : MonoBehaviour
             visibleFaces[1] = index;
         }
     }
-
     public void removeVisibileFace(int index)
     {
-        if(visibleFaces[0] == -1)
+        if(visibleFaces[0] == index)
         {
             visibleFaces[0] = -1;
         }
-        else if(visibleFaces[1] == -2)
+        else if(visibleFaces[1] == index)
         {
             visibleFaces[1] = -2;
         }
     }
 
+    //compares cureently visible faces to see if matching
     public bool checkMatch()
     {
         if(visibleFaces[0] == visibleFaces[1])
