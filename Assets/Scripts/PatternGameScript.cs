@@ -9,6 +9,7 @@ public class PatternGameScript : MonoBehaviour
     bool[] blackWhiteList;
     public GameObject[] buttonList;
     public GameObject WatchLabel;
+    bool[] clicked;
 
     public int timer;
 
@@ -58,19 +59,14 @@ public class PatternGameScript : MonoBehaviour
         }
         
         WatchLabel.SetActive(false);
-/*         for(int i = 0; i < buttonList.Length; i++)
-            buttonList[i].interactable = true; */
+        // set all buttons to black
+        for(int b = 0; b < buttonList.Length; b++)
+            setBlack(buttonList[b]);
     }
 
-    public void CheckButton(GameObject button, int b)
+    public void CheckButton(GameObject button)
     {
-        if(blackWhiteList[0])
-        {
-            setTextCorrect(button);
-        }
-        else {
-            setTextIncorrect(button);
-        }
+        
         setWhite(button);
 
     }
