@@ -7,18 +7,20 @@ public class SimonSays : MonoBehaviour
 {
 
     [SerializeField] public GameObject[] buttons;
-    GameObject[] currentTest;
-    int[] currentOrder;
-    int level = 0;
-    int buttonClicked = 0;
-    bool alive = true;
-    bool passed = false;
+    private GameObject[] currentTest;
+    private int[] currentOrder;
+    private  int level = 0;
+    private int buttonClicked = 0;
+    private bool alive = true;
+    private bool passed;
 
     // Start is called before the first frame update
     void Start()
     {
         currentTest = new GameObject[20];
         currentOrder = new int[20];
+        passed = true; 
+        addNextPattern();
     }
 
     // Update is called once per frame
@@ -30,14 +32,18 @@ public class SimonSays : MonoBehaviour
         }
         if(passed)
         {
-
+            addNextPattern();
         }
     }
 
-    void addNextPattern()
+    private void addNextPattern()
     {
+        passed = false; 
+        buttonClicked = 0;
         int testValue = Random.Range(0, 3);
         currentTest[level] = buttons[testValue];
+        level++;
+        testPrint();
     }
 
     void flashPattern()
@@ -59,7 +65,7 @@ public class SimonSays : MonoBehaviour
         buttonClicked = 0;
     }
 
-    void eachClick(GameObject click)
+    public void eachClick(GameObject click)
     {
         //K: Changed from button to parameter click
         //K: GetComponent capitalized
@@ -75,44 +81,60 @@ public class SimonSays : MonoBehaviour
           image.color = tempColor;
           */
 
+
         //Calls blink color which lights up the square and dims the light, user is unable to click during  this time.
-        disableButtons();
-        timer(2); //K: New wait is reserved for functions with type public IEnumerator
-        blinkColor(click, 2);
+
+        blinkColor(click, 1);
         buttonClicked += 1;
+    }
+
+
+    private void blinkColor(GameObject button,float duration)
+    {
+        disableButtons();
+        Image temp = button.GetComponent<Image>();
+        var tempColor = temp.color;
+        tempColor.a = .65f;
+        temp.color = tempColor;
+        StartCoroutine(colorTimer(duration,temp));
+    }
+
+    private IEnumerator colorTimer(float delay,Image currentTile)
+    {
+        var tempColor = currentTile.color;
+        yield return new WaitForSeconds(delay);
+        tempColor.a = 1f;
+        currentTile.color = tempColor;
         enableButtons();
     }
 
-
-    void blinkColor(GameObject button,int duration)
+    private void testPrint()
     {
-        Image temp = button.GetComponent<Image>();
-        var tempColor = temp.color;
-        tempColor.a = 1f;
-        temp.color = tempColor;
-        timer(duration);
-        tempColor.a = 0f;
-        temp.color = tempColor;
+        Debug.Log("TestPrint");
+        for(int i = 0;i < level;i++)
+        {
+            blinkColor(currentTest[i],1);
+        }
+        
     }
 
-    public IEnumerator timer(int delay)
+    private void enableButtons()
     {
-        yield return new WaitForSeconds(delay);
-    }
-
-    void  enableButtons()
-    {
+        Button tempButton;
         for(int i = 0; i < buttons.Length;i++)
         {
-            buttons[i].GetComponent<Button>().interactable = true;
+            tempButton = buttons[i].GetComponent<Button>();
+            tempButton.interactable = true; 
         }
     }
 
-    void disableButtons()
+    private void disableButtons()
     {
+        Button tempButton;
         for (int i = 0; i < buttons.Length; i++)
         {
-            buttons[i].GetComponent<Button>().interactable = false;
+               tempButton = buttons[i].GetComponent<Button>();
+               tempButton.interactable = false; 
         }
     }
 
