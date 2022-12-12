@@ -8,7 +8,6 @@ public class SimonSays : MonoBehaviour
 
     [SerializeField] public GameObject[] buttons;
     private GameObject[] currentTest;
-    private int[] currentOrder;
     private  int level = 0;
     private int buttonClicked = 0;
     private bool alive = true;
@@ -17,8 +16,7 @@ public class SimonSays : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentTest = new GameObject[20];
-        currentOrder = new int[20];
+        currentTest = new GameObject[10];
         passed = true; 
         addNextPattern();
     }
@@ -28,11 +26,11 @@ public class SimonSays : MonoBehaviour
     {
         if(!alive)
         {
-
+            disableButtons();
         }
         if(passed)
         {
-            addNextPattern();
+            StartCoroutine(nextPatternDelay());
         }
     }
 
@@ -46,25 +44,6 @@ public class SimonSays : MonoBehaviour
         testPrint();
     }
 
-    void flashPattern()
-    {
-        disableButtons();
-        for(int i = 0; i < level; i++)
-        {
-            blinkColor(buttons[i], 3);
-        }
-        enableButtons();
-    }
-
-    void resetLevel()
-    {
-        for(int i = 0; i < currentOrder.Length;i++)
-        {
-            currentOrder[i] = -1;
-        }
-        buttonClicked = 0;
-    }
-
     public void eachClick(GameObject click)
     {
         //K: Changed from button to parameter click
@@ -74,18 +53,22 @@ public class SimonSays : MonoBehaviour
         //tempColor.a = 1f;
         //image.color = tempColor;
         //K: Color has to be changed all together, not just alpha
-        /*
-          image = GetComponent<Image>();
-          var tempColor = image.color;
-          tempColor.a = 1f;
-          image.color = tempColor;
-          */
-
 
         //Calls blink color which lights up the square and dims the light, user is unable to click during  this time.
-
-        blinkColor(click, 1);
-        buttonClicked += 1;
+        if(GameObject.ReferenceEquals(click, currentTest[buttonClicked]))
+        {
+            blinkColor(click, 1);
+            buttonClicked += 1;
+            if(buttonClicked == level)
+            {
+                Debug.Log("Passed");
+                passed = true;
+            }
+        }
+        else
+        {
+            alive = false; 
+        }
     }
 
 
@@ -110,12 +93,36 @@ public class SimonSays : MonoBehaviour
 
     private void testPrint()
     {
-        Debug.Log("TestPrint");
-        for(int i = 0;i < level;i++)
+        disableButtons();
+        StartCoroutine(testColorRecursion(0));
+    }
+
+    private IEnumerator testColorRecursion(int i)
+    {
+        if(i == level)
         {
-            blinkColor(currentTest[i],1);
+            enableButtons();
         }
-        
+        else
+        {
+            GameObject tempButton = currentTest[i];
+            Image temp = tempButton.GetComponent<Image>();
+            var tempColor = temp.color;
+            tempColor.a = .65f;
+            temp.color = tempColor;
+            yield return new WaitForSeconds(2);
+            tempColor.a = 1f;
+            temp.color = tempColor;
+            i++;
+            StartCoroutine(testColorRecursion(i));
+        }
+    }
+
+    private IEnumerator nextPatternDelay()
+    {
+        passed = false;
+        yield return new WaitForSeconds(3);
+        addNextPattern();
     }
 
     private void enableButtons()
@@ -137,6 +144,4 @@ public class SimonSays : MonoBehaviour
                tempButton.interactable = false; 
         }
     }
-
-
 }
