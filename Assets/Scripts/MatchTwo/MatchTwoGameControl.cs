@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MatchTwoGameControl : MonoBehaviour
 {
@@ -92,4 +93,11 @@ public class MatchTwoGameControl : MonoBehaviour
     {
         
     }
+
+    public void changeScene()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
+
+

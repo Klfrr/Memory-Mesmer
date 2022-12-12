@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class MenuScript : MonoBehaviour
 {
     public enum MenuStates {Start, Settings, Play, Import, Tutorial, Games, Scores};
@@ -148,6 +148,11 @@ public class MenuScript : MonoBehaviour
     {
         deactivateScreens();
         simonSaysScreen.SetActive(true);
+    }
+
+    public void toMatchTwo()
+    {
+        SceneManager.LoadScene(1);
     }
 
 }
