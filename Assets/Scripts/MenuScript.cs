@@ -16,6 +16,7 @@ public class MenuScript : MonoBehaviour
     public GameObject selectGameMenu; 
     public GameObject patternScreen;
     public GameObject patternGame;
+    public GameObject simonSaysGame;
 
 
     // Always starts at main menu
@@ -55,6 +56,9 @@ public class MenuScript : MonoBehaviour
         tutorialMenu.SetActive(false);
 
         patternGame.SetActive(false);
+        simonSaysGame.SetActive(false);
+
+        
 
     }
 
@@ -93,6 +97,7 @@ public class MenuScript : MonoBehaviour
     public void toSimonSays()
     {
         deactivateScreens();
+        simonSaysGame.SetActive(true);
         
     }
 

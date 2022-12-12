@@ -366,7 +366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2142255098031362177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -448,6 +448,8 @@ MonoBehaviour:
   tutorialMenu: {fileID: 0}
   scoreMenu: {fileID: 0}
   selectGameMenu: {fileID: 0}
+  patternScreen: {fileID: 0}
+  patternGame: {fileID: 0}
 --- !u!1 &3438571931259547376
 GameObject:
   m_ObjectHideFlags: 0
