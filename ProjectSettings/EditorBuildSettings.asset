@@ -14,5 +14,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TempMatchTwoScene.unity
     guid: e3db57b00acf13c42bfdd33076fa8ecf
+  - enabled: 1
+    path: Assets/Scenes/Registration.unity
+    guid: 65d6a36f6d1b5be45aeb9051acbd2d17
+  - enabled: 1
+    path: Assets/Scenes/Login.unity
+    guid: ed97ff865f1c4194e94846dcf22c3306
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: be5d98219e0a6234fa58aa930e6150d3, type: 2}
