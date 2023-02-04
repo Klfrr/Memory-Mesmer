@@ -27,13 +27,13 @@ public class DatabaseTesting : MonoBehaviour
 
         IDbCommand dbcmd = dbconn.CreateCommand(); 
 
-        string sqlQuery = "SELECT User,Score" + "FROM PlaceSequence";
+        //string sqlQuery = "SELECT User,Score" + "FROM PlaceSequence";
 
-        dbcmd.CommandText = sqlQuery;
-        IDataReader reader = dbcmd.ExecuteReader();
+        //dbcmd.CommandText = sqlQuery;
+        //IDataReader reader = dbcmd.ExecuteReader();
 
         IDbCommand cmnd = dbconn.CreateCommand();
-        cmnd.CommandText = "INSERT INTO Database (User,Score) VALUES (Temp, 5)";
+        cmnd.CommandText = "INSERT INTO Scores (User,Score) VALUES (0, 5)";
         cmnd.ExecuteNonQuery();
 
         dbconn.Close();
