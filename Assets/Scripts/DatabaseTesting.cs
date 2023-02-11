@@ -69,7 +69,15 @@ public class DatabaseTesting : MonoBehaviour
 
     public void onClick()
     {
-        
+        string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db";    
+        IDbConnection dbDelete = new SqliteConnection(dataBaseConn);
+
+        dbDelete.Open();
+        IDbCommand dltCmnd = dbDelete.CreateCommand();
+        dltCmnd.CommandText = "DELETE FROM Scores WHERE User=0";
+
+        dltCmnd.ExecuteNonQuery();
+        dbDelete.Close();
 
     }
 
