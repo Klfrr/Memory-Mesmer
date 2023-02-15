@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PatternGameScript : MonoBehaviour
 {
     //public GameObject button1, button2, button3, button4, button5, button6, button7, button8, button9;
     bool[] blackWhiteList;
-    public GameObject[] buttonList;
+    public List<GameObject> buttonList;
     public GameObject WatchLabel;
     bool[] clicked;
+    public GameObject backButton;
 
     public int timer;
 
@@ -18,13 +20,13 @@ public class PatternGameScript : MonoBehaviour
     {
         WatchLabel.SetActive(true);
 
-        blackWhiteList = new bool[buttonList.Length];
+        blackWhiteList = new bool[buttonList.Count];
 
         // set all buttons to black
-        for(int b = 0; b < buttonList.Length; b++)
+        for(int b = 0; b < buttonList.Count; b++)
             setBlack(buttonList[b]);
 
-        for( int i = 0; i < buttonList.Length; i++)
+        for( int i = 0; i < buttonList.Count; i++)
         {
             bool randNum = Random.value > 0.5f; // returns true 50% of the time
             //Debug.Log("Random Number for " + i + ": " + randNum);
@@ -44,11 +46,12 @@ public class PatternGameScript : MonoBehaviour
         
     }
 
+    // function controls the timer
     public IEnumerator startWatchTimer()
     {
         while(timer > 0)
         {
-/*             for(int i = 0; i < buttonList.Length; i++)
+/*             for(int i = 0; i < buttonList.Count; i++)
                 buttonList[i].interactable = false; */
 
             for(int i = 0; i < timer; i++)
@@ -60,12 +63,30 @@ public class PatternGameScript : MonoBehaviour
         
         WatchLabel.SetActive(false);
         // set all buttons to black
-        for(int b = 0; b < buttonList.Length; b++)
+        for(int b = 0; b < buttonList.Count; b++)
             setBlack(buttonList[b]);
     }
 
     public void CheckButton(GameObject button)
     {
+
+        //Debug.Log();
+/*         for
+        {
+            if(button == object)
+            {
+                if(blackWhiteList[buttonList.index])
+                {
+                    setWhite(button);
+                    setTextCorrect(button);
+                }
+                else
+                {
+                    setBlack(button);
+                    setTextIncorrect(button);
+                }
+            }
+        } */
         
         setWhite(button);
 
@@ -92,5 +113,15 @@ public class PatternGameScript : MonoBehaviour
     {
         button.GetComponent<Text>().color = Color.green;
         button.GetComponent<Text>().text = "CORRECT";
+    }
+
+    public void reset()
+    {
+
+    }
+
+    public void ChangeScene()
+    {
+        SceneManager.LoadScene(0);
     }
 }
