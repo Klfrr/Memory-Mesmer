@@ -10,16 +10,28 @@ public class SimonSays : MonoBehaviour
     private GameObject[] currentTest;
     public  Text levelText; 
     public Text gameOver;
-    private  int level = 0;
+    private int level = 0;
     private int buttonClicked = 0;
     private bool alive = true;
     private bool passed;
+    private Color32 red = new Color32(255,0,0,255);
+    private Color32 blue = new Color32(0,0,255,255);
+    private Color32 green = new Color32(0,255,0,255);
+    private Color32 yellow = new Color32(255,255,0,255);
+    private Color32 white = new Color32(255,255,255,255);
+    Color32[] colorArray = new Color32[4];
+    private int[] blinkArray;
 
     // Start is called before the first frame update
     void Start()
     {
         currentTest = new GameObject[10];
+        blinkArray = new int[10];
         passed = true; 
+        colorArray[0] = red;
+        colorArray[1] = blue;
+        colorArray[2] = green;
+        colorArray[3] = yellow;
         addNextPattern();
         string temp = "Level:" + (level).ToString();
         levelText.text =  temp;
@@ -32,6 +44,7 @@ public class SimonSays : MonoBehaviour
         {
             disableButtons();
             disableVisibility();
+            SceneManager.LoadScene(4);
         }
         if(passed)
         {
@@ -50,8 +63,9 @@ public class SimonSays : MonoBehaviour
     {
         passed = false; 
         buttonClicked = 0;
-        int testValue = Random.Range(0, 3);
+        int testValue = Random.Range(0, 4);
         currentTest[level] = buttons[testValue];
+        blinkArray[level] = testValue;
         level++;
         testPrint();
     }
@@ -66,10 +80,17 @@ public class SimonSays : MonoBehaviour
         //image.color = tempColor;
         //K: Color has to be changed all together, not just alpha
 
+        int colorIndex = 0;
+        while(!(GameObject.ReferenceEquals(buttons[colorIndex],currentTest[buttonClicked])))
+        {
+            colorIndex++;
+        }
+
+
         //Calls blink color which lights up the square and dims the light, user is unable to click during  this time.
         if(GameObject.ReferenceEquals(click, currentTest[buttonClicked]))
         {
-            blinkColor(click, 1);
+            blinkColor(click, 1, colorIndex);
             buttonClicked += 1;
             if(buttonClicked == level)
             {
@@ -80,7 +101,7 @@ public class SimonSays : MonoBehaviour
         else
         {
             alive = false; 
-            blinkColor(click, 1);
+            blinkColor(click, 1, colorIndex);
             buttonClicked += 1;
             
 
@@ -88,12 +109,12 @@ public class SimonSays : MonoBehaviour
     }
 
 
-    private void blinkColor(GameObject button,float duration)
+    private void blinkColor(GameObject button,float duration, int colorIndex)
     {
         disableButtons();
         Image temp = button.GetComponent<Image>();
         var tempColor = temp.color;
-        tempColor.a = .65f;
+        tempColor = colorArray[colorIndex];
         temp.color = tempColor;
         StartCoroutine(colorTimer(duration,temp));
     }
@@ -102,7 +123,7 @@ public class SimonSays : MonoBehaviour
     {
         var tempColor = currentTile.color;
         yield return new WaitForSeconds(delay);
-        tempColor.a = 1f;
+        tempColor = white;
         currentTile.color = tempColor;
         enableButtons();
     }
@@ -115,6 +136,7 @@ public class SimonSays : MonoBehaviour
 
     private IEnumerator testColorRecursion(int i)
     {
+        Debug.Log(blinkArray[i]);
         if(i == level)
         {
             enableButtons();
@@ -123,12 +145,12 @@ public class SimonSays : MonoBehaviour
         {
             GameObject tempButton = currentTest[i];
             Image temp = tempButton.GetComponent<Image>();
-            var tempColor = temp.color;
-            tempColor.a = .65f;
+            var tempColor = colorArray[blinkArray[i]];
             temp.color = tempColor;
             yield return new WaitForSeconds(2);
-            tempColor.a = 1f;
+            tempColor = white;
             temp.color = tempColor;
+            yield return new WaitForSeconds(1);
             i++;
             StartCoroutine(testColorRecursion(i));
         }
