@@ -6413,6 +6413,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SignInScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 4255279451733035666, guid: 01d2bc65f743f5b4d99b669d3c5fc172, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4255279451733035667, guid: 01d2bc65f743f5b4d99b669d3c5fc172, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

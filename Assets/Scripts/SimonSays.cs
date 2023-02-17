@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class SimonSays : MonoBehaviour
 {
 
@@ -39,6 +39,11 @@ public class SimonSays : MonoBehaviour
             levelText.text =  temp;
             StartCoroutine(nextPatternDelay());
         }
+    }
+
+    public void toMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void addNextPattern()

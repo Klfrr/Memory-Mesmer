@@ -35,7 +35,17 @@ public class MenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            QuitGame();
+        }
+    }
+
+    public void QuitGame()
+    {
+
+        UnityEditor.EditorApplication.isPlaying = false;
+        Debug.Log("Editor Exit Successful");
     }
 
     public void onButtonLog()
@@ -124,8 +134,11 @@ public class MenuScript : MonoBehaviour
 
     public void exitGame()
     {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        Debug.Log("Editor Exit Successful");
+        #endif
         Application.Quit();
-
         Debug.Log("Exit Successful");
     }
 
@@ -146,13 +159,17 @@ public class MenuScript : MonoBehaviour
 
     public void toSimonScreen()
     {
-        deactivateScreens();
-        simonSaysScreen.SetActive(true);
+      SceneManager.LoadScene(2);
     }
 
     public void toMatchTwo()
     {
         SceneManager.LoadScene(1);
+    }
+    
+    public void toMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }
