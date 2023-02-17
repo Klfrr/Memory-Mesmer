@@ -11,27 +11,40 @@ public class MatchTwoToken : MonoBehaviour
     public int faceIndex;
     public bool matched = false;
 
+    //What the cards do when interacted with
     public void OnMouseDown()
     {
-        //Check To See if already matched
-        if(matched == false)
+        //checks if cards are on unflip timer
+        //Check To see if already matched
+        //Check to see side
+        if(gameControl.GetComponent<MatchTwoGameControl>().pauseInput == false)
         {
-            //Check to see side
-            if(spriteRender.sprite == back)
+            if(matched == false)
             {
-                //Check to see if too many cards flipped
-                if(gameControl.GetComponent<MatchTwoGameControl>().TwoCardsUp() == false)
+                if(spriteRender.sprite == back)
                 {
-                    spriteRender.sprite = face[faceIndex];
-                    gameControl.GetComponent<MatchTwoGameControl>().addVisibleFace(faceIndex);
-                    matched = gameControl.GetComponent<MatchTwoGameControl>().checkMatch();
+                    //Check to see if too many cards flipped
+                    if(gameControl.GetComponent<MatchTwoGameControl>().TwoCardsUp() == false)
+                    {
+                        spriteRender.sprite = face[faceIndex];
+                        gameControl.GetComponent<MatchTwoGameControl>().addVisibleFace(faceIndex);
+                        matched = gameControl.GetComponent<MatchTwoGameControl>().checkMatch();
+
+                        //stops inputs and creates initial time pause
+                        if(gameControl.GetComponent<MatchTwoGameControl>().TwoCardsUp() == true)
+                        {
+                            gameControl.GetComponent<MatchTwoGameControl>().pauseInput = true;
+                            gameControl.GetComponent<MatchTwoGameControl>().pauseTime = 2f;
+                        }
+                    }
                 }
             }
-            else
-            {
-                spriteRender.sprite = back; 
-            }
         }
+    }
+
+    public void hide()
+    {
+        spriteRender.sprite = back;
     }
 
     private void Awake()
@@ -39,4 +52,5 @@ public class MatchTwoToken : MonoBehaviour
         gameControl = GameObject.Find("MatchTwoGameControl");
         spriteRender = GetComponent<SpriteRenderer>();
     }
-}
+}       
+         

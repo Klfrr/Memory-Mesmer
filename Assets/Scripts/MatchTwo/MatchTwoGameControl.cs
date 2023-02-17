@@ -9,6 +9,10 @@ public class MatchTwoGameControl : MonoBehaviour
     List<int> faceIndexes = new List<int> {0, 0, 1, 1, 2, 2, 3, 3};
     public static System.Random rng = new System.Random();
     public int shuffleNum = 0;
+    public bool pauseInput = false;
+    public float pauseTime;
+
+    //negative numbers are to act as indicators of unflipped cards
     int[] visibleFaces = {-1, -2};
 
     // Start is called before the first frame update
@@ -91,7 +95,16 @@ public class MatchTwoGameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(pauseInput)
+        {
+            pauseTime -= Time.deltaTime;
+            if(pauseTime <= 0)
+            {
+                pauseInput = false;
+                removeVisibileFace(visibleFaces[0]);
+                removeVisibileFace(visibleFaces[1]);
+            }
+        }
     }
 
     public void changeScene()
