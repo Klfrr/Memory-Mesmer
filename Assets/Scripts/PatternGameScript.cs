@@ -8,13 +8,16 @@ public class PatternGameScript : MonoBehaviour
 {
     
     //public GameObject button1, button2, button3, button4, button5, button6, button7, button8, button9;
-    bool[] blackWhiteList;
+    bool[] blackWhiteList; //1 is white
     public List<GameObject> buttonList;
     public GameObject WatchLabel;
-    bool[] clicked;
     public GameObject backButton;
+    public Text ScoreLabel;
 
-    public int timer;
+    public int whiteCount = 0;
+    public int whiteClicked = 0;
+    public int score = 0;
+    public int timer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -32,9 +35,10 @@ public class PatternGameScript : MonoBehaviour
             bool randNum = Random.value > 0.5f; // returns true 50% of the time
             //Debug.Log("Random Number for " + i + ": " + randNum);
             blackWhiteList[i] = randNum;
-            if(blackWhiteList[i])
+            if(blackWhiteList[i]) //if button is 1 value in the bool list
             {
-                setWhite(buttonList[i]);
+                setWhite(buttonList[i]); // make white 
+                whiteCount++;
             }
         }
         StartCoroutine(startWatchTimer());
@@ -43,8 +47,7 @@ public class PatternGameScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        
+        //ScoreLabel.text = score.ToString("0");
     }
 
     // function controls the timer
@@ -68,28 +71,131 @@ public class PatternGameScript : MonoBehaviour
             setBlack(buttonList[b]);
     }
 
+    //Uses a switch statement to check which button is being pressed and if it is correct. 
     public void CheckButton(GameObject button)
     {
-
-        //Debug.Log();
-/*         for
+        button.GetComponent<Button>().interactable = false;
+        string bname = button.name;
+        Debug.Log(bname);
+        switch(bname)
         {
-            if(button == object)
-            {
-                if(blackWhiteList[buttonList.index])
+            case "PatternButton1":
+                if(blackWhiteList[0])
                 {
                     setWhite(button);
                     setTextCorrect(button);
-                }
+                } 
                 else
                 {
                     setBlack(button);
                     setTextIncorrect(button);
                 }
-            }
-        } */
-        
-        setWhite(button);
+                break;
+
+            case "PatternButton2":
+                if(blackWhiteList[1])
+                {
+                    setWhite(button);
+                    setTextCorrect(button);
+                } 
+                else
+                {
+                    setBlack(button);
+                    setTextIncorrect(button);
+                }
+                break;
+
+            case "PatternButton3":
+                if(blackWhiteList[2])
+                {
+                    setWhite(button);
+                    setTextCorrect(button);
+                } 
+                else
+                {
+                    setBlack(button);
+                    setTextIncorrect(button);
+                }
+                break;
+
+            case "PatternButton4":
+                if(blackWhiteList[3])
+                {
+                    setWhite(button);
+                    setTextCorrect(button);
+                } 
+                else
+                {
+                    setBlack(button);
+                    setTextIncorrect(button);
+                }
+                break;
+
+            case "PatternButton5":
+                if(blackWhiteList[4])
+                {
+                    setWhite(button);
+                    setTextCorrect(button);
+                } 
+                else
+                {
+                    setBlack(button);
+                    setTextIncorrect(button);
+                }
+                break;
+
+            case "PatternButton6":
+                if(blackWhiteList[5])
+                {
+                    setWhite(button);
+                    setTextCorrect(button);
+                } 
+                else
+                {
+                    setBlack(button);
+                    setTextIncorrect(button);
+                }
+                break;
+            
+            case "PatternButton7":
+                if(blackWhiteList[6])
+                {
+                    setWhite(button);
+                    setTextCorrect(button);
+                } 
+                else
+                {
+                    setBlack(button);
+                    setTextIncorrect(button);
+                }
+                break;
+
+            case "PatternButton8":
+                if(blackWhiteList[7])
+                {
+                    setWhite(button);
+                    setTextCorrect(button);
+                } 
+                else
+                {
+                    setBlack(button);
+                    setTextIncorrect(button);
+                }
+                break;
+
+            case "PatternButton9":
+                if(blackWhiteList[8])
+                {
+                    setWhite(button);
+                    setTextCorrect(button);
+                } 
+                else
+                {
+                    setBlack(button);
+                    setTextIncorrect(button);
+                }
+                break;
+        }
 
     }
 
@@ -104,16 +210,23 @@ public class PatternGameScript : MonoBehaviour
         button.GetComponent<Image>().color = Color.white;
     }
 
+    // If user presses wrong button, this function will decrement the score and display the button being wrong.
     public void setTextIncorrect(GameObject button)
     {
-        button.GetComponent<Text>().color = Color.red;
-        button.GetComponent<Text>().text = "WRONG";
+        Debug.Log(button.name + " is incorrect.");
+        button.transform.GetChild(0).GetComponent<Text>().color = Color.red;
+        button.transform.GetChild(0).GetComponent<Text>().text = "WRONG";
+        score--;
     }
 
+    // If user presses the right button, this function will increment the score and display the button being right.
     public void setTextCorrect(GameObject button)
     {
-        button.GetComponent<Text>().color = Color.green;
-        button.GetComponent<Text>().text = "CORRECT";
+        Debug.Log(button.name + " is correct.");
+        button.transform.GetChild(0).GetComponent<Text>().color = Color.green;
+        button.transform.GetChild(0).GetComponent<Text>().text = "CORRECT";
+        score++;
+        whiteClicked++;
     }
 
     public void reset()
