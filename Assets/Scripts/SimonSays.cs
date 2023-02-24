@@ -68,6 +68,7 @@ public class SimonSays : MonoBehaviour
         blinkArray[level] = testValue;
         level++;
         testPrint();
+        disableButtons();
     }
 
     public void eachClick(GameObject click)
@@ -111,7 +112,7 @@ public class SimonSays : MonoBehaviour
 
     private void blinkColor(GameObject button,float duration, int colorIndex)
     {
-        disableButtons();
+        duration = duration/2;
         Image temp = button.GetComponent<Image>();
         var tempColor = temp.color;
         tempColor = colorArray[colorIndex];
@@ -147,7 +148,7 @@ public class SimonSays : MonoBehaviour
             Image temp = tempButton.GetComponent<Image>();
             var tempColor = colorArray[blinkArray[i]];
             temp.color = tempColor;
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             tempColor = white;
             temp.color = tempColor;
             yield return new WaitForSeconds(1);
