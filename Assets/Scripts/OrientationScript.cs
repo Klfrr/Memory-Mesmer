@@ -35,6 +35,7 @@ public class OrientationScript : MonoBehaviour
 
         double timeDifference = Math.Abs((testDate-currentTime).TotalHours);
         double tempAccuracy;
+        Debug.Log(timeDifference);
         if(timeDifference < 1)
         {
             tempAccuracy = 100;
@@ -42,7 +43,6 @@ public class OrientationScript : MonoBehaviour
         else
         {
             tempAccuracy = 100*(1/timeDifference);
-            Debug.Log(tempAccuracy);
         }
         tempAccuracy = Math.Round(tempAccuracy,2);
         string accuracyScore = "Accuracy: " + tempAccuracy;

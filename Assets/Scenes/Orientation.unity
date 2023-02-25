@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -441, y: 56}
-  m_SizeDelta: {x: 40.0884, y: 21.6744}
+  m_AnchoredPosition: {x: -349.88, y: 14.8364}
+  m_SizeDelta: {x: 70.463, y: 35.3956}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &41739392
 MonoBehaviour:
@@ -194,7 +194,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Time:'
+  m_Text: 'Time:
+
+    (Military)'
 --- !u!222 &41739393
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2793,7 +2795,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ex. 01:53:42
+  m_Text: Ex. 13:53:42
 --- !u!222 &2122962633
 CanvasRenderer:
   m_ObjectHideFlags: 0
