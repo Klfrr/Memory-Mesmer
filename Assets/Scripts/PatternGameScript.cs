@@ -19,11 +19,20 @@ public class PatternGameScript : MonoBehaviour
     public int score = 0;
     public int timer = 0;
 
+    //Timer info 
+    private bool gameActive = false;
+    public Text timeText;
+    public int gameTime = 120;
+    private float startTime = 0;
+
     // Start is called before the first frame update
     void Start()
     {
+        timeText.text = "Time: " + GetTimeDisplay(gameTime);
+        startTime = Time.time;
+        gameActive = true;
         WatchLabel.SetActive(true);
-
+        
         blackWhiteList = new bool[buttonList.Count];
 
         // set all buttons to black
@@ -47,6 +56,17 @@ public class PatternGameScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Time.time - startTime < gameTime)
+        {
+            float ElapsedTime = Time.time - startTime;
+            SetTimeDisplay(gameTime - ElapsedTime);
+        }
+        else
+        {
+            gameActive = false;
+            SetTimeDisplay(0);
+            SceneManager.LoadScene(4);
+        }
         //ScoreLabel.text = score.ToString("0");
     }
 
@@ -239,4 +259,18 @@ public class PatternGameScript : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    private void SetTimeDisplay(float timeDisplay)
+    {
+        timeText.text = "Time: " + GetTimeDisplay(timeDisplay);
+    }
+    private string GetTimeDisplay (float timeToShow)
+    {
+        int secondsToShow = Mathf.CeilToInt(timeToShow);
+        int seconds = secondsToShow % 60;
+        string secondsDisplay = (seconds < 10 ) ? "0" + seconds.ToString() : seconds.ToString();
+        int minutes = (secondsToShow - seconds) / 60;
+        return minutes.ToString() + ":" + seconds.ToString();
+    }
+
 }

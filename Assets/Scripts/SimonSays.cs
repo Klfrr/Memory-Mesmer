@@ -21,6 +21,12 @@ public class SimonSays : MonoBehaviour
     private Color32 white = new Color32(255,255,255,255);
     Color32[] colorArray = new Color32[4];
     private int[] blinkArray;
+    //Time info
+    private bool gameActive = false;
+    public Text timeText;
+    public int gameTime = 120;
+    private float startTime = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,11 +41,27 @@ public class SimonSays : MonoBehaviour
         addNextPattern();
         string temp = "Level:" + (level).ToString();
         levelText.text =  temp;
+
+        timeText.text = "Time: " + GetTimeDisplay(gameTime);
+        startTime = Time.time;
+        gameActive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Time.time - startTime < gameTime)
+        {
+            float ElapsedTime = Time.time - startTime;
+            SetTimeDisplay(gameTime - ElapsedTime);
+        }
+        else
+        {
+            gameActive = false;
+            SetTimeDisplay(0);
+            SceneManager.LoadScene(4);
+        }
+
         if(!alive)
         {
             disableButtons();
@@ -192,5 +214,18 @@ public class SimonSays : MonoBehaviour
         {
             buttons[i].gameObject.SetActive(false);
         }
+    }
+
+    private void SetTimeDisplay(float timeDisplay)
+    {
+        timeText.text = "Time: " + GetTimeDisplay(timeDisplay);
+    }
+    private string GetTimeDisplay (float timeToShow)
+    {
+        int secondsToShow = Mathf.CeilToInt(timeToShow);
+        int seconds = secondsToShow % 60;
+        string secondsDisplay = (seconds < 10 ) ? "0" + seconds.ToString() : seconds.ToString();
+        int minutes = (secondsToShow - seconds) / 60;
+        return minutes.ToString() + ":" + seconds.ToString();
     }
 }
