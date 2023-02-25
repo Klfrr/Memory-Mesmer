@@ -9,7 +9,7 @@ public class SimonSays : MonoBehaviour
     [SerializeField] public GameObject[] buttons;
     private GameObject[] currentTest;
     public  Text levelText; 
-    public Text gameOver;
+    public Text ButtonActivity;
     private int level = 0;
     private int buttonClicked = 0;
     private bool alive = true;
@@ -61,6 +61,7 @@ public class SimonSays : MonoBehaviour
 
     private void addNextPattern()
     {
+        ButtonActivity.text = "Watch";
         passed = false; 
         buttonClicked = 0;
         int testValue = Random.Range(0, 4);
@@ -141,6 +142,7 @@ public class SimonSays : MonoBehaviour
         if(i == level)
         {
             enableButtons();
+            ButtonActivity.text = "Play";
         }
         else
         {
@@ -186,7 +188,6 @@ public class SimonSays : MonoBehaviour
     
     private void disableVisibility()
     {
-        gameOver.enabled = true;
         for(int i = 0; i <  buttons.Length;i++)
         {
             buttons[i].gameObject.SetActive(false);
