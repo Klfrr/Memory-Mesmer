@@ -362,7 +362,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 226821638}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 409906326}
+        m_TargetAssemblyTypeName: NamingGameScript, Assembly-CSharp
+        m_MethodName: CheckButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 226821637}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &226821638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,18 +616,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonsList:
-  - {fileID: 600829999}
-  - {fileID: 226821635}
-  - {fileID: 1498300119}
-  - {fileID: 1616804301}
-  - {fileID: 2027777837}
+  - {fileID: 600830001}
+  - {fileID: 226821637}
+  - {fileID: 1498300121}
   options:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Lion
+  - Rhino
+  - Camel
+  correctButton: {fileID: 0}
+  score: 0
+  random: 0
 --- !u!1 &512136207
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +865,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 600830002}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 409906326}
+        m_TargetAssemblyTypeName: NamingGameScript, Assembly-CSharp
+        m_MethodName: CheckButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 600830001}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &600830002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1072,8 +1094,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 39.720337, y: 16.175049}
-  m_SizeDelta: {x: -911.1091, y: -2394.3906}
+  m_AnchoredPosition: {x: 0, y: 436}
+  m_SizeDelta: {x: -1169.3612, y: -2654.1985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1052505263
 MonoBehaviour:
@@ -1088,7 +1110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.40784314, g: 0.39215687, b: 0.47843137, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1276,7 +1298,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1498300122}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 409906326}
+        m_TargetAssemblyTypeName: NamingGameScript, Assembly-CSharp
+        m_MethodName: CheckButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1498300121}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1498300122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1333,7 +1367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1616804302
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1619,7 +1653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2027777838
 RectTransform:
   m_ObjectHideFlags: 0

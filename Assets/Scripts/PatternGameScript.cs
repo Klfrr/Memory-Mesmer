@@ -72,7 +72,7 @@ public class PatternGameScript : MonoBehaviour
     }
 
     //Uses a switch statement to check which button is being pressed and if it is correct. 
-    public void CheckButton(GameObject button)
+    void CheckButton(GameObject button)
     {
         button.GetComponent<Button>().interactable = false;
         string bname = button.name;
@@ -210,15 +210,6 @@ public class PatternGameScript : MonoBehaviour
         button.GetComponent<Image>().color = Color.white;
     }
 
-    // If user presses wrong button, this function will decrement the score and display the button being wrong.
-    public void setTextIncorrect(GameObject button)
-    {
-        Debug.Log(button.name + " is incorrect.");
-        button.transform.GetChild(0).GetComponent<Text>().color = Color.red;
-        button.transform.GetChild(0).GetComponent<Text>().text = "WRONG";
-        score--;
-    }
-
     // If user presses the right button, this function will increment the score and display the button being right.
     public void setTextCorrect(GameObject button)
     {
@@ -227,6 +218,15 @@ public class PatternGameScript : MonoBehaviour
         button.transform.GetChild(0).GetComponent<Text>().text = "CORRECT";
         score++;
         whiteClicked++;
+    }
+
+    // If user presses wrong button, this function will decrement the score and display the button being wrong.
+    public void setTextIncorrect(GameObject button)
+    {
+        Debug.Log(button.name + " is incorrect.");
+        button.transform.GetChild(0).GetComponent<Text>().color = Color.red;
+        button.transform.GetChild(0).GetComponent<Text>().text = "WRONG";
+        score--;
     }
 
     public void reset()
