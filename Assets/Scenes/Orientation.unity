@@ -956,10 +956,22 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 345582706}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2137639753}
+        m_TargetAssemblyTypeName: OrientationScript, Assembly-CSharp
+        m_MethodName: onClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &380114703
 GameObject:
   m_ObjectHideFlags: 0
@@ -2913,3 +2925,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4fb20930564bf647b570a4f93ce077f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dateInput: {fileID: 1304513764}
+  timeInput: {fileID: 1442235213}
+  accuracy: {fileID: 1565800471}

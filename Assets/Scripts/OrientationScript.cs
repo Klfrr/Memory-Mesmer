@@ -7,14 +7,18 @@ using System;
 
 public class OrientationScript : MonoBehaviour
 {
+    public Text dateInput;
+    public Text timeInput;
+    public Text accuracy;
+    private float difference;
+    private DateTime currentTime;
+
+
     // Start is called before the first frame update
-
-    
-
     void Start()
     {
-        DateTime dt = DateTime.Now;
-        Debug.Log(dt);
+        currentTime = DateTime.Now;
+        
     }
 
     // Update is called once per frame
@@ -22,4 +26,27 @@ public class OrientationScript : MonoBehaviour
     {
         
     }
+
+    public void onClick()
+    {
+        string inputDate = dateInput.text + " " + timeInput.text;   
+
+        DateTime testDate = DateTime.Parse(inputDate);
+
+        double timeDifference = Math.Abs((testDate-currentTime).TotalHours);
+        double tempAccuracy;
+        if(timeDifference < 1)
+        {
+            tempAccuracy = 100;
+        }
+        else
+        {
+            tempAccuracy = 100*(1/timeDifference);
+            Debug.Log(tempAccuracy);
+        }
+        tempAccuracy = Math.Round(tempAccuracy,2);
+        string accuracyScore = "Accuracy: " + tempAccuracy;
+
+        accuracy.text = accuracyScore;
+    }  
 }
