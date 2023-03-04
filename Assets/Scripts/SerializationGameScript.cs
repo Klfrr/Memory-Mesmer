@@ -6,6 +6,7 @@ using TMPro;
 
 public class SerializationGameScript : MonoBehaviour
 {
+    public Sprite[] indicator;
     public int curVal = 100;
     public int calc = 0;
     public int correct = 0;
@@ -18,7 +19,7 @@ public class SerializationGameScript : MonoBehaviour
     void Start()
     {
         calc = Random.Range(-10,-5);
-        outputText.text = calc.ToString();
+        outputText.text = "You start at 100\nCalculate and track the number\n" + calc.ToString();
     }
 
     // Update is called once per frame
