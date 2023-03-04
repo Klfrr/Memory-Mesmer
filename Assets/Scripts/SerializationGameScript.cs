@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class SerializationGameScript : MonoBehaviour
 {
-    int curVal = 100;
-    int calc = 0;
-    int correct = 0;
+    public int curVal = 100;
+    public int calc = 0;
+    public int correct = 0;
     private int input;
     public TMP_Text inputError;
     public TMP_Text outputText;
