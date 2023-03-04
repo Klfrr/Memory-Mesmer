@@ -26,5 +26,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Orientation.unity
     guid: 47712aa69252c97468370999de4c8c11
+  - enabled: 1
+    path: Assets/Scenes/NamingAnimals.unity
+    guid: ef04b371ec94dd740821cc44661a6af7
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: be5d98219e0a6234fa58aa930e6150d3, type: 2}
