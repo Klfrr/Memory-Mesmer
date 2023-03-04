@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using UnityEngine.TestTools;
 using UnityEngine.SceneManagement;
 
+//Jacky Yu
+
 public class Orientation
 {
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
