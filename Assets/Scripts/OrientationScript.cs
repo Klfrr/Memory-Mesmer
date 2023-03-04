@@ -13,12 +13,13 @@ public class OrientationScript : MonoBehaviour
     private float difference;
     private DateTime currentTime;
     private double tempAccuracy;
-
+    private gameManager gameScript;
 
     // Start is called before the first frame update
     void Start()
     {
         currentTime = DateTime.Now;
+        gameScript = FindObjectOfType<gameManager>();
         
     }
 
@@ -51,7 +52,8 @@ public class OrientationScript : MonoBehaviour
     }  
 
     public void sceneChange()
-    {
-        SceneManager.LoadScene(0);
+    {   
+        gameScript.gameComplete(10);
+        //SceneManager.LoadScene(0);
     }
 }

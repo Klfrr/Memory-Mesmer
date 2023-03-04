@@ -9,51 +9,55 @@ public class gameManager : MonoBehaviour
     private int[] scenes = new int[arraySize];
     private double[] scores = new double[arraySize];
     private int currentScene;
+    private Touch touch;
+    private float bufferTimer;
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        int temp;
         currentScene = 0;
-        bool exist = false;
-        int i =  0;
-        scenes[0] = 0;
-        scenes[1] = 4;
-        scenes[2] = 2;
 
         //loops to load the scene array with the sceneNodes order
         //Have to add code later to make sure certain patterns do not occur
         //Error checking
-        /*while(i<arraySize)
+
+        for(int i = 0; i < arraySize; i++)
         {
-            exist = false;
-            temp = Random.Range(2, 7);
-            //checks for any dupes
-            for(int j = 0; j < arraySize; j++)
-            {
-                if(scenes[i] == scenes[j] && i != j)
-                {
-                    exist = true;
-                }
-            }
-            if(!exist)
-            {
-                scenes[i] = temp;
-                scores[i] = 0;
-                i++;
-            }
-        }*/
+            scenes[i] = i+2;
+            scores[i] = 0;
+        }
+
+        int temp, placeHolder;
+
+        for(int i = 0; i < arraySize; i++)
+        {
+            temp = Random.Range(0,arraySize);
+            placeHolder = scenes[i];
+            scenes[i] = scenes[temp];
+            scenes[temp] = placeHolder;
+        }
+
+        for(int i = 0;i < arraySize; i++)
+        {
+            Debug.Log(scenes[i]);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Testing Code, comment out when implemented
-        if(Input.GetKeyDown("space"))
+        bufferTimer -= Time.deltaTime;
+        if(Input.touchCount > 0)
         {
+            touch = Input.GetTouch(0);
+        }
+        //Testing Code, comment out when implemented
+       if(touch.phase == TouchPhase.Moved && bufferTimer <= 0)
+        {
+            bufferTimer = 3;
             gameComplete(10);
-            Debug.Log("Space");
-        }   
+            Debug.Log(scenes[currentScene]);
+        }
     }
 
     public void gameComplete(int gameScore)
@@ -63,7 +67,6 @@ public class gameManager : MonoBehaviour
         currentScene++;
         if(currentScene > arraySize)
         {
-            Debug.Log(scores[currentScene-1]);
             finishGame();
         }
         else
@@ -74,7 +77,7 @@ public class gameManager : MonoBehaviour
 
     private void inputScore(int gameScore)
     {
-        scores[scenes[currentScene]] = gameScore;
+        scores[scenes[currentScene]-2] = gameScore;
        
     }
 

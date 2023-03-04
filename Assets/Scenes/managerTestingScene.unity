@@ -316,7 +316,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Game Manager Tester
 
-    Space for Next Scene'
+    Drag for Next Scene'
 --- !u!222 &206929032
 CanvasRenderer:
   m_ObjectHideFlags: 0
