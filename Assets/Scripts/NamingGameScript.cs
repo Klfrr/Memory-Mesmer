@@ -28,20 +28,27 @@ public class NamingGameScript : MonoBehaviour
     public List<Button> buttonsList;
     public List<string> options;
     List<Animal> animalList;
+    public GameObject rhinoImage;
+    public GameObject lionImage;
+    public GameObject camelImage;
 
     public Button correctButton;
     public int score;
     public int random;
-    string path = "/Animal_Pictures/";
+    // string path = "/Animal_Pictures/";
 
     // Start is called before the first frame update
     void Start()
     {
+        //Set all images to not appear
+        reset();
+
         // Random Animal object is selected as the right answer, then its image is displayed.
         int cIndex = Random.Range(0, options.Count);
-        Debug.Log(options[cIndex] + " is the answer.");
+        string cAnimal = options[cIndex];
+        Debug.Log(cAnimal + " is the answer.");
 
-        Animal correctAnimal = new Animal(options[cIndex], cIndex);
+        Animal correctAnimal = new Animal(cAnimal, cIndex);
 
         // A random "correct" button is picked as the right answer
         int bIndex = Random.Range(0, buttonsList.Count);
@@ -58,18 +65,15 @@ public class NamingGameScript : MonoBehaviour
         }
 
         // Second Loop: Now assign all the buttons to the animals contained in rand unpicked
-        for(int i = 0; i < buttonsList.Count; i++) //for each button
+        for(int i = 0; i < randUnpicked.Count; i++) //for each button
         {
-            if (randUnpicked[i] == options[cIndex]) //if actual answer, log and set correct button 
+            if (randUnpicked[i] == cAnimal) //if animal is the answer, log and set correct button 
             {
+                checkDisplayImage(cAnimal);
                 Debug.Log(buttonsList[i].name + " is the correct button.");
-                buttonsList[i].GetComponent<Text>().text = options[cIndex]; // for some reason the buttons' text isn't getting set correctly
                 correctButton = buttonsList[i];
             }
-            else // else, make the other buttons the wrong buttons
-            {
-                buttonsList[i].GetComponent<Text>().text = randUnpicked[i];
-            }
+            buttonsList[i].transform.GetChild(0).GetComponent<Text>().text = randUnpicked[i];
         }
 
     }
@@ -146,6 +150,25 @@ public class NamingGameScript : MonoBehaviour
         // 
     }
 
+    void checkDisplayImage(string ans)
+    {
+        switch(ans)
+        {
+            case "Lion": 
+                lionImage.SetActive(true);
+                break;
+            case "Rhino":
+                rhinoImage.SetActive(true);
+                break;
+            case "Camel":
+                camelImage.SetActive(true);
+                break;
+            default:
+                reset();
+                break;
+        }
+    }
+
     void setAllUninteractable()
     {
         for(int u = 0; u < buttonsList.Count; u++)
@@ -165,7 +188,7 @@ public class NamingGameScript : MonoBehaviour
     // If user presses the right button, this function will increment the score and display the button being right.
     void setTextCorrect(Button button)
     {
-        button.GetComponent<Button>().interactable = false;
+        setAllUninteractable();
         Debug.Log(button.name + " is correct.");
         button.transform.GetChild(0).GetComponent<Text>().color = Color.green;
         button.transform.GetChild(0).GetComponent<Text>().text = "CORRECT";
@@ -175,7 +198,9 @@ public class NamingGameScript : MonoBehaviour
     //Should repeat 3 times
     void reset()
     {
-        
+        rhinoImage.SetActive(false);
+        lionImage.SetActive(false);
+        camelImage.SetActive(false);
     }
 
     public void ChangeScene()
