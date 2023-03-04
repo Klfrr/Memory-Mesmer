@@ -12,6 +12,7 @@ public class OrientationScript : MonoBehaviour
     public Text accuracy;
     private float difference;
     private DateTime currentTime;
+    private double tempAccuracy;
 
 
     // Start is called before the first frame update
@@ -34,7 +35,6 @@ public class OrientationScript : MonoBehaviour
         DateTime testDate = DateTime.Parse(inputDate);
 
         double timeDifference = Math.Abs((testDate-currentTime).TotalHours);
-        double tempAccuracy;
         Debug.Log(timeDifference);
         if(timeDifference < 1)
         {
@@ -49,4 +49,9 @@ public class OrientationScript : MonoBehaviour
 
         accuracy.text = accuracyScore;
     }  
+
+    public void sceneChange()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
