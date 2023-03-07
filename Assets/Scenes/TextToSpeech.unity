@@ -1993,7 +1993,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Grammer
+  m_Text: Grammar
 --- !u!222 &1691638528
 CanvasRenderer:
   m_ObjectHideFlags: 0
