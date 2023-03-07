@@ -20,7 +20,7 @@ public class PatternGameScript : MonoBehaviour
     public int timer = 0;
 
     //Timer info 
-    private bool gameActive = false;
+    public bool gameActive = false;
     public Text timeText;
     public int gameTime = 120;
     private float startTime = 0;

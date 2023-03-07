@@ -76,15 +76,15 @@ public class SentenceGame : MonoBehaviour
 
     // Start is called before the first frame update
 
-private IEnumerator StartGameAfterDelay()
-{
-    yield return new WaitForSeconds(delay);
+    private IEnumerator StartGameAfterDelay()
+    {
+        yield return new WaitForSeconds(delay);
 
-    gameActive = true;
-    timeText.text = "Time: " + GetTimeDisplay(gameTime);
-    startTime = Time.time;
+        gameActive = true;
+        timeText.text = "Time: " + GetTimeDisplay(gameTime);
+        startTime = Time.time;
 
-    StartCoroutine(instructionsTimer());
-}
+        StartCoroutine(instructionsTimer());
+    }
 
 }

@@ -22,7 +22,7 @@ public class SimonSays : MonoBehaviour
     Color32[] colorArray = new Color32[4];
     private int[] blinkArray;
     //Time info
-    private bool gameActive = false;
+    public bool gameActive = false;
     public Text timeText;
     public int gameTime = 120;
     private float startTime = 0;
