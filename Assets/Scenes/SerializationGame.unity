@@ -574,6 +574,13 @@ MonoBehaviour:
   inputError: {fileID: 1074899960}
   outputText: {fileID: 393258548}
   userInput: {fileID: 1459236988}
+  ScoreTxt: {fileID: 1702266666}
+  score: 0
+  SequenceNumTxt: {fileID: 852200513}
+  totalIterations: 0
+  gameActive: 0
+  timeText: {fileID: 292485371}
+  gameTime: 20
 --- !u!1 &673498357
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +802,7 @@ GameObject:
   - component: {fileID: 852200514}
   - component: {fileID: 852200513}
   m_Layer: 5
-  m_Name: SentenceNumber
+  m_Name: IterationNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -854,9 +861,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Sequence
-
-'
+  m_Text: Iteration
 --- !u!222 &852200514
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1458,7 +1463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.862943, g: 1, b: 0.8160377, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1518,8 +1523,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14, y: 1045}
-  m_SizeDelta: {x: 990.26, y: 365.138}
+  m_AnchoredPosition: {x: -3.2906, y: 1045}
+  m_SizeDelta: {x: 1024.8413, y: 365.138}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1543815916
 MonoBehaviour:
@@ -1554,7 +1559,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Grammar
+  m_Text: Serialization
 --- !u!222 &1543815917
 CanvasRenderer:
   m_ObjectHideFlags: 0
