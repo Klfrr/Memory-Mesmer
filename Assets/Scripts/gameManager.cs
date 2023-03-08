@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Mono.Data.Sqlite;
+using System;
+using System.Data;
+using System.IO;
 
 public class gameManager : MonoBehaviour
 {
@@ -31,7 +35,7 @@ public class gameManager : MonoBehaviour
 
         for(int i = 1; i < arraySize; i++)
         {
-            temp = Random.Range(1,arraySize);
+            temp = UnityEngine.Random.Range(1,arraySize);
             placeHolder = scenes[i];
             scenes[i] = scenes[temp];
             scenes[temp] = placeHolder;
@@ -78,12 +82,38 @@ public class gameManager : MonoBehaviour
 
     private void finishGame()
     {
+        DateTime currentTime = DateTime.Now;
+
         //Add code to upload scores
         SceneManager.LoadScene(7);
-        for(int i =0; i < arraySize; i++)
+        
+        string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+        
+        //Creates the connection to the database
+        IDbConnection dbconn;
+        dbconn = new SqliteConnection(dataBaseConn);
+        dbconn.Open();
+
+        string scoreValues = "(";
+        scoreValues = scoreValues + "\"" + "temp" + "\"," + "\"" + currentTime.ToShortDateString() +"\"";
+
+        for(int i = 0; i < arraySize;i++)
         {
-            Debug.Log("Scenes" + scenes[i] + " Score " + scores[i]);
+            scoreValues += ",";
+            scoreValues += scores[i];
         }
+        scoreValues += ")";
+
+        Debug.Log(scoreValues);
+        IDbCommand cmnd = dbconn.CreateCommand();
+        cmnd.CommandText = "INSERT INTO Scores (User,Date,Orientation,Simon,Pattern,Naming,Serialization,Text2Speech) VALUES" ;
+        cmnd.CommandText += scoreValues;
+        Debug.Log(cmnd.CommandText);
+        cmnd.ExecuteNonQuery();
+
+        dbconn.Close();
+
+
         Destroy(gameObject);
     }
 
