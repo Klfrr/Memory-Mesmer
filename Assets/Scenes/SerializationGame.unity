@@ -567,13 +567,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc8dc6c15538f840ad047fcea82ebed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indicator: []
   curVal: 100
   calc: 0
   correct: 0
   inputError: {fileID: 1074899960}
   outputText: {fileID: 393258548}
   userInput: {fileID: 1459236988}
+  answerBack: {fileID: 851248191}
   ScoreTxt: {fileID: 1702266666}
   score: 0
   SequenceNumTxt: {fileID: 852200513}

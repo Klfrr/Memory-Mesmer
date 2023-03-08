@@ -7,14 +7,15 @@ using UnityEngine.UI;
 
 public class SerializationGameScript : MonoBehaviour
 {
-    public Sprite[] indicator;
     public int curVal = 100;
     public int calc = 0;
     public int correct = 0;
+    private int attempts = 2;
     private int input;
     public TMP_Text inputError;
     public TMP_Text outputText;
     public TMP_InputField userInput;
+    public TMP_Text answerBack;
     public Text ScoreTxt;
     public int score = 0;
     public Text SequenceNumTxt;
@@ -57,10 +58,10 @@ public class SerializationGameScript : MonoBehaviour
     {
         totalIterations += 1;
         SequenceNumTxt.text = "Iteration: " + totalIterations.ToString();
+        inputError.text = "";
         //parse input
         if(System.Int32.TryParse(s, out input))
         {
-            
             if(input == (curVal+calc))
             {
                 curVal += calc;
@@ -69,7 +70,18 @@ public class SerializationGameScript : MonoBehaviour
                 calc = Random.Range(-10,-5);
                 outputText.text = calc.ToString();
                 correct++;
-
+            }
+            else
+            {
+                attempts -= 1;
+                if(attempts == 0)
+                {
+                    outputText.text = "You lose!";
+                    
+                    userInput.text = "";
+                    answerBack.text = "";
+                    userInput.interactable = false;
+                }
             }
             print(curVal + calc);
             /*totalIterations += 1;
@@ -90,6 +102,9 @@ public class SerializationGameScript : MonoBehaviour
         if(correct == 5)
         {
             outputText.text = "You win!";
+            userInput.text = "";
+            answerBack.text = "";
+            userInput.interactable = false;
         }
     }
 
