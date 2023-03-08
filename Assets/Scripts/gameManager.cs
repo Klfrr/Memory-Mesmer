@@ -23,23 +23,18 @@ public class gameManager : MonoBehaviour
 
         for(int i = 0; i < arraySize; i++)
         {
-            scenes[i] = i+2;
+            scenes[i] = i+1;
             scores[i] = 0;
         }
 
         int temp, placeHolder;
 
-        for(int i = 0; i < arraySize; i++)
+        for(int i = 1; i < arraySize; i++)
         {
-            temp = Random.Range(0,arraySize);
+            temp = Random.Range(1,arraySize);
             placeHolder = scenes[i];
             scenes[i] = scenes[temp];
             scenes[temp] = placeHolder;
-        }
-
-        for(int i = 0;i < arraySize; i++)
-        {
-            Debug.Log(scenes[i]);
         }
     }
 
@@ -54,9 +49,8 @@ public class gameManager : MonoBehaviour
         //Testing Code, comment out when implemented
        if(touch.phase == TouchPhase.Moved && bufferTimer <= 0)
         {
-            bufferTimer = 3;
+            bufferTimer = 2;
             gameComplete(10);
-            Debug.Log(scenes[currentScene]);
         }
     }
 
@@ -65,25 +59,32 @@ public class gameManager : MonoBehaviour
         //calls the input score to save score, and then attempts next scene
         inputScore(gameScore);
         currentScene++;
-        if(currentScene > arraySize)
+        if(currentScene == arraySize)
         {
             finishGame();
         }
         else
         {
             SceneManager.LoadScene(scenes[currentScene]);
-        }
+        }        
     }
 
     private void inputScore(int gameScore)
     {
-        scores[scenes[currentScene]-2] = gameScore;
+        Debug.Log(scenes[currentScene]-1);
+        scores[scenes[currentScene]-1] = gameScore;
        
     }
 
     private void finishGame()
     {
         //Add code to upload scores
+        SceneManager.LoadScene(7);
+        for(int i =0; i < arraySize; i++)
+        {
+            Debug.Log("Scenes" + scenes[i] + " Score " + scores[i]);
+        }
+        Destroy(gameObject);
     }
 
     public void quitGame()

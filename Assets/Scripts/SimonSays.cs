@@ -118,7 +118,6 @@ public class SimonSays : MonoBehaviour
             buttonClicked += 1;
             if(buttonClicked == level)
             {
-                Debug.Log("Passed");
                 passed = true;
             }
         }
@@ -160,7 +159,6 @@ public class SimonSays : MonoBehaviour
 
     private IEnumerator testColorRecursion(int i)
     {
-        Debug.Log(blinkArray[i]);
         if(i == level)
         {
             enableButtons();

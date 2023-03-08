@@ -22,7 +22,7 @@ public class buttonController : MonoBehaviour
 
      public void toMoca()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
         public void toMatchTwo()
