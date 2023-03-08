@@ -5,21 +5,27 @@ using UnityEngine.UI;
 
 public class LetterTrackingScript : MonoBehaviour
 {
-    public GameObject letterButton;
-    public GameObject letterLabel;
-
+    public Button letterButton;
+    public Text letter;
+    public Text scoreLabel;
+    
+    public int repeats;
     public int timer = 0;
+    public int score = 0;
+
+    public float currentwait = 2;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(startWaitTimer());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        scoreLabel.text = score.ToString();
+
     }
 
     //StartCoroutine(startWatchTimer());
@@ -27,31 +33,58 @@ public class LetterTrackingScript : MonoBehaviour
     // function controls the timer
     public IEnumerator startWaitTimer()
     {
-        while(timer > 0)
+        int counter = 0;
+
+        while(counter < repeats)
         {
-            for(int i = 0; i < timer; i++)
-            {
-                timer--;
-                yield return new WaitForSeconds(1f);
-            }
+            // Change to random Capital letter
+            changeButton();
+
+            // Enable button if clicked
+            enableButton(letterButton);
+
+            // increment counter
+            counter++;
+
+
+            // Wait for 2 seconds between changing letters
+            yield return new WaitForSecondsRealtime(2);
         }
-        // Wait for 2 seconds beteween changing letters
-
-        // Change to random Letter
-
     }
 
-    char randomizeLabel()
+    //Function works, but may need to implement logic to include at least one A
+    char randomizeLetter()
     {
         // Capital letters between 65 and 90
         int randnum = 0;
-        //= Random.value(65, 90);
+        randnum = Random.Range(65, 90);
 
         return (char)randnum;
     }
 
-    public void checkButton()
+    public void changeButton()
     {
+        letter.text = randomizeLetter().ToString();
+    }
 
+    
+    public void checkButton(Text label)
+    {
+        disableButton(letterButton);
+
+        if(label.text == "A")
+            score++;
+        else 
+            score--;
+    }
+
+    void disableButton(Button button)
+    {
+        button.interactable = false;
+    }  
+
+    void enableButton(Button button)
+    {
+        button.interactable = true;
     }
 }
