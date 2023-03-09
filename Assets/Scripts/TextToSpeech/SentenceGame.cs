@@ -40,7 +40,7 @@ public class SentenceGame : MonoBehaviour
         {
             gameActive = false;
             SetTimeDisplay(0);
-            SceneManager.LoadScene(4);
+            //SceneManager.LoadScene(4);
         }
         }
 

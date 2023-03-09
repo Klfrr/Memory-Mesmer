@@ -15,15 +15,43 @@ public class LetterTrackingScript : MonoBehaviour
 
     public float currentwait = 2;
 
+    public bool gameActive = false;
+    public Text timeText;
+    public int gameTime = 120;
+    private float startTime = 0;
+    public GameObject instructionsLabel;
+    public int timers = 0;
+    public float delay =8;
+    public float timerForFunction;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(startWaitTimer());
+        StartCoroutine(StartGameAfterDelay());
+        instructionsLabel.SetActive(true);
+
+        StartCoroutine(instructionsTimer());
+        //StartCoroutine(startWaitTimer());
+        StartCoroutine(StartGameAfterDelay());
     }
 
     // Update is called once per frame
     void Update()
     {
+        timerForFunction += Time.deltaTime;
+        if (timerForFunction > delay)
+        {
+            if(Time.time - startTime < gameTime)
+        {
+            float ElapsedTime = Time.time - startTime;
+            SetTimeDisplay(gameTime - ElapsedTime);
+        }
+        else
+        {
+            gameActive = false;
+            SetTimeDisplay(0);
+        }
+        }
         scoreLabel.text = score.ToString();
 
     }
@@ -86,5 +114,45 @@ public class LetterTrackingScript : MonoBehaviour
     void enableButton(Button button)
     {
         button.interactable = true;
+    }
+
+    private IEnumerator StartGameAfterDelay()
+    {
+        yield return new WaitForSeconds(delay);
+
+        gameActive = true;
+        timeText.text = "Time: " + GetTimeDisplay(gameTime);
+        startTime = Time.time;
+
+        StartCoroutine(instructionsTimer());
+        StartCoroutine(startWaitTimer());
+
+    }
+
+      public IEnumerator instructionsTimer()
+    {
+        while(timers > 0)
+        {       
+            for(int i = 0; i < timers; i++)
+            {
+                timers--;
+                yield return new WaitForSeconds(1f);
+            }
+        }
+        
+        instructionsLabel.SetActive(false);
+    }
+
+     private void SetTimeDisplay(float timeDisplay)
+    {
+        timeText.text = "Time: " + GetTimeDisplay(timeDisplay);
+    }
+    private string GetTimeDisplay (float timeToShow)
+    {
+        int secondsToShow = Mathf.CeilToInt(timeToShow);
+        int seconds = secondsToShow % 60;
+        string secondsDisplay = (seconds < 10 ) ? "0" + seconds.ToString() : seconds.ToString();
+        int minutes = (secondsToShow - seconds) / 60;
+        return minutes.ToString() + ":" + seconds.ToString();
     }
 }
