@@ -32,7 +32,6 @@ public class LetterTrackingScript : MonoBehaviour
 
         StartCoroutine(instructionsTimer());
         //StartCoroutine(startWaitTimer());
-        StartCoroutine(StartGameAfterDelay());
     }
 
     // Update is called once per frame
