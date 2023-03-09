@@ -35,9 +35,31 @@ public class PatternGameScript : MonoBehaviour
     void Start()
     {
         gameScript = FindObjectOfType<gameManager>();
-       WatchLabel.SetActive(true);
-       StartCoroutine(StartGameAfterDelay());
-       StartCoroutine(instructionsTimer());
+
+        //Disable buttons before watching
+        WatchLabel.SetActive(true);
+        DisableButtons();
+
+        //StartCoroutine(StartGameAfterDelay());
+        //StartCoroutine(instructionsTimer());
+        StartCoroutine(startWatchTimer());
+        blackWhiteList = new bool[buttonList.Count];
+
+        // set all buttons to black
+        for(int b = 0; b < buttonList.Count; b++)
+            setBlack(buttonList[b]);
+
+        for( int i = 0; i < buttonList.Count; i++)
+        {
+            bool randNum = Random.value > 0.5f; // returns true 50% of the time
+            //Debug.Log("Random Number for " + i + ": " + randNum);
+            blackWhiteList[i] = randNum;
+            if(blackWhiteList[i]) //if button is 1 value in the bool list
+            {
+                setWhite(buttonList[i]); // make white 
+                whiteCount++;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -80,6 +102,21 @@ public class PatternGameScript : MonoBehaviour
         // set all buttons to black
         for(int b = 0; b < buttonList.Count; b++)
             setBlack(buttonList[b]);
+
+        // Enable buttons after watching time
+        EnableButtons();
+    }
+
+    public void EnableButtons()
+    {
+        for (int i = 0; i < buttonList.Count; i++)
+            buttonList[i].GetComponent<Button>().interactable = true;
+    }
+
+    public void DisableButtons()
+    {
+        for (int i = 0; i < buttonList.Count; i++)
+            buttonList[i].GetComponent<Button>().interactable = false;
     }
 
     //Uses a switch statement to check which button is being pressed and if it is correct. 
