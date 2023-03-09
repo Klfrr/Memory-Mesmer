@@ -20,43 +20,29 @@ public class PatternGameScript : MonoBehaviour
     public int timer = 0;
 
     //Timer info 
-    public bool gameActive = false;
+     public bool gameActive = false;
     public Text timeText;
     public int gameTime = 120;
     private float startTime = 0;
+    public int timers = 0;
+    public float delay =8;
+    public float timerForFunction;
 
     // Start is called before the first frame update
     void Start()
     {
-        timeText.text = "Time: " + GetTimeDisplay(gameTime);
-        startTime = Time.time;
-        gameActive = true;
-        WatchLabel.SetActive(true);
-        
-        blackWhiteList = new bool[buttonList.Count];
-
-        // set all buttons to black
-        for(int b = 0; b < buttonList.Count; b++)
-            setBlack(buttonList[b]);
-
-        for( int i = 0; i < buttonList.Count; i++)
-        {
-            bool randNum = Random.value > 0.5f; // returns true 50% of the time
-            //Debug.Log("Random Number for " + i + ": " + randNum);
-            blackWhiteList[i] = randNum;
-            if(blackWhiteList[i]) //if button is 1 value in the bool list
-            {
-                setWhite(buttonList[i]); // make white 
-                whiteCount++;
-            }
-        }
-        StartCoroutine(startWatchTimer());
+       WatchLabel.SetActive(true);
+       StartCoroutine(StartGameAfterDelay());
+       StartCoroutine(instructionsTimer());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.time - startTime < gameTime)
+        timerForFunction += Time.deltaTime;
+        if (timerForFunction > delay)
+        {
+            if(Time.time - startTime < gameTime)
         {
             float ElapsedTime = Time.time - startTime;
             SetTimeDisplay(gameTime - ElapsedTime);
@@ -65,7 +51,8 @@ public class PatternGameScript : MonoBehaviour
         {
             gameActive = false;
             SetTimeDisplay(0);
-            SceneManager.LoadScene(4);
+            //SceneManager.LoadScene(4);
+        }
         }
         ScoreLabel.text = score.ToString();
     }
@@ -271,6 +258,54 @@ public class PatternGameScript : MonoBehaviour
         string secondsDisplay = (seconds < 10 ) ? "0" + seconds.ToString() : seconds.ToString();
         int minutes = (secondsToShow - seconds) / 60;
         return minutes.ToString() + ":" + seconds.ToString();
+    }
+
+    private IEnumerator StartGameAfterDelay()
+    {
+        yield return new WaitForSeconds(delay);
+
+        gameActive = true;
+        timeText.text = "Time: " + GetTimeDisplay(gameTime);
+        startTime = Time.time;
+
+        StartCoroutine(instructionsTimer());
+        //StartCoroutine(startWaitTimer());
+        WatchLabel.SetActive(true);
+        
+        blackWhiteList = new bool[buttonList.Count];
+
+        // set all buttons to black
+        for(int b = 0; b < buttonList.Count; b++)
+            setBlack(buttonList[b]);
+
+        for( int i = 0; i < buttonList.Count; i++)
+        {
+            bool randNum = Random.value > 0.5f; // returns true 50% of the time
+            //Debug.Log("Random Number for " + i + ": " + randNum);
+            blackWhiteList[i] = randNum;
+            if(blackWhiteList[i]) //if button is 1 value in the bool list
+            {
+                setWhite(buttonList[i]); // make white 
+                whiteCount++;
+            }
+        }
+        StartCoroutine(startWatchTimer());
+
+
+    }
+
+      public IEnumerator instructionsTimer()
+    {
+        while(timers > 0)
+        {       
+            for(int i = 0; i < timers; i++)
+            {
+                timers--;
+                yield return new WaitForSeconds(1f);
+            }
+        }
+        
+        WatchLabel.SetActive(false);
     }
 
 }

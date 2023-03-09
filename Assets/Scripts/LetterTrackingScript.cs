@@ -27,7 +27,9 @@ public class LetterTrackingScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        letterButton.interactable = false;
         StartCoroutine(StartGameAfterDelay());
+        
         instructionsLabel.SetActive(true);
 
         StartCoroutine(instructionsTimer());
@@ -125,6 +127,7 @@ public class LetterTrackingScript : MonoBehaviour
 
         StartCoroutine(instructionsTimer());
         StartCoroutine(startWaitTimer());
+        letterButton.interactable = true;
 
     }
 

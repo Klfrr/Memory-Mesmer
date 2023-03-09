@@ -4310,6 +4310,9 @@ MonoBehaviour:
   gameActive: 0
   timeText: {fileID: 1843727747}
   gameTime: 20
+  timers: 7
+  delay: 7
+  timerForFunction: 0
 --- !u!114 &953946466464383261
 MonoBehaviour:
   m_ObjectHideFlags: 0

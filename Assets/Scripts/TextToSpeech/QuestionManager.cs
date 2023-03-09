@@ -21,8 +21,8 @@ public class QuestionManager : MonoBehaviour
     //disable buttons at start and delay game until insturctions screen is done
     void Start()
     {   
-        yesButton.enabled = false;
-        noButton.enabled = false;
+        yesButton.interactable = false;
+        noButton.interactable = false;
         StartCoroutine(StartGameAfterDelay());
 
     }
@@ -97,8 +97,8 @@ private IEnumerator StartGameAfterDelay()
 {
     yield return new WaitForSeconds(delay);
     generateQuestion();
-    yesButton.enabled = true;
-    noButton.enabled = true;
+    yesButton.interactable = true;
+    noButton.interactable = true;
 }
 
 
