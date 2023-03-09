@@ -26,22 +26,33 @@ public class SerializationGameScript : MonoBehaviour
     public Text timeText;
     public int gameTime = 120;
     private float startTime = 0;
+    //public GameObject instructionsLabel;
+    public int timer = 0;
+    public float delay =8;
+    public float timerForFunction;
 
     // Start is called before the first frame update
     void Start()
     {
-        timeText.text = "Time: " + GetTimeDisplay(gameTime);
-        startTime = Time.time;
-        gameActive = true;
-        
+        StartCoroutine(StartGameAfterDelay()); 
+
+        //instructionsLabel.SetActive(true);
+
+        userInput.interactable = false;
+
+        StartCoroutine(instructionsTimer());
         calc = Random.Range(-10,-5);
         outputText.text = "You start at 100\nCalculate and track the number\n" + calc.ToString();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.time - startTime < gameTime)
+        timerForFunction += Time.deltaTime;
+        if (timerForFunction > delay)
+        {
+            if(Time.time - startTime < gameTime)
         {
             float ElapsedTime = Time.time - startTime;
             SetTimeDisplay(gameTime - ElapsedTime);
@@ -51,6 +62,7 @@ public class SerializationGameScript : MonoBehaviour
             gameActive = false;
             SetTimeDisplay(0);
             //SceneManager.LoadScene(4);
+        }
         }
     }
 
@@ -119,5 +131,32 @@ public class SerializationGameScript : MonoBehaviour
         string secondsDisplay = (seconds < 10 ) ? "0" + seconds.ToString() : seconds.ToString();
         int minutes = (secondsToShow - seconds) / 60;
         return minutes.ToString() + ":" + seconds.ToString();
+    }
+
+    private IEnumerator StartGameAfterDelay()
+    {
+        yield return new WaitForSeconds(delay);
+
+        gameActive = true;
+        timeText.text = "Time: " + GetTimeDisplay(gameTime);
+        startTime = Time.time;
+        //calc = Random.Range(-10,-5);
+        //outputText.text = "You start at 100\nCalculate and track the number\n" + calc.ToString();
+        StartCoroutine(instructionsTimer());
+    }
+
+    public IEnumerator instructionsTimer()
+    {
+        while(timer > 0)
+        {       
+            for(int i = 0; i < timer; i++)
+            {
+                timer--;
+                yield return new WaitForSeconds(1f);
+            }
+        }
+        
+        //instructionsLabel.SetActive(false);
+        userInput.interactable = true;
     }
 }
