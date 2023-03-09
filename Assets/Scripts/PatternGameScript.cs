@@ -67,7 +67,7 @@ public class PatternGameScript : MonoBehaviour
             SetTimeDisplay(0);
             SceneManager.LoadScene(4);
         }
-        //ScoreLabel.text = score.ToString("0");
+        ScoreLabel.text = score.ToString();
     }
 
     // function controls the timer
