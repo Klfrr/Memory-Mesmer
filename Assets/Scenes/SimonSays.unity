@@ -2702,3 +2702,6 @@ MonoBehaviour:
   ButtonActivity: {fileID: 1926530248}
   timeText: {fileID: 213932462}
   gameTime: 20
+  timer: 9
+  delay: 10
+  timerForFunction: 0

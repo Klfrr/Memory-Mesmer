@@ -27,12 +27,17 @@ public class SimonSays : MonoBehaviour
     public Text timeText;
     public int gameTime = 120;
     private float startTime = 0;
+    public int timer = 0;
+    public float delay =8;
+    public float timerForFunction;
+    
     
 
 
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(StartGameAfterDelay());
         gameScript = FindObjectOfType<gameManager>();
         level = 5;
         currentTest = new GameObject[10];
@@ -42,30 +47,33 @@ public class SimonSays : MonoBehaviour
         colorArray[2] = green;
         colorArray[3] = yellow;
         createPattern();
-        string temp = "Level:" + (level).ToString();
-        levelText.text =  temp;
-
-        timeText.text = "Time: " + GetTimeDisplay(gameTime);
     }
 
     // Update is called once per frame
     void Update()
     {
         //If the player fails to pass, calls game over but with a lower level.
-        if(Time.time - startTime < gameTime)
+        timerForFunction += Time.deltaTime;
+        if (timerForFunction > delay)
+        {
+            if(Time.time - startTime < gameTime)
         {
             float ElapsedTime = Time.time - startTime;
             SetTimeDisplay(gameTime - ElapsedTime);
         }
         else
-        {   
+        {
             if(!gameEnded)
             {
                 gameEnded = true;
                 gameOver(level-1);
+                SetTimeDisplay(0);
             }
         }
+        }
     }
+    
+
 
     //Useless code, not useful in this situation
     public void toMainMenu()
@@ -259,5 +267,27 @@ public class SimonSays : MonoBehaviour
         {
             gameScript.gameComplete(score);
         }
+    }
+    private IEnumerator StartGameAfterDelay()
+    {
+        yield return new WaitForSeconds(delay);
+        timeText.text = "Time: " + GetTimeDisplay(gameTime);
+        startTime = Time.time;
+        string temp = "Level:" + (level).ToString();
+        levelText.text =  temp;
+        StartCoroutine(instructionsTimer());
+    }
+
+    public IEnumerator instructionsTimer()
+    {
+        while(timer > 0)
+        {       
+            for(int i = 0; i < timer; i++)
+            {
+                timer--;
+                yield return new WaitForSeconds(1f);
+            }
+        }
+        
     }
 }
