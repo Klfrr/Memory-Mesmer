@@ -2357,8 +2357,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -346, y: 533.0602}
-  m_SizeDelta: {x: 142.877, y: 68.5385}
+  m_AnchoredPosition: {x: -280.16, y: 473.5132}
+  m_SizeDelta: {x: 186.77, y: 108.2364}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2053639589
 GameObject:
@@ -2698,6 +2698,7 @@ MonoBehaviour:
   - {fileID: 553667046}
   - {fileID: 1817745628}
   levelText: {fileID: 1850608517}
+  playerHelper: {fileID: 1691638527}
   ButtonActivity: {fileID: 1926530248}
   timeText: {fileID: 213932462}
   gameTime: 20

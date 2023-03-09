@@ -45,32 +45,28 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         bufferTimer -= Time.deltaTime;
         if(Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
         }
         //Testing Code, comment out when implemented
+        
        if(touch.phase == TouchPhase.Moved && bufferTimer <= 0)
         {
             bufferTimer = 2;
             gameComplete(10);
         }
+        */
     }
 
     public void gameComplete(int gameScore)
     {
         //calls the input score to save score, and then attempts next scene
         inputScore(gameScore);
-        currentScene++;
-        if(currentScene == arraySize)
-        {
-            finishGame();
-        }
-        else
-        {
-            SceneManager.LoadScene(scenes[currentScene]);
-        }        
+        currentScene++; 
+        StartCoroutine(sceneChange());
     }
 
     private void inputScore(int gameScore)
@@ -95,7 +91,7 @@ public class gameManager : MonoBehaviour
         dbconn.Open();
 
         string scoreValues = "(";
-        scoreValues = scoreValues + "\"" + "temp" + "\"," + "\"" + currentTime.ToShortDateString() +"\"";
+        scoreValues = scoreValues + "\"" + "temp" + "\"," + "\"" + currentTime.ToShortDateString() +"\"," + "\"" + currentTime.ToShortTimeString() +"\"";
 
         for(int i = 0; i < arraySize;i++)
         {
@@ -106,7 +102,7 @@ public class gameManager : MonoBehaviour
 
         Debug.Log(scoreValues);
         IDbCommand cmnd = dbconn.CreateCommand();
-        cmnd.CommandText = "INSERT INTO Scores (User,Date,Orientation,Simon,Pattern,Naming,Serialization,Text2Speech) VALUES" ;
+        cmnd.CommandText = "INSERT INTO Scores (User,Date,Time,Orientation,Simon,Pattern,Naming,Serialization,Text2Speech) VALUES" ;
         cmnd.CommandText += scoreValues;
         Debug.Log(cmnd.CommandText);
         cmnd.ExecuteNonQuery();
@@ -126,5 +122,16 @@ public class gameManager : MonoBehaviour
         Destroy(gameObject);
     }
 
-
+    private IEnumerator sceneChange()
+    {
+        yield return new WaitForSeconds(2);
+        if(currentScene == arraySize)
+        {
+            finishGame();
+        }
+        else
+        {
+            SceneManager.LoadScene(scenes[currentScene]);
+        }       
+    }
 }

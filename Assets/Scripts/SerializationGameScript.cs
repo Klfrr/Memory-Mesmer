@@ -31,9 +31,13 @@ public class SerializationGameScript : MonoBehaviour
     public float delay =8;
     public float timerForFunction;
 
+    //Game manager stuff
+    private gameManager gameScript;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameScript = FindObjectOfType<gameManager>();
         StartCoroutine(StartGameAfterDelay()); 
 
         //instructionsLabel.SetActive(true);
@@ -93,6 +97,14 @@ public class SerializationGameScript : MonoBehaviour
                     userInput.text = "";
                     answerBack.text = "";
                     userInput.interactable = false;
+                    if(gameScript == null)
+                    {
+                        StartCoroutine(sceneDelay());
+                    }
+                    else
+                    {
+                        gameScript.gameComplete(score);
+                    }
                 }
             }
             print(curVal + calc);
@@ -117,6 +129,14 @@ public class SerializationGameScript : MonoBehaviour
             userInput.text = "";
             answerBack.text = "";
             userInput.interactable = false;
+            if(gameScript == null)
+            {
+                StartCoroutine(sceneDelay());
+            }
+            else
+            {
+                gameScript.gameComplete(score);
+            }
         }
     }
 
@@ -158,5 +178,13 @@ public class SerializationGameScript : MonoBehaviour
         
         //instructionsLabel.SetActive(false);
         userInput.interactable = true;
+    }
+
+    //Added code to transition scenes slowly if not gamemanger does not exist. Used to individual scene testing.
+    private IEnumerator sceneDelay()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(7);
+    
     }
 }

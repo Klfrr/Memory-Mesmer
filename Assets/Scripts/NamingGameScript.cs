@@ -33,6 +33,10 @@ public class NamingGameScript : MonoBehaviour
     public GameObject camelImage;
     public Text scoreLabel;
 
+    //Variables for checking game over;
+    private gameManager gameScript;
+    private int gameOver = 0;
+
     Button correctButton;
     public int score = 0;
     public int random;
@@ -41,6 +45,7 @@ public class NamingGameScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameScript = FindObjectOfType<gameManager>();
         //Set all images to not appear
         reset();
 
@@ -149,6 +154,18 @@ public class NamingGameScript : MonoBehaviour
 
         // Wait 1 second, then change scenes
         // 
+        //Jacky's Code 
+        if(gameOver == 1)//Final image checker, not sure what kalista uses
+        {
+            if(gameScript == null)
+            {
+                StartCoroutine(sceneDelay());
+            }
+            else
+            {
+                gameScript.gameComplete(score);
+            }
+        }
     }
 
     void checkDisplayImage(string ans)
@@ -194,6 +211,7 @@ public class NamingGameScript : MonoBehaviour
         button.transform.GetChild(0).GetComponent<Text>().color = Color.green;
         button.transform.GetChild(0).GetComponent<Text>().text = "CORRECT";
         score++;
+        gameOver++;
     }
 
     //Should repeat 3 times
@@ -207,5 +225,13 @@ public class NamingGameScript : MonoBehaviour
     public void ChangeScene()
     {
         SceneManager.LoadScene(0);
+    }
+
+    //Added code to transition scenes slowly if not gamemanger does not exist. Used to individual scene testing.
+    private IEnumerator sceneDelay()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(7);
+    
     }
 }

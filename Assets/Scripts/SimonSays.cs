@@ -9,11 +9,10 @@ public class SimonSays : MonoBehaviour
     [SerializeField] public GameObject[] buttons;
     private GameObject[] currentTest;
     public  Text levelText; 
+    public Text playerHelper;
     public Text ButtonActivity;
     private int level = 0;
     private int buttonClicked = 0;
-    private bool alive = true;
-    private bool passed;
     private Color32 red = new Color32(255,0,0,255);
     private Color32 blue = new Color32(0,0,255,255);
     private Color32 green = new Color32(0,255,0,255);
@@ -21,77 +20,74 @@ public class SimonSays : MonoBehaviour
     private Color32 white = new Color32(255,255,255,255);
     Color32[] colorArray = new Color32[4];
     private int[] blinkArray;
+    private int patternVersion;
+    private gameManager gameScript;
+    private bool gameEnded = false;
     //Time info
-    public bool gameActive = false;
     public Text timeText;
     public int gameTime = 120;
     private float startTime = 0;
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
+        gameScript = FindObjectOfType<gameManager>();
+        level = 5;
         currentTest = new GameObject[10];
         blinkArray = new int[10];
-        passed = true; 
         colorArray[0] = red;
         colorArray[1] = blue;
         colorArray[2] = green;
         colorArray[3] = yellow;
-        addNextPattern();
+        createPattern();
         string temp = "Level:" + (level).ToString();
         levelText.text =  temp;
 
         timeText.text = "Time: " + GetTimeDisplay(gameTime);
-        startTime = Time.time;
-        gameActive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //If the player fails to pass, calls game over but with a lower level.
         if(Time.time - startTime < gameTime)
         {
             float ElapsedTime = Time.time - startTime;
             SetTimeDisplay(gameTime - ElapsedTime);
         }
         else
-        {
-            gameActive = false;
-            SetTimeDisplay(0);
-            SceneManager.LoadScene(4);
-        }
-
-        if(!alive)
-        {
-            disableButtons();
-            disableVisibility();
-            SceneManager.LoadScene(4);
-        }
-        if(passed)
-        {
-            string temp = "Level:" + (level+1).ToString();
-            levelText.text =  temp;
-            StartCoroutine(nextPatternDelay());
+        {   
+            if(!gameEnded)
+            {
+                gameEnded = true;
+                gameOver(level-1);
+            }
         }
     }
 
+    //Useless code, not useful in this situation
     public void toMainMenu()
     {
         SceneManager.LoadScene(0);
     }
 
-    private void addNextPattern()
+    //create an array of random button values and chooses forwards or backwards.
+    private void createPattern()
     {
         ButtonActivity.text = "Watch";
-        passed = false; 
         buttonClicked = 0;
-        int testValue = Random.Range(0, 4);
-        currentTest[level] = buttons[testValue];
-        blinkArray[level] = testValue;
-        level++;
+        int testValue;
+        patternVersion = Random.Range(0,2);
+        for(int i = 0; i < level; i++)
+        {
+            testValue = Random.Range(0, 4);
+            currentTest[i] = buttons[testValue];
+            blinkArray[i] = testValue;
+        }
+    
         testPrint();
-        disableButtons();
     }
 
     public void eachClick(GameObject click)
@@ -104,6 +100,8 @@ public class SimonSays : MonoBehaviour
         //image.color = tempColor;
         //K: Color has to be changed all together, not just alpha
 
+
+        //Find the right color index for each button
         int colorIndex = 0;
         while(!(GameObject.ReferenceEquals(buttons[colorIndex],currentTest[buttonClicked])))
         {
@@ -118,20 +116,22 @@ public class SimonSays : MonoBehaviour
             buttonClicked += 1;
             if(buttonClicked == level)
             {
-                passed = true;
+                //If player passes the game, calls the gameover function with the currnet level
+                gameOver(level);
             }
         }
+        //If the players missclicks an object button, the game restarts the button clicked to 0, and says try again
         else
         {
-            alive = false; 
+            ButtonActivity.text = "Try \nAgain"; 
             blinkColor(click, 1, colorIndex);
-            buttonClicked += 1;
+            buttonClicked = 0;
             
 
         }
     }
 
-
+    //Blink function to change the button color back and forth
     private void blinkColor(GameObject button,float duration, int colorIndex)
     {
         duration = duration/2;
@@ -142,6 +142,7 @@ public class SimonSays : MonoBehaviour
         StartCoroutine(colorTimer(duration,temp));
     }
 
+    //A timer to delay the total time a button color is blinked.
     private IEnumerator colorTimer(float delay,Image currentTile)
     {
         var tempColor = currentTile.color;
@@ -151,22 +152,41 @@ public class SimonSays : MonoBehaviour
         enableButtons();
     }
 
+    //Calls the test color recursion with different values depending on the game version
     private void testPrint()
     {
         disableButtons();
-        StartCoroutine(testColorRecursion(0));
+        if(patternVersion == 0)
+        {
+            StartCoroutine(testColorRecursion(0,1,0));
+        }
+        else
+        {
+            StartCoroutine(testColorRecursion(level-1,-1,0));
+        }
+        
     }
 
-    private IEnumerator testColorRecursion(int i)
+    //Repeatidly calls itself to print the next button in the array
+    private IEnumerator testColorRecursion(int i, int incrementor,int repeated)
     {
-        if(i == level)
+        if(repeated == level)
         {
             enableButtons();
             ButtonActivity.text = "Play";
+            if(patternVersion == 0)
+            {
+                playerHelper.text = "Forward Pattern";
+            }
+            else
+            {
+                playerHelper.text = "Backward Pattern";
+            }
         }
         else
         {
             GameObject tempButton = currentTest[i];
+            Debug.Log("Button" + tempButton);
             Image temp = tempButton.GetComponent<Image>();
             var tempColor = colorArray[blinkArray[i]];
             temp.color = tempColor;
@@ -174,18 +194,13 @@ public class SimonSays : MonoBehaviour
             tempColor = white;
             temp.color = tempColor;
             yield return new WaitForSeconds(1);
-            i++;
-            StartCoroutine(testColorRecursion(i));
+            i += incrementor;
+            repeated++;
+            StartCoroutine(testColorRecursion(i,incrementor,repeated));
         }
     }
 
-    private IEnumerator nextPatternDelay()
-    {
-        passed = false;
-        yield return new WaitForSeconds(3);
-        addNextPattern();
-    }
-
+    //Enables all the buttons to be pressed again
     private void enableButtons()
     {
         Button tempButton;
@@ -196,6 +211,7 @@ public class SimonSays : MonoBehaviour
         }
     }
 
+    //Turns off all the buttons from being pressed
     private void disableButtons()
     {
         Button tempButton;
@@ -206,6 +222,8 @@ public class SimonSays : MonoBehaviour
         }
     }
     
+    //Useless code, was used before
+    /*
     private void disableVisibility()
     {
         for(int i = 0; i <  buttons.Length;i++)
@@ -213,7 +231,9 @@ public class SimonSays : MonoBehaviour
             buttons[i].gameObject.SetActive(false);
         }
     }
+    */
 
+    //Edward's code
     private void SetTimeDisplay(float timeDisplay)
     {
         timeText.text = "Time: " + GetTimeDisplay(timeDisplay);
@@ -225,5 +245,19 @@ public class SimonSays : MonoBehaviour
         string secondsDisplay = (seconds < 10 ) ? "0" + seconds.ToString() : seconds.ToString();
         int minutes = (secondsToShow - seconds) / 60;
         return minutes.ToString() + ":" + seconds.ToString();
+    }
+
+    //Calls the game manager script to go to next scene passing in a score, or for independent testing, goes to game over.
+    private void gameOver(int score)
+    {
+        if(gameScript == null)
+        {
+            SetTimeDisplay(0);
+            SceneManager.LoadScene(7);
+        }
+        else
+        {
+            gameScript.gameComplete(score);
+        }
     }
 }

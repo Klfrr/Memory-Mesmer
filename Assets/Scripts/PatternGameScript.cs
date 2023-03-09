@@ -28,9 +28,13 @@ public class PatternGameScript : MonoBehaviour
     public float delay =8;
     public float timerForFunction;
 
+    //Jacky Added Code
+    private gameManager gameScript;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameScript = FindObjectOfType<gameManager>();
        WatchLabel.SetActive(true);
        StartCoroutine(StartGameAfterDelay());
        StartCoroutine(instructionsTimer());
@@ -225,6 +229,20 @@ public class PatternGameScript : MonoBehaviour
         button.transform.GetChild(0).GetComponent<Text>().text = "CORRECT";
         score++;
         whiteClicked++;
+
+        //Jacky added code, Kalista double check this section
+        if(whiteClicked == whiteCount)
+        {
+            if(gameScript == null)
+            {
+                StartCoroutine(sceneDelay());
+            }
+            else
+            {
+                gameScript.gameComplete(score);
+            }
+        }
+
     }
 
     // If user presses wrong button, this function will decrement the score and display the button being wrong.
@@ -308,4 +326,11 @@ public class PatternGameScript : MonoBehaviour
         WatchLabel.SetActive(false);
     }
 
+    //Added code to transition scenes slowly if not gamemanger does not exist. Used to individual scene testing.
+    private IEnumerator sceneDelay()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(7);
+    
+    }
 }

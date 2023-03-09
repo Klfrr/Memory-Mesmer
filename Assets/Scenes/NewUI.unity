@@ -554,7 +554,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Moca
+  m_Text: 'Score
+
+'
 --- !u!222 &242891165
 CanvasRenderer:
   m_ObjectHideFlags: 0

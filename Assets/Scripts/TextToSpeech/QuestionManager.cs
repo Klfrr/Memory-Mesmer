@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement; // Remove after testing
 public class QuestionManager : MonoBehaviour
 {   
     public List<QuestionsAndAnswers> QnA;
@@ -18,9 +18,13 @@ public class QuestionManager : MonoBehaviour
     public Button yesButton;
     public Button noButton;
 
+    //Game manager stuff
+    private gameManager gameScript;
+
     //disable buttons at start and delay game until insturctions screen is done
     void Start()
     {   
+        gameScript = FindObjectOfType<gameManager>();
         yesButton.interactable = false;
         noButton.interactable = false;
         StartCoroutine(StartGameAfterDelay());
@@ -34,6 +38,19 @@ public class QuestionManager : MonoBehaviour
         QnA.RemoveAt(currentQuestion);
         ScoreTxt.text = "Score: " + score.ToString();
         generateQuestion();
+
+        if(score == totalQuestions)
+        {
+            if(gameScript == null)
+            {
+                StartCoroutine(sceneDelay());
+            }
+            else
+            {
+                gameScript.gameComplete(score);
+            }
+        }
+
 
     }
 
@@ -93,14 +110,21 @@ public class QuestionManager : MonoBehaviour
 
     // Start is called before the first frame update
 
-private IEnumerator StartGameAfterDelay()
-{
-    yield return new WaitForSeconds(delay);
-    generateQuestion();
-    yesButton.interactable = true;
-    noButton.interactable = true;
-}
+    private IEnumerator StartGameAfterDelay()
+    {
+        yield return new WaitForSeconds(delay);
+        generateQuestion();
+        yesButton.interactable = true;
+        noButton.interactable = true;
+    }
 
+    //Added code to transition scenes slowly if not gamemanger does not exist. Used to individual scene testing.
+    private IEnumerator sceneDelay()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(7);
+
+    }
 
 
     /*
