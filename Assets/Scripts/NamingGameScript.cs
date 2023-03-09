@@ -31,9 +31,10 @@ public class NamingGameScript : MonoBehaviour
     public GameObject rhinoImage;
     public GameObject lionImage;
     public GameObject camelImage;
+    public Text scoreLabel;
 
-    public Button correctButton;
-    public int score;
+    Button correctButton;
+    public int score = 0;
     public int random;
     // string path = "/Animal_Pictures/";
 
@@ -81,7 +82,7 @@ public class NamingGameScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        scoreLabel.text = score.ToString();
     }
 
     // Check the button to see if the clicked one was right; else run incorrect scenario
