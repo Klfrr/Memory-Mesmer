@@ -81,7 +81,7 @@ public class VisualSpatialGame : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
              if(hit.collider != null)
             {
-                if(hit.collider.gameObject.GetComponent == "VisSpaceToken")
+                if(hit.collider.gameObject.name == "VisSpaceToken")
                 {
                     print("center");
                     currentToken.updateLine(hit.transform.position);
