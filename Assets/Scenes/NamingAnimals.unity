@@ -698,13 +698,14 @@ MonoBehaviour:
   - {fileID: 600830001}
   - {fileID: 226821637}
   - {fileID: 1498300121}
-  options:
+  animalNameList:
   - Lion
   - Rhino
   - Camel
-  rhinoImage: {fileID: 1052505261}
-  lionImage: {fileID: 53468909}
-  camelImage: {fileID: 1078917068}
+  animalImage:
+  - {fileID: 53468909}
+  - {fileID: 1052505261}
+  - {fileID: 1078917068}
   scoreLabel: {fileID: 684986538}
   score: 0
   random: 0

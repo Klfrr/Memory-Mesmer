@@ -6,31 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class NamingGameScript : MonoBehaviour
 {
-    class Animal
-    {
-        public Animal(string name, int index)
-        {
-            m_name = name;
-            m_index = index;
-        }
-        public Animal(string name, Image image, int index)
-        {
-            m_image = image;
-            m_name = name;
-            m_index = index;
-        }
-
-        Image m_image;
-        string m_name;
-        int m_index;
-    }
-
     public List<Button> buttonsList;
-    public List<string> options;
+    public List<string> animalNameList;
     List<Animal> animalList;
-    public GameObject rhinoImage;
-    public GameObject lionImage;
-    public GameObject camelImage;
+    public List<GameObject> animalImage;
+    //public GameObject lionImage;
     public Text scoreLabel;
 
     //Variables for checking game over;
@@ -40,7 +20,6 @@ public class NamingGameScript : MonoBehaviour
     Button correctButton;
     public int score = 0;
     public int random;
-    // string path = "/Animal_Pictures/";
 
     // Start is called before the first frame update
     void Start()
@@ -49,19 +28,23 @@ public class NamingGameScript : MonoBehaviour
         //Set all images to not appear
         reset();
 
+        // create the objects for all the animals in the list
+        for(int i = 0; i < animalNameList.Count; i++)
+        {
+            Animal correctAnimal = new Animal(animalNameList[i], i, animalImage[i]);
+        }
+        
         // Random Animal object is selected as the right answer, then its image is displayed.
-        int cIndex = Random.Range(0, options.Count);
-        string cAnimal = options[cIndex];
+        int cIndex = Random.Range(0, animalNameList.Count);
+        string cAnimal = animalNameList[cIndex];
         Debug.Log(cAnimal + " is the answer.");
-
-        Animal correctAnimal = new Animal(cAnimal, cIndex);
 
         // A random "correct" button is picked as the right answer
         int bIndex = Random.Range(0, buttonsList.Count);
 
         // The other buttons are filled in with other random answers that are NOT the same as the right answer
-        // First Loop: Assign all the options into rand unpicked and shuffle
-        List<string> randUnpicked = options;
+        // First Loop: Assign all the animalNameList into rand unpicked and shuffle
+        List<string> randUnpicked = animalNameList;
         for (int b = 0; b < randUnpicked.Count; b++)
         {
             string temp = randUnpicked[b];
@@ -173,13 +156,13 @@ public class NamingGameScript : MonoBehaviour
         switch(ans)
         {
             case "Lion": 
-                lionImage.SetActive(true);
+                animalImage[0].SetActive(true);
                 break;
             case "Rhino":
-                rhinoImage.SetActive(true);
+                animalImage[1].SetActive(true);
                 break;
             case "Camel":
-                camelImage.SetActive(true);
+                animalImage[2].SetActive(true);
                 break;
             default:
                 reset();
@@ -217,9 +200,8 @@ public class NamingGameScript : MonoBehaviour
     //Should repeat 3 times
     void reset()
     {
-        rhinoImage.SetActive(false);
-        lionImage.SetActive(false);
-        camelImage.SetActive(false);
+        for(int i = 0; i < animalImage.Count; i++)
+            animalImage[i].SetActive(false);
     }
 
     public void ChangeScene()
