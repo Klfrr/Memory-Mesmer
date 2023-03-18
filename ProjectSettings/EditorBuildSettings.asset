@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/managerTestingScene.unity
     guid: 19cdf5d73b1e5034fa038dde354c3d97
   - enabled: 1
-    path: Assets/Scenes/NewUI.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: e4004eba86fdfd84f85eb034250f48ad
   - enabled: 1
     path: Assets/Scenes/Orientation.unity
@@ -42,7 +42,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TextToSpeech.unity
     guid: 8c228e5951cf67147aa9c0b1c3698504
   - enabled: 1
-    path: Assets/Scenes/GameOver.unity
+    path: Assets/Scenes/FinalScore.unity
     guid: 99e621119b223b846ae44a37757ab5b6
   - enabled: 1
     path: Assets/Scenes/Scores.unity
