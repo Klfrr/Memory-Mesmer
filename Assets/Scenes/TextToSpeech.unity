@@ -395,7 +395,7 @@ MonoBehaviour:
     - Yes
     - No
     CorrectAnswer: 2
-    aClip: {fileID: 0}
+    aClip: {fileID: 8300000, guid: 9178606ffd791af4fa6863d9cdb7ba1f, type: 3}
   - Question: How are you today?
     Answers:
     - Yes

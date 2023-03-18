@@ -29,6 +29,7 @@ public class QuestionManager : MonoBehaviour
         yesButton.interactable = false;
         noButton.interactable = false;
         StartCoroutine(StartGameAfterDelay());
+        //StartCoroutine(playAudio());
 
     }
 
@@ -114,10 +115,11 @@ public class QuestionManager : MonoBehaviour
 
     }
 
-    /*IEnumerator playAudio(){
+    private IEnumerator playAudio(){
 
-    audioSource.PlayOneShot(QnA.aClip,volume);
+    yield return new WaitForSeconds(2);
+    audioSource.PlayOneShot(QnA[0].aClip,volume);
 
-    }*/
+    }
 
 }
