@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement; // Remove after testing
 public class QuestionManager : MonoBehaviour
 {   
+    [SerializeField] public AudioSource audioSource;
     public List<QuestionsAndAnswers> QnA;
     public GameObject[] options;
     public int currentQuestion;
@@ -17,10 +18,10 @@ public class QuestionManager : MonoBehaviour
     public float delay = 8;
     public Button yesButton;
     public Button noButton;
+    public float volume = 0.5f;
 
     //Game manager stuff
     private gameManager gameScript;
-
     //disable buttons at start and delay game until insturctions screen is done
     void Start()
     {   
@@ -95,19 +96,6 @@ public class QuestionManager : MonoBehaviour
     
     }
 
- /*public IEnumerator instructionsTimer()
-    {
-        while(timer > 0)
-        {       
-            for(int i = 0; i < timer; i++)
-            {
-                timer--;
-                yield return new WaitForSeconds(1f);
-            }
-        }
-        
-    }*/
-
     // Start is called before the first frame update
 
     private IEnumerator StartGameAfterDelay()
@@ -126,26 +114,10 @@ public class QuestionManager : MonoBehaviour
 
     }
 
+    /*IEnumerator playAudio(){
 
-    /*
-    [System.Serializable]
+    audioSource.PlayOneShot(QnA.aClip,volume);
 
-    public class Question
-    {
-        public string questionInfo;
-        public QuestionType questionType;
-        public AudioClip qustionClip;
-        public List<string> options;
-        public string correctAns;
-        public string question;
-
-    }
-
-    [System.Serializable]
-
-    public enum QuestionType
-    {
-        TEXT,
-        AUDIO
     }*/
+
 }
