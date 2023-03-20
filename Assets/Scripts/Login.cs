@@ -8,17 +8,19 @@ using System.IO;
 
 
 
-public class Registration : MonoBehaviour
+public class Login : MonoBehaviour
 {
     public Text userName;
     public Text userPassword;
     public Text results;
     private  int difficulty;
+
+    private string loginUserName;
     // Start is called before the first frame update
     void Start()
     {  
-        difficulty = 4;
         results.text = "";
+        loginUserName = "";
     }
 
     // Update is called once per frame
@@ -38,20 +40,26 @@ public class Registration : MonoBehaviour
             using(IDbCommand cmnd = dbconn.CreateCommand())
             {
 
-                string inputValues = "(\"" + userName.text + "\"," + "\"" + userPassword.text + "\"," + difficulty + ")";
+                string readDatabase = "User_Name = \"" + userName.text  + "\" AND Password = \"" + userPassword.text + "\"";
 
-                cmnd.CommandText = "INSERT INTO Login (User_Name, Password, Difficulty) VALUES ";
-                cmnd.CommandText += inputValues;
+                cmnd.CommandText = "SELECT * FROM Login WHERE ";
+                cmnd.CommandText += readDatabase;
 
 
 
-                if(cmnd.ExecuteNonQuery() == 1)
+                try
                 {
-                    results.text = "Account Successfully created";
+                    IDataReader reader = cmnd.ExecuteReader();
+                    while(reader.Read())
+                    {
+                        loginUserName = reader[0].ToString();
+                        Debug.Log(loginUserName);
+                        results.text = "Login Successful";
+                    }
                 }
-                else
+                catch (UnityException e)
                 {
-                    results.text = "Account already created";
+                    Debug.Log("Fail");
                 }
             }
 
