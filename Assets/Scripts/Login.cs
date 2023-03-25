@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Mono.Data.Sqlite;
 using System.Data;
 using System.IO;
-
+using System;
 
 
 public class Login : MonoBehaviour
@@ -39,27 +39,37 @@ public class Login : MonoBehaviour
 
             using(IDbCommand cmnd = dbconn.CreateCommand())
             {
+                
+                string nameChecker = "SELECT COUNT(*) FROM Login WHERE User_Name = \"" + userName.text +"\"" +" AND Password = \"" + userPassword.text + "\"";
+                
+                //Checks if the account already exists
+                cmnd.CommandText = nameChecker;
+                IDataReader reader = cmnd.ExecuteReader();
 
-                string readDatabase = "User_Name = \"" + userName.text  + "\" AND Password = \"" + userPassword.text + "\"";
+                int countOf = Int32.Parse(reader[0].ToString());
 
-                cmnd.CommandText = "SELECT * FROM Login WHERE ";
-                cmnd.CommandText += readDatabase;
+                reader.Close();
 
+                
 
-
-                try
+                if(countOf == 1)
                 {
-                    IDataReader reader = cmnd.ExecuteReader();
+                    string readDatabase = "User_Name = \"" + userName.text  + "\" AND Password = \"" + userPassword.text + "\"";
+                    cmnd.CommandText = "SELECT * FROM Login WHERE ";
+                    cmnd.CommandText += readDatabase;
+
+                    reader = cmnd.ExecuteReader();
                     while(reader.Read())
                     {
                         loginUserName = reader[0].ToString();
                         Debug.Log(loginUserName);
                         results.text = "Login Successful";
                     }
+                    reader.Close();
                 }
-                catch (UnityException e)
+                else
                 {
-                    Debug.Log("Fail");
+                    results.text = "Account does not Exist";
                 }
             }
 

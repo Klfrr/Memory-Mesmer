@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Mono.Data.Sqlite;
 using System.Data;
 using System.IO;
-
+using System;
 
 
 public class Registration : MonoBehaviour
@@ -38,21 +38,35 @@ public class Registration : MonoBehaviour
             using(IDbCommand cmnd = dbconn.CreateCommand())
             {
 
+
+                string nameChecker = "SELECT COUNT(*) FROM Login WHERE User_Name = \"" + userName.text +"\"" +" AND Password = \"" + userPassword.text + "\"";
+
                 string inputValues = "(\"" + userName.text + "\"," + "\"" + userPassword.text + "\"," + difficulty + ")";
 
-                cmnd.CommandText = "INSERT INTO Login (User_Name, Password, Difficulty) VALUES ";
-                cmnd.CommandText += inputValues;
 
 
+                //Checks if the account already exists
+                cmnd.CommandText = nameChecker;
+                IDataReader reader = cmnd.ExecuteReader();
 
-                if(cmnd.ExecuteNonQuery() == 1)
+                int countOf = Int32.Parse(reader[0].ToString());
+
+                reader.Close();
+                
+
+                //Conditionals
+                if(countOf == 0)
                 {
+                    cmnd.CommandText = "INSERT INTO Login (User_Name, Password, Difficulty) VALUES ";
+                    cmnd.CommandText += inputValues;
+                    cmnd.ExecuteNonQuery();
                     results.text = "Account Successfully created";
                 }
                 else
                 {
                     results.text = "Account already created";
                 }
+                
             }
 
             
