@@ -88,6 +88,10 @@ public class QuestionManager : MonoBehaviour
             QuestionTxt.text = QnA[currentQuestion].Question;
             SetAnswers();
 
+            AudioSource audioClip = GetComponent<AudioSource>();
+            audioClip.clip = QnA[currentQuestion].aClip;
+            audioClip.Play();
+
         }
         else
         {
@@ -115,11 +119,11 @@ public class QuestionManager : MonoBehaviour
 
     }
 
-    private IEnumerator playAudio(){
+    /*private IEnumerator playAudio(){
 
     yield return new WaitForSeconds(2);
     audioSource.PlayOneShot(QnA[0].aClip,volume);
 
-    }
+    }*/
 
 }
