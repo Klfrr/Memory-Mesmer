@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f3c0427556149499f3294a8f0c3e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 278318611}
   QnA:
   - Question: Why you no fly?
     Answers:
@@ -440,7 +440,7 @@ AudioSource:
   m_GameObject: {fileID: 278318608}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 1c1ce55ad59cb4e5b978449b44a31054, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1259,6 +1259,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093384928}
   m_CullTransparentMesh: 1
+--- !u!1001 &1259361774
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6828288119183401176, guid: bebac20802a244191a477e675e5dca48, type: 3}
+      propertyPath: m_Name
+      value: AudioMgr
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828288119183401183, guid: bebac20802a244191a477e675e5dca48, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828288119183401183, guid: bebac20802a244191a477e675e5dca48, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1107.8838
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828288119183401183, guid: bebac20802a244191a477e675e5dca48, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 722.79297
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828288119183401183, guid: bebac20802a244191a477e675e5dca48, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.7282495
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828288119183401183, guid: bebac20802a244191a477e675e5dca48, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828288119183401183, guid: bebac20802a244191a477e675e5dca48, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828288119183401183, guid: bebac20802a244191a477e675e5dca48, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828288119183401183, guid: bebac20802a244191a477e675e5dca48, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828288119183401183, guid: bebac20802a244191a477e675e5dca48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828288119183401183, guid: bebac20802a244191a477e675e5dca48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828288119183401183, guid: bebac20802a244191a477e675e5dca48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bebac20802a244191a477e675e5dca48, type: 3}
 --- !u!1 &1270892195
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,42 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
 public class settingsMenu : MonoBehaviour
 {
-    [SerializeField] public Slider volumeSlider = null;
+    [SerializeField] public Slider volumeSlider;
 
     [SerializeField] public Text volumeNumber = null;
 
-    //public AudioMixer audioMixer;
+    [SerializeField] private AudioMixer audioMixer;
 
-    public void Start()
+    public const string volumeMixer = "Volume";
+
+    private void Awake()
     {
-        //this is where you would load user volume settings
-        loadVolume();
+        volumeSlider.onValueChanged.AddListener(setVolume);
     }
-
+    //Makes sure slider loads back to the value it was saved at
+    //1f is default value here.
+    void Start()
+    {
+        volumeSlider.value = PlayerPrefs.GetFloat(audioMgr.volumeKey, 1f);
+    }
+    //sets value for number shown to user and allows audio mixer to be adjusted using slider
     public void setVolume(float volume)
     {
         volumeNumber.text = volume.ToString("0.0");
 
-       // audioMixer.SetFloat("Volume", volume);
+        audioMixer.SetFloat(volumeMixer, Mathf.Log10(volume) * 20);
+    }
+    //when setting scene is left the settings will be stored
+    private void OnDisable()
+    {
+        PlayerPrefs.SetFloat(audioMgr.volumeKey, volumeSlider.value);
     }
 
-    public void saveVolume()
+    public void mainMenu()
     {
-        float volumeValue = volumeSlider.value;
-        PlayerPrefs.SetFloat("VolumeValue", volumeValue);
-        loadVolume();
-    }
-
-    void loadVolume()
-    {
-        float volumeValue = PlayerPrefs.GetFloat("VolumeValue");
-        volumeSlider.value = volumeValue;
-        AudioListener.volume = volumeValue;
-
+        SceneManager.LoadScene(0);
     }
 }
