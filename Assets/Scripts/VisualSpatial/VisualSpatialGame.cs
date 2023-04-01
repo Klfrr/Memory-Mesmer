@@ -17,6 +17,7 @@ public class VisualSpatialGame : MonoBehaviour
     
     private const int boardSize = 3;
     public VisSpaceToken[,] SpatialBoard = new VisSpaceToken[boardSize, boardSize];
+    public GameObject playerCollider;
 
     VisSpaceToken currentToken;
 
@@ -49,7 +50,7 @@ public class VisualSpatialGame : MonoBehaviour
                 {
                     for(int j = 0; j < boardSize; j++)
                     {
-                        //print(SpatialBoard[i,j].value);
+                        print(SpatialBoard[i,j].value);
                     }
                 }
     }
@@ -72,6 +73,7 @@ public class VisualSpatialGame : MonoBehaviour
                     currentToken.resetLine();
                 }
             }
+            playerCollider.transform.position = worldPos;
         }
         
         if (Input.GetMouseButtonUp(0))
@@ -95,6 +97,7 @@ public class VisualSpatialGame : MonoBehaviour
         {
             Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             currentToken.updateLine(worldPos);
+            playerCollider.transform.position = worldPos;
         }   
     }
 }

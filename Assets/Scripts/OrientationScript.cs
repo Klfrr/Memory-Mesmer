@@ -10,6 +10,7 @@ public class OrientationScript : MonoBehaviour
     public Text dateInput;
     public Text timeInput;
     public Text accuracy;
+    public GameObject tutorialCanvas;
     private float difference;
     private DateTime currentTime;
     private double tempAccuracy;
@@ -18,9 +19,9 @@ public class OrientationScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        showTutorial();
         currentTime = DateTime.Now;
         gameScript = FindObjectOfType<gameManager>();
-        
     }
 
     // Update is called once per frame
@@ -55,5 +56,10 @@ public class OrientationScript : MonoBehaviour
     {   
         gameScript.gameComplete(10);
         //SceneManager.LoadScene(0);
+    }
+
+    public void showTutorial()
+    {
+
     }
 }
