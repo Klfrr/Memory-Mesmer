@@ -9,6 +9,7 @@ using System;
 public class StatisticsScript : MonoBehaviour
 {
     private List<float> db_score;
+    public GameObject canvasObject;
     private List<string> date;
     private UIManager gameScript;
     public GameObject SingleBarObject;
@@ -70,25 +71,33 @@ public class StatisticsScript : MonoBehaviour
     {
         for(int i = 0; i < db_score.Count;i++)
         {
-            float newY = SingleBarObject.transform.position.y-(250*i);
-            GameObject barGraphClone = Instantiate(SingleBarObject, new Vector3(SingleBarObject.transform.position.x , newY,0),SingleBarObject.transform.rotation);
-            SetBar(db_score[i],barGraphClone);
+            float newY = 500-(250*i);
+            GameObject barGraphClone = Instantiate(SingleBarObject, new Vector3(0 , newY,0),SingleBarObject.transform.rotation);
+            barGraphClone.transform.SetParent(canvasObject.transform, false);
+            SetBar(db_score[i],barGraphClone,i);
             barGraphClone.SetActive(true);
         }
     }
 
     // Max SHOULD be 50 so divide score by 50
-    void SetBar(float score, GameObject barGraphClone)
+    void SetBar(float score, GameObject barGraphClone,int count)
     {   
         //Math should be adjusted for the missing games. Note for later
+        Text datePrint = barGraphClone.transform.GetChild(0).gameObject.GetComponent<Text>();
+        datePrint.text = date[count];
+        
         float barNum = score / 50f;
+        Slider barGraphSlider = barGraphClone.transform.GetChild(1).gameObject.GetComponent<Slider>();
+        barGraphSlider.value = barNum;
+
+        Text scorePrinter = barGraphClone.transform.GetChild(2).gameObject.GetComponent<Text>();
+        scorePrinter.text = (barNum*100).ToString() + "%";
         //barGraph.value = barNum;
     }
 }
 
 /*
 *To do for this section.
-*Add a object creation to create new bar graph for each new instance of row, maybe add a scroller like effect
-*Add a onClick to display the numeric value when the user clicks on the bar graph, probably over the bar itself.
+*Add a onClick to display the numeric value when the user clicks on the bar graph, probably over the bar itself. kinda for now
 *Optional* Add a way to make a single bar graph more indepth/break down of score. Can be done using a canvas like system
 */

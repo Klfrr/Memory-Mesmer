@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.013764858, y: -52.668945}
+  m_AnchoredPosition: {x: -0.013763428, y: -52.668945}
   m_SizeDelta: {x: 1009.0352, y: 137.1984}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &63498872
@@ -400,7 +400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.013123, y: 71.269}
+  m_AnchoredPosition: {x: -0.013122559, y: 71.269}
   m_SizeDelta: {x: 1009, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &927211183
@@ -628,7 +628,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.013794, y: 500.669}
+  m_AnchoredPosition: {x: 0, y: 500}
   m_SizeDelta: {x: 1009, y: 242.538}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1375282046
@@ -1064,4 +1064,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7730b90f011645741b697c64c76c3377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barGraph: {fileID: 63498872}
+  canvasObject: {fileID: 2055989502}
+  SingleBarObject: {fileID: 1020996643}

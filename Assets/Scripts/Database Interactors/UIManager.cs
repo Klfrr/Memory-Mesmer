@@ -11,12 +11,22 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     private string userName;
-
+    private static GameObject onlyInstance = null;
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
         userName = "temp";
+
+        if(onlyInstance == null)
+        {
+            onlyInstance = gameObject;
+        }
+        else
+        {
+            Destroy(gameObject);
+            
+        }
     }
 
     // Update is called once per frame
