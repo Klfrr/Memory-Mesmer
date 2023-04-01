@@ -76,7 +76,7 @@ public class buttonController : MonoBehaviour
 
     public void settings()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(11);
     }
 
     public void accountManage()
