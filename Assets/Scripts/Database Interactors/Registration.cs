@@ -14,9 +14,12 @@ public class Registration : MonoBehaviour
     public Text userPassword;
     public Text results;
     private  int difficulty;
+    private UIManager gameScript;
+
     // Start is called before the first frame update
     void Start()
     {  
+        gameScript = FindObjectOfType<UIManager>();
         difficulty = 4;
         results.text = "";
     }
@@ -61,6 +64,7 @@ public class Registration : MonoBehaviour
                     cmnd.CommandText += inputValues;
                     cmnd.ExecuteNonQuery();
                     results.text = "Account Successfully created";
+                    gameScript.loadInformation(userName.text);
                 }
                 else
                 {
@@ -73,5 +77,10 @@ public class Registration : MonoBehaviour
 
             dbconn.Close();
         }
+    }
+    
+    public void homeScreen()
+    {
+        gameScript.homePage();
     }
 }

@@ -7,7 +7,6 @@ using System.Data;
 using System.IO;
 using System;
 
-
 public class Login : MonoBehaviour
 {
     public Text userName;
@@ -16,9 +15,12 @@ public class Login : MonoBehaviour
     private  int difficulty;
 
     private string loginUserName;
+    private UIManager gameScript;
+
     // Start is called before the first frame update
     void Start()
     {  
+        gameScript = FindObjectOfType<UIManager>();
         results.text = "";
         loginUserName = "";
     }
@@ -62,7 +64,7 @@ public class Login : MonoBehaviour
                     while(reader.Read())
                     {
                         loginUserName = reader[0].ToString();
-                        Debug.Log(loginUserName);
+                        gameScript.loadInformation(loginUserName);
                         results.text = "Login Successful";
                     }
                     reader.Close();
@@ -77,5 +79,10 @@ public class Login : MonoBehaviour
 
             dbconn.Close();
         }
+    }
+
+    public void homeScreen()
+    {
+        gameScript.homePage();
     }
 }

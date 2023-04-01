@@ -367,9 +367,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: buttonController, Assembly-CSharp
-        m_MethodName: exitGame
+      - m_Target: {fileID: 1321649911}
+        m_TargetAssemblyTypeName: Login, Scripts
+        m_MethodName: homeScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -50,7 +50,7 @@ public class buttonController : MonoBehaviour
 
     public void toScoresMoca()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(10);
         
     }
 
@@ -81,7 +81,7 @@ public class buttonController : MonoBehaviour
 
     public void accountManage()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(9);
     }
     
 

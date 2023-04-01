@@ -15,9 +15,11 @@ public class gameManager : MonoBehaviour
     private int currentScene;
     private Touch touch;
     private float bufferTimer;
+    private UIManager userInfo;
     // Start is called before the first frame update
     void Start()
     {
+        userInfo = FindObjectOfType<UIManager>();
         DontDestroyOnLoad(gameObject);
         currentScene = 0;
 
@@ -91,7 +93,7 @@ public class gameManager : MonoBehaviour
         dbconn.Open();
 
         string scoreValues = "(";
-        scoreValues = scoreValues + "\"" + "temp" + "\"," + "\"" + currentTime.ToShortDateString() +"\"," + "\"" + currentTime.ToShortTimeString() +"\"";
+        scoreValues = scoreValues + "\"" + userInfo.getUserName() + "\"," + "\"" + currentTime.ToShortDateString() +"\"," + "\"" + currentTime.ToShortTimeString() +"\"";
 
         for(int i = 0; i < arraySize;i++)
         {
