@@ -61,6 +61,7 @@ public class buttonController : MonoBehaviour
         Debug.Log("Editor Exit Successful");
         #endif
         Application.Quit();
+        PlayerPrefs.DeleteAll();
         Debug.Log("Exit Successful");
     }
 
