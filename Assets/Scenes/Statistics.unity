@@ -239,8 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7730b90f011645741b697c64c76c3377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  db_score: 30.09
-  barGraph: {fileID: 439992606}
+  canvasObject: {fileID: 0}
+  SingleBarObject: {fileID: 0}
 --- !u!1 &376762624
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,17 +313,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7222893108791018079, guid: 9a184a4ed7301444e956b8806fd5644e, type: 3}
   m_PrefabInstance: {fileID: 7222893108690862914}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &439992606 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7222893108791018076, guid: 9a184a4ed7301444e956b8806fd5644e, type: 3}
-  m_PrefabInstance: {fileID: 7222893108690862914}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &439992607 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7222893108791018077, guid: 9a184a4ed7301444e956b8806fd5644e, type: 3}
@@ -477,7 +466,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: c84a60b3391f2184db2669a32a5b9956, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -546,7 +535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -554,11 +543,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 100
+    m_Font: {fileID: 12800000, guid: ab9673a70aa3a8845b65de112f243221, type: 3}
+    m_FontSize: 200
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -590,6 +579,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6953121476088115481, guid: 9a184a4ed7301444e956b8806fd5644e, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6953121476088115481, guid: 9a184a4ed7301444e956b8806fd5644e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 040be0e474e09894ca320b08d9462cc8, type: 3}
+    - target: {fileID: 6953121476088115481, guid: 9a184a4ed7301444e956b8806fd5644e, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6953121476088115481, guid: 9a184a4ed7301444e956b8806fd5644e, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6953121476088115481, guid: 9a184a4ed7301444e956b8806fd5644e, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7222893108791018076, guid: 9a184a4ed7301444e956b8806fd5644e, type: 3}
       propertyPath: m_Value
       value: 0
@@ -598,6 +607,18 @@ PrefabInstance:
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 439992607}
+    - target: {fileID: 7222893108791018077, guid: 9a184a4ed7301444e956b8806fd5644e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.5754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222893108791018077, guid: 9a184a4ed7301444e956b8806fd5644e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222893108791018077, guid: 9a184a4ed7301444e956b8806fd5644e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5754717
+      objectReference: {fileID: 0}
     - target: {fileID: 7222893108791018078, guid: 9a184a4ed7301444e956b8806fd5644e, type: 3}
       propertyPath: m_Name
       value: Bar (Graph)
