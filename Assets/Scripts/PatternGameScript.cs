@@ -287,7 +287,7 @@ public class PatternGameScript : MonoBehaviour
     {
         Debug.Log(button.name + " is incorrect.");
         button.transform.GetChild(0).GetComponent<Text>().color = Color.red;
-        button.transform.GetChild(0).GetComponent<Text>().text = "WRONG";
+        button.transform.GetChild(0).GetComponent<Text>().text = "X";
         score--;
     }
 
