@@ -10,6 +10,16 @@ public class buttonController : MonoBehaviour
     {
 
     }*/
+    public void mainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void toOrientation()
+    {
+        SceneManager.LoadScene(1);    
+    }
+    
     public void toSimon()
     {
         SceneManager.LoadScene(2);    
@@ -20,32 +30,24 @@ public class buttonController : MonoBehaviour
         SceneManager.LoadScene(3);
     }
 
-     public void toMoca()
+    public void toNamingAnimals()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);    
     }
 
-        public void toMatchTwo()
+    public void toSerialization()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(5);    
     }
 
-    public void toScoresMatchTwo()
+    public void toText2Speech()
     {
-        SceneManager.LoadScene(0);
-        
-    }
-    
-    public void toScoresSimon()
-    {
-        SceneManager.LoadScene(0);
-        
+        SceneManager.LoadScene(6);    
     }
 
-    public void toScoresPattern()
+    public void accountManage()
     {
-        SceneManager.LoadScene(0);
-        
+        SceneManager.LoadScene(9);
     }
 
     public void toScoresMoca()
@@ -53,6 +55,18 @@ public class buttonController : MonoBehaviour
         SceneManager.LoadScene(10);
         
     }
+    public void settings()
+    {
+        SceneManager.LoadScene(11);
+    }
+     public void toMoca()
+    {
+        SceneManager.LoadScene(12);
+    }
+
+
+
+
 
     public void exitGame()
     {
@@ -63,26 +77,6 @@ public class buttonController : MonoBehaviour
         Application.Quit();
         PlayerPrefs.DeleteAll();
         Debug.Log("Exit Successful");
-    }
-
-    public void mainMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    public void photoLibray()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    public void settings()
-    {
-        SceneManager.LoadScene(11);
-    }
-
-    public void accountManage()
-    {
-        SceneManager.LoadScene(9);
     }
     
 
