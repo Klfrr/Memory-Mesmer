@@ -22,7 +22,7 @@ public class SimonSays : MonoBehaviour
     private int[] blinkArray;
     private int patternVersion;
     private gameManager gameScript;
-    private bool gameEnded = false;
+    private bool gameFinished = false;
     //Time info
     public Text timeText;
     public int gameTime = 120;
@@ -37,6 +37,7 @@ public class SimonSays : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startTime = Time.time;
         StartCoroutine(StartGameAfterDelay());
         gameScript = FindObjectOfType<gameManager>();
         level = 5;
@@ -57,19 +58,22 @@ public class SimonSays : MonoBehaviour
         if (timerForFunction > delay)
         {
             if(Time.time - startTime < gameTime)
-        {
-            float ElapsedTime = Time.time - startTime;
-            SetTimeDisplay(gameTime - ElapsedTime);
-        }
-        else
-        {
-            if(!gameEnded)
             {
-                gameEnded = true;
-                gameOver(level-1);
-                SetTimeDisplay(0);
+                float ElapsedTime = Time.time - startTime;
+                SetTimeDisplay(gameTime - ElapsedTime);
+                
             }
-        }
+            else
+            {
+                if(!gameFinished)
+                {
+                    Debug.Log(Time.time);
+                    Debug.Log(startTime);
+                    gameFinished = true;
+                    gameOver(level-1);
+                    SetTimeDisplay(0);
+                }
+            }
         }
     }
     
@@ -134,8 +138,6 @@ public class SimonSays : MonoBehaviour
             ButtonActivity.text = "Try \nAgain"; 
             blinkColor(click, 1, colorIndex);
             buttonClicked = 0;
-            
-
         }
     }
 

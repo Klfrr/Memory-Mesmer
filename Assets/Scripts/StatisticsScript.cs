@@ -13,6 +13,7 @@ public class StatisticsScript : MonoBehaviour
     private List<string> date;
     private UIManager gameScript;
     public GameObject SingleBarObject;
+    public GameObject scrollObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,10 +73,11 @@ public class StatisticsScript : MonoBehaviour
         for(int i = 0; i < db_score.Count;i++)
         {
             float newY = 500-(250*i);
-            GameObject barGraphClone = Instantiate(SingleBarObject, new Vector3(0 , newY,0),SingleBarObject.transform.rotation);
+            GameObject barGraphClone = Instantiate(SingleBarObject, new Vector3(0 , SingleBarObject.transform.position.y -(150*i) ,0),SingleBarObject.transform.rotation);
             barGraphClone.transform.SetParent(canvasObject.transform, false);
             SetBar(db_score[i],barGraphClone,i);
             barGraphClone.SetActive(true);
+            barGraphClone.transform.SetParent(scrollObject.transform);
         }
     }
 
