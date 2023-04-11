@@ -3,44 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class panelController : MonoBehaviour
-{
-    public void OrangePanel()
-    {
-        // Find the main panel by name and deactivate it
-        GameObject mainPanel = GameObject.Find("MainPanel");
-        if (mainPanel != null)
+{  
+        public GameObject mainPanel;
+        public GameObject orangePanel;
+
+        private void Start()
         {
-            //turning off main panel
-            mainPanel.SetActive(false);
-            // Save the active state of the main panel
-            PlayerPrefs.SetInt("MainPanelActive", 0);
+            // Check if the MainPanel is active
+            if (PlayerPrefs.GetInt("MainPanelActive", 1) == 0)
+            {
+                // If not, turn it off
+                mainPanel.SetActive(false);
+            }
+
+            // Check if the OrangePanel is active
+            if (PlayerPrefs.GetInt("OrangePanelActive", 0) == 1)
+            {
+                // If so, turn it on
+                orangePanel.SetActive(true);
+            }
         }
 
-        // Find the orange panel by name and activate it
-        GameObject orangePanel = GameObject.Find("OrangePanel");
-        if (orangePanel != null)
+        public void OrangePanel()
         {
-            //turning on orange panel
+            // Turn off the MainPanel
+            mainPanel.SetActive(false);
+            // Save the active state of the MainPanel
+            PlayerPrefs.SetInt("MainPanelActive", 0);
+
+            // Turn on the OrangePanel
             orangePanel.SetActive(true);
-            // Save the active state of the orange panel
+            // Save the active state of the OrangePanel
             PlayerPrefs.SetInt("OrangePanelActive", 1);
         }
-    }
 
-    void Start()
-    {
-        // Restore the active state of the main and orange panels
-        if (PlayerPrefs.HasKey("MainPanelActive"))
+        public void MainPanel()
         {
-            
-            GameObject mainPanel = GameObject.Find("MainPanel");
-            if (mainPanel != null) mainPanel.SetActive(PlayerPrefs.GetInt("MainPanelActive") != 0);
+            // Turn on the MainPanel
+            mainPanel.SetActive(true);
+            // Save the active state of the MainPanel
+            PlayerPrefs.SetInt("MainPanelActive", 1);
+
+            // Turn off the OrangePanel
+            orangePanel.SetActive(false);
+            // Save the active state of the OrangePanel
+            PlayerPrefs.SetInt("OrangePanelActive", 0);
         }
-        if (PlayerPrefs.HasKey("OrangePanelActive"))
-        {
-            GameObject orangePanel = GameObject.Find("OrangePanel");
-            if (orangePanel != null) orangePanel.SetActive(PlayerPrefs.GetInt("OrangePanelActive") != 0);
-        }
-    }
+
+
+
 
 }
