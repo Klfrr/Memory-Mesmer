@@ -50,6 +50,11 @@ public class panelController : MonoBehaviour
             PlayerPrefs.SetInt("OrangePanelActive", 0);
         }
 
+        private void OnApplicationQuit()
+        {
+         PlayerPrefs.DeleteAll();
+        }
+
 
 
 
