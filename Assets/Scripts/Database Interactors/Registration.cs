@@ -33,47 +33,64 @@ public class Registration : MonoBehaviour
     public void onClick()
     {
         string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+        int countOf = 0;
         
+        //countOf = readFunction(dataBaseConn);
+        if(countOf == 0)
+        {
+            writeFunction(dataBaseConn);
+        }
+        else
+        {
+            results.text = "Account already created";
+        }
+    }
+
+    private int readFunction(string dataBaseConn)
+    {
+        int countOf = 0;
+        
+        using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
+        {
+            dbconn.Open();
+
+            using(IDbCommand readCmnd = dbconn.CreateCommand())
+            {
+                string nameChecker = "SELECT COUNT(*) FROM Login WHERE User_Name = \"" + userName.text +"\"";
+
+
+                //Checks if the account already exists
+                readCmnd.CommandText = nameChecker;
+                IDataReader reader = readCmnd.ExecuteReader();
+
+                countOf = Int32.Parse(reader[0].ToString());
+                reader.Close();
+
+            }
+            //Conditionals
+
+            dbconn.Close();
+        }
+        return countOf;    
+    }
+
+    private void writeFunction(string dataBaseConn)
+    {   
         using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
         {
             dbconn.Open();
 
             using(IDbCommand cmnd = dbconn.CreateCommand())
             {
-
-
-                string nameChecker = "SELECT COUNT(*) FROM Login WHERE User_Name = \"" + userName.text +"\"" +" AND Password = \"" + userPassword.text + "\"";
-
                 string inputValues = "(\"" + userName.text + "\"," + "\"" + userPassword.text + "\"," + difficulty + ")";
-
-
-
-                //Checks if the account already exists
-                cmnd.CommandText = nameChecker;
-                IDataReader reader = cmnd.ExecuteReader();
-
-                int countOf = Int32.Parse(reader[0].ToString());
-
-                reader.Close();
-                
-
                 //Conditionals
-                if(countOf == 0)
-                {
-                    cmnd.CommandText = "INSERT INTO Login (User_Name, Password, Difficulty) VALUES ";
-                    cmnd.CommandText += inputValues;
-                    cmnd.ExecuteNonQuery();
-                    results.text = "Account Successfully created";
-                    gameScript.loadInformation(userName.text);
-                }
-                else
-                {
-                    results.text = "Account already created";
-                }
-                
+                cmnd.CommandText = "INSERT INTO Login (User_Name,Password,Difficulty) VALUES ";
+                cmnd.CommandText += inputValues;
+                Debug.Log(cmnd.CommandText);
+                cmnd.ExecuteNonQuery();
+                results.text = "Account Successfully created";
+                gameScript.loadInformation(userName.text);
             }
-
-            
 
             dbconn.Close();
         }
@@ -82,5 +99,10 @@ public class Registration : MonoBehaviour
     public void homeScreen()
     {
         gameScript.homePage();
+    }
+
+    public void loginPage()
+    {
+        gameScript.loginPage();
     }
 }

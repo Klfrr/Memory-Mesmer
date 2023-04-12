@@ -61,4 +61,14 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void loginPage()
+    {
+        SceneManager.LoadScene(9);
+    }
+
+    public void registerPage()
+    {
+        SceneManager.LoadScene(13);
+    }
+
 }

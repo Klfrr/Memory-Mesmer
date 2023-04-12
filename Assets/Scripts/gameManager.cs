@@ -16,9 +16,15 @@ public class gameManager : MonoBehaviour
     private Touch touch;
     private float bufferTimer;
     private UIManager userInfo;
+
+    private string gameType = "";
+    private int pastValue;
+    private static GameObject onlyInstance = null;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameType = "Full";
         userInfo = FindObjectOfType<UIManager>();
         DontDestroyOnLoad(gameObject);
         currentScene = 0;
@@ -42,6 +48,17 @@ public class gameManager : MonoBehaviour
             scenes[i] = scenes[temp];
             scenes[temp] = placeHolder;
         }
+
+        if(onlyInstance == null)
+        {
+            onlyInstance = gameObject;
+        }
+        else
+        {
+            Destroy(gameObject);
+            
+        }
+
     }
 
     // Update is called once per frame
@@ -66,53 +83,64 @@ public class gameManager : MonoBehaviour
     public void gameComplete(int gameScore)
     {
         //calls the input score to save score, and then attempts next scene
+        pastValue = SceneManager.GetActiveScene().buildIndex;
         inputScore(gameScore);
         currentScene++; 
-        StartCoroutine(sceneChange());
+        if(gameType == "Single")
+        {
+            SceneManager.LoadScene(7);
+        }
+        else
+        {
+            StartCoroutine(sceneChange());
+        }
     }
 
     private void inputScore(int gameScore)
     {
-        Debug.Log(scenes[currentScene]-1);
-        scores[scenes[currentScene]-1] = gameScore;
-       
+        if(gameType == "Single")
+        {
+            scores[pastValue-1] = gameScore;
+        }
+        else
+        {
+            scores[scenes[currentScene]-1] = gameScore;
+        }
     }
 
     private void finishGame()
     {
-        DateTime currentTime = DateTime.Now;
-
-        //Add code to upload scores
-        SceneManager.LoadScene(7);
         
-        string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+            DateTime currentTime = DateTime.Now;
+
+            //Add code to upload scores
+            SceneManager.LoadScene(7);
+
+            string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+
+            //Creates the connection to the database
+            IDbConnection dbconn;
+            dbconn = new SqliteConnection(dataBaseConn);
+            dbconn.Open();
+
+            string scoreValues = "(";
+            scoreValues = scoreValues + "\"" + userInfo.getUserName() + "\"," + "\"" + currentTime.ToShortDateString() +"\"," + "\"" + currentTime.ToShortTimeString() +"\"";
+
+            for(int i = 0; i < arraySize;i++)
+            {
+                scoreValues += ",";
+                scoreValues += scores[i];
+            }
+            scoreValues += ")";
+
+            IDbCommand cmnd = dbconn.CreateCommand();
+            cmnd.CommandText = "INSERT INTO Scores (User,Date,Time,Orientation,Simon,Pattern,Naming,Serialization,Text2Speech) VALUES" ;
+            cmnd.CommandText += scoreValues;
+            cmnd.ExecuteNonQuery();
+
+            dbconn.Close();
+
         
-        //Creates the connection to the database
-        IDbConnection dbconn;
-        dbconn = new SqliteConnection(dataBaseConn);
-        dbconn.Open();
-
-        string scoreValues = "(";
-        scoreValues = scoreValues + "\"" + userInfo.getUserName() + "\"," + "\"" + currentTime.ToShortDateString() +"\"," + "\"" + currentTime.ToShortTimeString() +"\"";
-
-        for(int i = 0; i < arraySize;i++)
-        {
-            scoreValues += ",";
-            scoreValues += scores[i];
-        }
-        scoreValues += ")";
-
-        Debug.Log(scoreValues);
-        IDbCommand cmnd = dbconn.CreateCommand();
-        cmnd.CommandText = "INSERT INTO Scores (User,Date,Time,Orientation,Simon,Pattern,Naming,Serialization,Text2Speech) VALUES" ;
-        cmnd.CommandText += scoreValues;
-        Debug.Log(cmnd.CommandText);
-        cmnd.ExecuteNonQuery();
-
-        dbconn.Close();
-
-
-        Destroy(gameObject);
     }
 
     public void quitGame()
@@ -135,5 +163,33 @@ public class gameManager : MonoBehaviour
         {
             SceneManager.LoadScene(scenes[currentScene]);
         }       
+    }
+
+    public void loadGameType(string type)
+    {
+        gameType = type;
+    }
+
+    public string getScore()
+    {
+        double value = 0;
+        if(gameType == "Full")
+        {
+            for(int i = 0; i < arraySize; i++)
+            {
+                value += scores[i];
+            }
+            return value + "/" + "50";
+        }
+        else
+        {
+            value = scores[pastValue-1];
+            return value + "/" + "5";
+        }
+    }
+
+    public void destroySelf()
+    {
+        Destroy(gameObject);
     }
 }

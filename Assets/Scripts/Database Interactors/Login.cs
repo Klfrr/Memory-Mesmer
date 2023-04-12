@@ -85,4 +85,9 @@ public class Login : MonoBehaviour
     {
         gameScript.homePage();
     }
+
+    public void register()
+    {
+        gameScript.registerPage();
+    }
 }

@@ -34,6 +34,7 @@ public class PatternGameScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startTime = Time.time;
         gameScript = FindObjectOfType<gameManager>();
 
         //Disable buttons before watching
@@ -75,8 +76,12 @@ public class PatternGameScript : MonoBehaviour
         }
         else
         {
-            gameActive = false;
-            SetTimeDisplay(0);
+            if(gameActive)
+            {
+                gameActive = false;
+                SetTimeDisplay(0);
+                gameScript.gameComplete(score);
+            }
             //SceneManager.LoadScene(4);
         }
         }

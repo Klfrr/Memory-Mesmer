@@ -67,8 +67,6 @@ public class SimonSays : MonoBehaviour
             {
                 if(!gameFinished)
                 {
-                    Debug.Log(Time.time);
-                    Debug.Log(startTime);
                     gameFinished = true;
                     gameOver(level-1);
                     SetTimeDisplay(0);
@@ -115,7 +113,7 @@ public class SimonSays : MonoBehaviour
 
         //Find the right color index for each button
         int colorIndex = 0;
-        while(!(GameObject.ReferenceEquals(buttons[colorIndex],currentTest[buttonClicked])))
+        while(!(GameObject.ReferenceEquals(buttons[colorIndex],click)))
         {
             colorIndex++;
         }
@@ -126,6 +124,7 @@ public class SimonSays : MonoBehaviour
         {
             blinkColor(click, 1, colorIndex);
             buttonClicked += 1;
+            ButtonActivity.text = "Continue";
             if(buttonClicked == level)
             {
                 //If player passes the game, calls the gameover function with the currnet level

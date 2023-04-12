@@ -6,6 +6,7 @@ using Mono.Data.Sqlite;
 using System.Data;
 using System;
 
+
 public class StatisticsScript : MonoBehaviour
 {
     private List<float> db_score;
@@ -96,10 +97,10 @@ public class StatisticsScript : MonoBehaviour
         scorePrinter.text = (barNum*100).ToString() + "%";
         //barGraph.value = barNum;
     }
+
+    public void goHome()
+    {
+        gameScript.homePage();
+    }
 }
 
-/*
-*To do for this section.
-*Add a onClick to display the numeric value when the user clicks on the bar graph, probably over the bar itself. kinda for now
-*Optional* Add a way to make a single bar graph more indepth/break down of score. Can be done using a canvas like system
-*/

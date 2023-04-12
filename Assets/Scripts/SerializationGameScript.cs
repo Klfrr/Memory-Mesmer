@@ -37,6 +37,7 @@ public class SerializationGameScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startTime = Time.time;
         gameScript = FindObjectOfType<gameManager>();
         StartCoroutine(StartGameAfterDelay()); 
 
@@ -63,8 +64,12 @@ public class SerializationGameScript : MonoBehaviour
         }
         else
         {
-            gameActive = false;
-            SetTimeDisplay(0);
+            if(gameActive)
+            {
+                gameActive = false;
+                SetTimeDisplay(0);
+                gameScript.gameComplete(score);
+            }
             //SceneManager.LoadScene(4);
         }
         }

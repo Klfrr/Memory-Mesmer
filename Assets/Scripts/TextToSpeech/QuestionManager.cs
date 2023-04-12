@@ -119,6 +119,10 @@ public class QuestionManager : MonoBehaviour
 
     }
 
+    public int getScore()
+    {
+        return score;
+    }
     /*private IEnumerator playAudio(){
 
     yield return new WaitForSeconds(2);

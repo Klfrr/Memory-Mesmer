@@ -547,7 +547,7 @@ Transform:
   m_Children:
   - {fileID: 301499634}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &731580169
 GameObject:
@@ -754,7 +754,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Colors
+  m_Text: Sequence
 --- !u!222 &849091824
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -776,7 +776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6828288119183401183, guid: bebac20802a244191a477e675e5dca48, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6828288119183401183, guid: bebac20802a244191a477e675e5dca48, type: 3}
       propertyPath: m_LocalScale.x
@@ -1409,6 +1409,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309753368}
   m_CullTransparentMesh: 1
+--- !u!1 &1419664068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1419664070}
+  - component: {fileID: 1419664069}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1419664069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419664068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97db3413eec2bc74585b6b9e222856cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1419664070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419664068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.22076312, y: 2.2658105, z: 112.19679}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1425595722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,7 +2000,7 @@ PrefabInstance:
       objectReference: {fileID: 75484057}
     - target: {fileID: 6502049740890305470, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6502049740890305470, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
       propertyPath: m_LocalScale.x
@@ -2456,7 +2500,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 301499635}
         m_TargetAssemblyTypeName: buttonController, Scripts
-        m_MethodName: toOrientation
+        m_MethodName: startGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

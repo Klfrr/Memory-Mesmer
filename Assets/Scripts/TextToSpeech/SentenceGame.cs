@@ -15,10 +15,12 @@ public class SentenceGame : MonoBehaviour
     public int timer = 0;
     public float delay =8;
     public float timerForFunction;
+    private gameManager gameScript;
 
      // Start is called before the first frame update
     void Start()
     {   
+        gameScript = FindObjectOfType<gameManager>();
         StartCoroutine(StartGameAfterDelay());
         instructionsLabel.SetActive(true);
 
@@ -38,8 +40,13 @@ public class SentenceGame : MonoBehaviour
         }
         else
         {
-            gameActive = false;
-            SetTimeDisplay(0);
+            if(gameActive)
+            {
+                QuestionManager scoreTracker = FindObjectOfType<QuestionManager>();
+                gameActive = false;
+                SetTimeDisplay(0);
+                gameScript.gameComplete(scoreTracker.getScore());
+            }
             //SceneManager.LoadScene(4);
         }
         }
