@@ -35,7 +35,7 @@ public class Registration : MonoBehaviour
         string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
         int countOf = 0;
         
-        //countOf = readFunction(dataBaseConn);
+        countOf = readFunction(dataBaseConn);
         if(countOf == 0)
         {
             writeFunction(dataBaseConn);
@@ -61,11 +61,11 @@ public class Registration : MonoBehaviour
 
                 //Checks if the account already exists
                 readCmnd.CommandText = nameChecker;
-                IDataReader reader = readCmnd.ExecuteReader();
-
-                countOf = Int32.Parse(reader[0].ToString());
-                reader.Close();
-
+                using(IDataReader reader = readCmnd.ExecuteReader())
+                {
+                    countOf = Int32.Parse(reader[0].ToString());
+                    reader.Close();
+                }
             }
             //Conditionals
 
