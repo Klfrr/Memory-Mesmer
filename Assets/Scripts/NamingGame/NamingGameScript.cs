@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+// Lion, camel, and rhino pictures: https://www.memorylosstest.com/dl/moca-test-english-7-1.pdf
+// Cat picture: https://coloringonly.com/pages/somali-cat-coloring-page/
+// Dog Picture: https://edgcoloringpages.s3.us-east-2.amazonaws.com/1315-easy-realistic-dog-coloring-page.pdf
+// Pig Picture: https://www.supercoloring.com/coloring-pages/fat-pig
+
 public class NamingGameScript : MonoBehaviour
 {
     public List<Button> buttonsList;
@@ -16,6 +21,7 @@ public class NamingGameScript : MonoBehaviour
     //Variables for checking game over;
     private gameManager gameScript;
     private int gameOver = 0;
+    public int round = 0;
 
     Button correctButton;
     public int score = 0;
@@ -26,44 +32,16 @@ public class NamingGameScript : MonoBehaviour
     {
         gameScript = FindObjectOfType<gameManager>();
         //Set all images to not appear
-        reset();
+        resetImages();
 
-        // create the objects for all the animals in the list
+        // create the objects for all the animals in the list (unused for now)
         for(int i = 0; i < animalNameList.Count; i++)
         {
             Animal correctAnimal = new Animal(animalNameList[i], i, animalImage[i]);
         }
-        
-        // Random Animal object is selected as the right answer, then its image is displayed.
-        int cIndex = Random.Range(0, animalNameList.Count);
-        string cAnimal = animalNameList[cIndex];
-        Debug.Log(cAnimal + " is the answer.");
 
         // A random "correct" button is picked as the right answer
-        int bIndex = Random.Range(0, buttonsList.Count);
-
-        // The other buttons are filled in with other random answers that are NOT the same as the right answer
-        // First Loop: Assign all the animalNameList into rand unpicked and shuffle
-        List<string> randUnpicked = animalNameList;
-        for (int b = 0; b < randUnpicked.Count; b++)
-        {
-            string temp = randUnpicked[b];
-            int randomIndex = Random.Range(b, randUnpicked.Count);
-            randUnpicked[b] = randUnpicked[randomIndex];
-            randUnpicked[randomIndex] = temp;
-        }
-
-        // Second Loop: Now assign all the buttons to the animals contained in rand unpicked
-        for(int i = 0; i < randUnpicked.Count; i++) //for each button
-        {
-            if (randUnpicked[i] == cAnimal) //if animal is the answer, log and set correct button 
-            {
-                checkDisplayImage(cAnimal);
-                Debug.Log(buttonsList[i].name + " is the correct button.");
-                correctButton = buttonsList[i];
-            }
-            buttonsList[i].transform.GetChild(0).GetComponent<Text>().text = randUnpicked[i];
-        }
+        correctButton = randomizeButtons(buttonsList, animalNameList);
 
     }
 
@@ -138,7 +116,7 @@ public class NamingGameScript : MonoBehaviour
         // Wait 1 second, then change scenes
         // 
         //Jacky's Code 
-        if(gameOver == 1)//Final image checker, not sure what kalista uses
+        if(round >= 3) // After 3 rounds, the game will end
         {
             if(gameScript == null)
             {
@@ -149,6 +127,57 @@ public class NamingGameScript : MonoBehaviour
                 gameScript.gameComplete(score);
             }
         }
+    }
+
+    Button randomizeButtons(List<Button> buttonsList,  List<string> animalNameList)
+    {
+        // Random Animal object is selected as the right answer, then its image is displayed.
+        int cIndex = Random.Range(0, animalNameList.Count);
+        string cAnimal = animalNameList[cIndex];
+        Debug.Log(cAnimal + " is the answer.");
+
+        int bIndex = Random.Range(0, buttonsList.Count);
+        // The other buttons are filled in with other random answers that are NOT the same as the right answer
+        // First Loop: Assign all the animalNameList into rand unpicked and shuffle
+        List<string> randUnpicked = animalNameList;
+        for (int b = 0; b < randUnpicked.Count; b++)
+        {
+            string temp = randUnpicked[b];
+            int randomIndex = Random.Range(b, randUnpicked.Count);
+            randUnpicked[b] = randUnpicked[randomIndex];
+            randUnpicked[randomIndex] = temp;
+        }
+
+        Button correctButton = null;
+        // Second Loop: Now assign all the buttons to the animals contained in rand unpicked
+        bool setAnswer = false;
+        for(int i = 0; i < buttonsList.Count; i++) //for each button
+        {
+            if (randUnpicked[i] == cAnimal) //if animal is the answer, log and set correct button 
+            {
+                checkDisplayImage(cAnimal);
+                Debug.Log(buttonsList[i].name + " is the correct button.");
+                correctButton = buttonsList[i];
+                setAnswer = true;
+            }
+            buttonsList[i].transform.GetChild(0).GetComponent<Text>().text = randUnpicked[i];
+        }
+
+        if(!setAnswer)
+        {
+            checkDisplayImage(cAnimal);
+            correctButton = buttonsList[Random.Range(0, buttonsList.Count)];
+            correctButton.transform.GetChild(0).GetComponent<Text>().text = cAnimal;
+        }
+        setAllInteractable();
+
+        // Remove correct answer so it won't be used again
+        animalNameList.Remove(cAnimal);
+
+        if(correctButton != null)
+            return correctButton;
+        else
+            return null;
     }
 
     void checkDisplayImage(string ans)
@@ -164,8 +193,17 @@ public class NamingGameScript : MonoBehaviour
             case "Camel":
                 animalImage[2].SetActive(true);
                 break;
+            case "Cat":
+                animalImage[3].SetActive(true);
+                break;
+            case "Dog":
+                animalImage[4].SetActive(true);
+                break;
+            case "Pig":
+                animalImage[5].SetActive(true);
+                break;
             default:
-                reset();
+                print("Image failed!!");
                 break;
         }
     }
@@ -174,6 +212,12 @@ public class NamingGameScript : MonoBehaviour
     {
         for(int u = 0; u < buttonsList.Count; u++)
             buttonsList[u].GetComponent<Button>().interactable = false;
+    }
+
+    void setAllInteractable()
+    {
+        for(int u = 0; u < buttonsList.Count; u++)
+            buttonsList[u].GetComponent<Button>().interactable = true;
     }
 
     // If user presses wrong button, this function will decrement the score and display the button being wrong.
@@ -186,7 +230,7 @@ public class NamingGameScript : MonoBehaviour
         score--;
     }
 
-    // If user presses the right button, this function will increment the score and display the button being right.
+    // If user presses the right button, this function will increment the score and display the button being right. Then the round is repeated.
     void setTextCorrect(Button button)
     {
         setAllUninteractable();
@@ -194,14 +238,19 @@ public class NamingGameScript : MonoBehaviour
         button.transform.GetChild(0).GetComponent<Text>().color = Color.green;
         button.transform.GetChild(0).GetComponent<Text>().text = "CORRECT";
         score++;
-        gameOver++;
+        round++;
+        // Add wait for 1 second here before moving to the next round
+        StartCoroutine(roundDelay());
+        
     }
 
     //Should repeat 3 times
-    void reset()
+    void resetImages()
     {
         for(int i = 0; i < animalImage.Count; i++)
+        {
             animalImage[i].SetActive(false);
+        }
     }
 
     public void ChangeScene()
@@ -212,8 +261,17 @@ public class NamingGameScript : MonoBehaviour
     //Added code to transition scenes slowly if not gamemanger does not exist. Used to individual scene testing.
     private IEnumerator sceneDelay()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(7);
     
     }
+
+    private IEnumerator roundDelay()
+    {
+        yield return new WaitForSeconds(1);
+        correctButton.transform.GetChild(0).GetComponent<Text>().color = Color.black;
+        resetImages();
+        correctButton = randomizeButtons(buttonsList, animalNameList);
+    }
+
 }
