@@ -22,7 +22,7 @@ public class audioMgr : MonoBehaviour
         loadVolume();
     }
 
-    void loadVolume()
+    public void loadVolume()
     {   //1f is for the default in case there is nothing to load.
         float soundVolume = PlayerPrefs.GetFloat(volumeKey, 1f);
         //mixer uses logarithmic value and slider does linear so we need to use this formula

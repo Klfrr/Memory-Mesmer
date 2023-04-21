@@ -9,7 +9,7 @@ using System.IO;
 
 public class gameManager : MonoBehaviour
 {
-    private const int arraySize = 6;
+    private const int arraySize = 7;
     private int[] scenes = new int[arraySize];
     private double[] scores = new double[arraySize];
     private int currentScene;
@@ -88,7 +88,7 @@ public class gameManager : MonoBehaviour
         currentScene++; 
         if(gameType == "Single")
         {
-            SceneManager.LoadScene(7);
+            SceneManager.LoadScene(8);
         }
         else
         {
@@ -114,7 +114,7 @@ public class gameManager : MonoBehaviour
             DateTime currentTime = DateTime.Now;
 
             //Add code to upload scores
-            SceneManager.LoadScene(7);
+            SceneManager.LoadScene(8);
 
             string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
 

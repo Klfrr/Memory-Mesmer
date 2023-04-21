@@ -15,6 +15,7 @@ public class QuestionManager : MonoBehaviour
     public Text SentenceNumTxt;
     public int totalQuestions = 0;
     public int score = 0;
+    public int answeredQuestions = 0;
     public float delay = 8;
     public Button yesButton;
     public Button noButton;
@@ -37,11 +38,12 @@ public class QuestionManager : MonoBehaviour
     public void correct()
     {
         score += 1;
+        answeredQuestions+=1;
         QnA.RemoveAt(currentQuestion);
         ScoreTxt.text = "Score: " + score.ToString();
         generateQuestion();
 
-        if(score == totalQuestions)
+        if(answeredQuestions == totalQuestions)
         {
             if(gameScript == null)
             {
@@ -75,6 +77,18 @@ public class QuestionManager : MonoBehaviour
 
         QnA.RemoveAt(currentQuestion);
         generateQuestion();
+        answeredQuestions+=1;
+        if(answeredQuestions == totalQuestions)
+        {
+            if(gameScript == null)
+            {
+                StartCoroutine(sceneDelay());
+            }
+            else
+            {
+                gameScript.gameComplete(score);
+            }
+        }
         
     }
 

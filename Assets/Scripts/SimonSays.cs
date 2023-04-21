@@ -262,7 +262,7 @@ public class SimonSays : MonoBehaviour
         if(gameScript == null)
         {
             SetTimeDisplay(0);
-            SceneManager.LoadScene(7);
+            SceneManager.LoadScene(8);
         }
         else
         {

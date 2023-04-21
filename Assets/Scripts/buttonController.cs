@@ -61,27 +61,32 @@ public class buttonController : MonoBehaviour
         gameScript.loadGameType("Single");
         SceneManager.LoadScene(6);    
     }
+    public void letterTracking()
+    {
+        gameScript.loadGameType("Single");
+        SceneManager.LoadScene(7);    
+    }
 
     public void accountManage()
     {
         
-        SceneManager.LoadScene(9);
+        SceneManager.LoadScene(10);
     }
 
     public void toScoresMoca()
     {
         
-        SceneManager.LoadScene(10);
+        SceneManager.LoadScene(11);
         
     }
     public void settings()
     {
-        SceneManager.LoadScene(11);
+        SceneManager.LoadScene(12);
     }
      public void toMoca()
     {
         
-        SceneManager.LoadScene(12);
+        SceneManager.LoadScene(13);
     }
 
 

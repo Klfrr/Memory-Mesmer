@@ -23,11 +23,14 @@ public class LetterTrackingScript : MonoBehaviour
     public int timers = 0;
     public float delay =8;
     public float timerForFunction;
+    private gameManager gameScript;
 
     // Start is called before the first frame update
     void Start()
     {
+        startTime = Time.time;
         letterButton.interactable = false;
+        gameScript = FindObjectOfType<gameManager>();
         StartCoroutine(StartGameAfterDelay());
         
         instructionsLabel.SetActive(true);
@@ -43,15 +46,19 @@ public class LetterTrackingScript : MonoBehaviour
         if (timerForFunction > delay)
         {
             if(Time.time - startTime < gameTime)
-        {
-            float ElapsedTime = Time.time - startTime;
-            SetTimeDisplay(gameTime - ElapsedTime);
-        }
-        else
-        {
-            gameActive = false;
-            SetTimeDisplay(0);
-        }
+            {
+                float ElapsedTime = Time.time - startTime;
+                SetTimeDisplay(gameTime - ElapsedTime);
+            }
+            else
+            {
+                if(!gameActive)
+                    {
+                        gameActive = true;
+                        gameOver(score);
+                        SetTimeDisplay(0);
+                    }
+            }
         }
         scoreLabel.text = score.ToString();
 
@@ -79,6 +86,7 @@ public class LetterTrackingScript : MonoBehaviour
             // Wait for 2 seconds between changing letters
             yield return new WaitForSecondsRealtime(2);
         }
+        gameScript.gameComplete(score);
     }
 
     //Function works, but may need to implement logic to include at least one A
@@ -156,5 +164,12 @@ public class LetterTrackingScript : MonoBehaviour
         string secondsDisplay = (seconds < 10 ) ? "0" + seconds.ToString() : seconds.ToString();
         int minutes = (secondsToShow - seconds) / 60;
         return minutes.ToString() + ":" + seconds.ToString();
+    }
+
+    private void gameOver(int score)
+    {
+
+        gameScript.gameComplete(score);
+    
     }
 }
