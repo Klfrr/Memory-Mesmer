@@ -467,18 +467,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 278318611}
   QnA:
-  - Question: Why you no fly?
+  - Question: Rachel is very smart she began reading when she was three years old.
     Answers:
     - Yes
     - No
     CorrectAnswer: 2
-    aClip: {fileID: 8300000, guid: 9832e9ffb99888e46a511dc79be7c39d, type: 3}
+    aClip: {fileID: 0}
   - Question: How are you today?
     Answers:
     - Yes
     - No
     CorrectAnswer: 1
     aClip: {fileID: 8300000, guid: 9178606ffd791af4fa6863d9cdb7ba1f, type: 3}
+  - Question: We has been learning how to play chess.
+    Answers:
+    - Yes
+    - No
+    CorrectAnswer: 2
+    aClip: {fileID: 0}
+  - Question: There dog ran away while they were in the park.
+    Answers:
+    - Yes
+    - No
+    CorrectAnswer: 2
+    aClip: {fileID: 0}
+  - Question: He took the train to get to work.
+    Answers:
+    - Yes
+    - No
+    CorrectAnswer: 1
+    aClip: {fileID: 0}
+  - Question: Are you sure that you don't have no shirts left?
+    Answers:
+    - Yes
+    - No
+    CorrectAnswer: 2
+    aClip: {fileID: 0}
+  - Question: He had, by far, the best dog in the show.
+    Answers:
+    - Yes
+    - No
+    CorrectAnswer: 1
+    aClip: {fileID: 0}
+  - Question: We decided to go a movie after we worked.
+    Answers:
+    - Yes
+    - No
+    CorrectAnswer: 2
+    aClip: {fileID: 0}
+  - Question: She decided to take her dog, cat, and bird to see the vet, but he couldn't
+      see her.
+    Answers:
+    - Yes
+    - No
+    CorrectAnswer: 1
+    aClip: {fileID: 0}
+  - Question: He thought he had a great idea but his manager didn't agree.
+    Answers:
+    - Yes
+    - No
+    CorrectAnswer: 2
+    aClip: {fileID: 0}
   options:
   - {fileID: 1537578987}
   - {fileID: 2030423403}
@@ -3309,7 +3358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameActive: 0
   timeText: {fileID: 213932462}
-  gameTime: 20
+  gameTime: 60
   instructionsLabel: {fileID: 696762885}
   timer: 7
   delay: 7
