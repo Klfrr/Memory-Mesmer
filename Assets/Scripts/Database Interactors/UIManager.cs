@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
             
         }
+        createDatabase();
     }
 
     // Update is called once per frame
@@ -201,6 +202,39 @@ public class UIManager : MonoBehaviour
                 dbconn.Close();
             }
         }
+    }
+
+    private void createDatabase()
+    {
+        if(!Directory.Exists(Application.dataPath + "/Database"))
+        {
+            Directory.CreateDirectory(Application.dataPath + "/Database");
+            File.Create(Application.dataPath + "/Database/Database.db");
+        }
+        
+
+        string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+        using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
+            {
+                dbconn.Open();
+
+                using(IDbCommand createCmnd = dbconn.CreateCommand())
+                {
+                    string loginTable = "CREATE TABLE IF NOT EXISTS Login (User_Name TEXT, Password TEXT, PRIMARY KEY (User_Name,Password))";
+
+                    createCmnd.CommandText = loginTable;
+                    createCmnd.ExecuteNonQuery();
+
+                    string UITable = "CREATE TABLE IF NOT EXISTS UIPref (Background INTEGER, Volume REAL,Username TEXT, PRIMARY KEY (Username))";
+                    createCmnd.CommandText = UITable;
+                    createCmnd.ExecuteNonQuery();
+
+                    string ScoreTables = "CREATE TABLE IF NOT EXISTS Scores (User TEXT, Date TEXT, Time TEXT, Orientation NUMERIC, Simon TEXT, Pattern INTEGER, Naming INTEGER, Serialization INTEGER, Text2Speech INTEGER, LetterTracking INTEGER, PRIMARY KEY (User,Date,Time))";
+                    createCmnd.CommandText = ScoreTables;
+                    createCmnd.ExecuteNonQuery();
+                }
+                dbconn.Close();
+            }
     }
 
 }

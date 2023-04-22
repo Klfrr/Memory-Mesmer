@@ -23,10 +23,13 @@ public class LetterTrackingScript : MonoBehaviour
     public int timers = 0;
     public float delay =8;
     public float timerForFunction;
+    private gameManager gameScript;
 
     // Start is called before the first frame update
     void Start()
     {
+        startTime = Time.time;
+        gameScript = FindObjectOfType<gameManager>();
         letterButton.interactable = false;
         StartCoroutine(StartGameAfterDelay());
         
@@ -75,6 +78,10 @@ public class LetterTrackingScript : MonoBehaviour
             // increment counter
             counter++;
 
+            if(counter == repeats)
+            {
+                gameScript.gameComplete(score);
+            }
 
             // Wait for 2 seconds between changing letters
             yield return new WaitForSecondsRealtime(2);

@@ -44,7 +44,7 @@ public class MenuScript : MonoBehaviour
     public void QuitGame()
     {
 
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
         Debug.Log("Editor Exit Successful");
     }
 
