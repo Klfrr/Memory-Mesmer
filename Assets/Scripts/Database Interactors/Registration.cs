@@ -13,14 +13,12 @@ public class Registration : MonoBehaviour
     public Text userName;
     public Text userPassword;
     public Text results;
-    private  int difficulty;
     private UIManager gameScript;
 
     // Start is called before the first frame update
     void Start()
     {  
         gameScript = FindObjectOfType<UIManager>();
-        difficulty = 4;
         results.text = "";
     }
 
@@ -39,6 +37,7 @@ public class Registration : MonoBehaviour
         if(countOf == 0)
         {
             writeFunction(dataBaseConn);
+            
         }
         else
         {
@@ -48,7 +47,7 @@ public class Registration : MonoBehaviour
 
     private int readFunction(string dataBaseConn)
     {
-        int countOf = 0;
+        int countOf;
         
         using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
         {
@@ -82,9 +81,9 @@ public class Registration : MonoBehaviour
 
             using(IDbCommand cmnd = dbconn.CreateCommand())
             {
-                string inputValues = "(\"" + userName.text + "\"," + "\"" + userPassword.text + "\"," + difficulty + ")";
+                string inputValues = "(\"" + userName.text + "\"," + "\"" + userPassword.text + "\")";
                 //Conditionals
-                cmnd.CommandText = "INSERT INTO Login (User_Name,Password,Difficulty) VALUES ";
+                cmnd.CommandText = "INSERT INTO Login (User_Name,Password) VALUES ";
                 cmnd.CommandText += inputValues;
                 Debug.Log(cmnd.CommandText);
                 cmnd.ExecuteNonQuery();
