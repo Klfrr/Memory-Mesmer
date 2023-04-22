@@ -335,7 +335,7 @@ MonoBehaviour:
   letterButton: {fileID: 2025206256}
   letter: {fileID: 815127885}
   scoreLabel: {fileID: 520805913}
-  repeats: 26
+  repeats: 15
   timer: 0
   score: 0
   currentwait: 2
@@ -1116,7 +1116,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: L
+  m_Text: 
 --- !u!222 &815127886
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1512,7 +1512,7 @@ GameObject:
   - component: {fileID: 1218617800}
   - component: {fileID: 1218617799}
   m_Layer: 5
-  m_Name: Image
+  m_Name: LetterLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1984,7 +1984,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1927612547
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2002,8 +2002,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 10}
-  m_SizeDelta: {x: 300.717, y: 150}
+  m_AnchoredPosition: {x: 5, y: -22.12}
+  m_SizeDelta: {x: 300.72, y: 214.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1927612548
 MonoBehaviour:
@@ -2027,7 +2027,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: ab9673a70aa3a8845b65de112f243221, type: 3}
-    m_FontSize: 45
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
@@ -2190,13 +2190,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: buttonController, Scripts
-        m_MethodName: mainMenu
-        m_Mode: 1
+      - m_Target: {fileID: 103051619}
+        m_TargetAssemblyTypeName: LetterTrackingScript, Scripts
+        m_MethodName: checkButton
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 815127885}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -269,7 +269,8 @@ public class NamingGameScript : MonoBehaviour
     private IEnumerator roundDelay()
     {
         yield return new WaitForSeconds(1);
-        correctButton.transform.GetChild(0).GetComponent<Text>().color = Color.black;
+        for(int i = 0; i < buttonsList.Count; i++)
+            buttonsList[i].transform.GetChild(0).GetComponent<Text>().color = Color.black;
         resetImages();
         correctButton = randomizeButtons(buttonsList, animalNameList);
     }
