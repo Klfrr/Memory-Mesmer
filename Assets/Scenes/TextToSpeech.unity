@@ -478,7 +478,7 @@ MonoBehaviour:
     - Yes
     - No
     CorrectAnswer: 1
-    aClip: {fileID: 8300000, guid: 9178606ffd791af4fa6863d9cdb7ba1f, type: 3}
+    aClip: {fileID: 0}
   - Question: We has been learning how to play chess.
     Answers:
     - Yes
