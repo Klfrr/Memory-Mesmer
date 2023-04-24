@@ -4098,6 +4098,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 953946467102631326}
     m_Modifications:
+    - target: {fileID: 1557520366293852027, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.654419
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557520366293852027, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.2772217
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216045666609970946, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.654419
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216045666609970946, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.2772217
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987302510905402813, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0025024414
+      objectReference: {fileID: 0}
     - target: {fileID: 6437187133058712686, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: canvas2
       value: 
@@ -4107,14 +4127,22 @@ PrefabInstance:
       value: "This is Orientation\n  \nYou'll be shown buttones and need to track
         the green ones."
       objectReference: {fileID: 0}
+    - target: {fileID: 6437187133835046195, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -320.53833
+      objectReference: {fileID: 0}
     - target: {fileID: 6437187135105073730, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Name
       value: TutorialCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 6437187135105073730, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6437187135105073753, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 7157263}
     - target: {fileID: 6437187135105073757, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4687,7 +4715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &953946466464383263
 RectTransform:
   m_ObjectHideFlags: 0

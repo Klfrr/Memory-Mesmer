@@ -566,6 +566,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1049498620}
     m_Modifications:
+    - target: {fileID: 1557520366293852027, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.654419
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557520366293852027, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.2772217
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216045666609970946, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.654419
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216045666609970946, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.2772217
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987302510905402813, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0025024414
+      objectReference: {fileID: 0}
     - target: {fileID: 6437187133058712686, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: canvas2
       value: 
@@ -582,6 +602,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6437187135105073753, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 539843695}
     - target: {fileID: 6437187135105073757, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Pivot.x
       value: 0

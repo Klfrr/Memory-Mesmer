@@ -27,9 +27,10 @@ public class QuestionManager : MonoBehaviour
     void Start()
     {   
         gameScript = FindObjectOfType<gameManager>();
-        yesButton.interactable = false;
-        noButton.interactable = false;
-        StartCoroutine(StartGameAfterDelay());
+        generateQuestion();
+        //yesButton.interactable = false;
+        //noButton.interactable = false;
+        //StartCoroutine(StartGameAfterDelay());
         //StartCoroutine(playAudio());
 
     }
@@ -117,13 +118,13 @@ public class QuestionManager : MonoBehaviour
 
     // Start is called before the first frame update
 
-    private IEnumerator StartGameAfterDelay()
+    /*private IEnumerator StartGameAfterDelay()
     {
         yield return new WaitForSeconds(delay);
         generateQuestion();
         yesButton.interactable = true;
         noButton.interactable = true;
-    }
+    }*/
 
     //Added code to transition scenes slowly if not gamemanger does not exist. Used to individual scene testing.
     private IEnumerator sceneDelay()

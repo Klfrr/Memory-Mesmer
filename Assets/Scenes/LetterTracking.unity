@@ -396,7 +396,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 44, y: 92}
+  m_AnchoredPosition: {x: -51, y: 92}
   m_SizeDelta: {x: 300.717, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &216531020
@@ -421,10 +421,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: ab9673a70aa3a8845b65de112f243221, type: 3}
-    m_FontSize: 30
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 2
     m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -448,14 +448,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1415300572}
     m_Modifications:
+    - target: {fileID: 1557520366293852027, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.654419
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557520366293852027, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.2772217
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216045666609970946, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.654419
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216045666609970946, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.2772217
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987302510905402813, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0025024414
+      objectReference: {fileID: 0}
     - target: {fileID: 6437187133058712686, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: canvas2
       value: 
       objectReference: {fileID: 103051614}
     - target: {fileID: 6437187133126504117, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Text
-      value: "This is Letter Tracking\n  \nYou're are given a letter to pay attention
-        for as the random letters are given."
+      value: 'This is Letter Tracking
+
+
+        You''re are given a letter to pay
+        attention for as the random letters are given.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437187133835046195, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -320.5383
       objectReference: {fileID: 0}
     - target: {fileID: 6437187135105073730, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Name
@@ -463,8 +490,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6437187135105073730, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6437187135105073753, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2066353367}
     - target: {fileID: 6437187135105073757, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -675,8 +706,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -82, y: 92}
-  m_SizeDelta: {x: 300.717, y: 150}
+  m_AnchoredPosition: {x: 20, y: 133}
+  m_SizeDelta: {x: 221.43, y: 110.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &311028507
 MonoBehaviour:
@@ -700,12 +731,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: ab9673a70aa3a8845b65de112f243221, type: 3}
-    m_FontSize: 30
-    m_FontStyle: 0
+    m_FontSize: 25
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -831,7 +862,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 67, y: -2}
+  m_AnchoredPosition: {x: 55, y: -2}
   m_SizeDelta: {x: 300.717, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &520805913
@@ -856,10 +887,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: ab9673a70aa3a8845b65de112f243221, type: 3}
-    m_FontSize: 30
+    m_FontSize: 23
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 2
     m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2136,7 +2167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1927612547
 RectTransform:
   m_ObjectHideFlags: 0

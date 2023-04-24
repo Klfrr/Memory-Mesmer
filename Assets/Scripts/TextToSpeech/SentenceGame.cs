@@ -11,9 +11,9 @@ public class SentenceGame : MonoBehaviour
     public Text timeText;
     public int gameTime = 120;
     private float startTime = 0;
-    public GameObject instructionsLabel;
-    public int timer = 0;
-    public float delay =8;
+    //public GameObject instructionsLabel;
+    //public int timer = 0;
+    //public float delay =8;
     public float timerForFunction;
     private gameManager gameScript;
 
@@ -21,19 +21,24 @@ public class SentenceGame : MonoBehaviour
     void Start()
     {   
         gameScript = FindObjectOfType<gameManager>();
-        StartCoroutine(StartGameAfterDelay());
-        instructionsLabel.SetActive(true);
+        //StartCoroutine(StartGameAfterDelay());
+        //instructionsLabel.SetActive(true);
 
-        StartCoroutine(instructionsTimer());
+        //StartCoroutine(instructionsTimer());
+
+        gameActive = true;
+        timeText.text = "Time: " + GetTimeDisplay(gameTime);
+        startTime = Time.time;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        timerForFunction += Time.deltaTime;
+        /*timerForFunction += Time.deltaTime;
         if (timerForFunction > delay)
-        {
-            if(Time.time - startTime < gameTime)
+        {*/
+        if(Time.time - startTime < gameTime)
         {
             float ElapsedTime = Time.time - startTime;
             SetTimeDisplay(gameTime - ElapsedTime);
@@ -49,7 +54,7 @@ public class SentenceGame : MonoBehaviour
             }
             //SceneManager.LoadScene(4);
         }
-        }
+        //}
 
         
     }
@@ -67,7 +72,7 @@ public class SentenceGame : MonoBehaviour
         return minutes.ToString() + ":" + seconds.ToString();
     }
 
-      public IEnumerator instructionsTimer()
+      /*public IEnumerator instructionsTimer()
     {
         while(timer > 0)
         {       
@@ -79,11 +84,11 @@ public class SentenceGame : MonoBehaviour
         }
         
         instructionsLabel.SetActive(false);
-    }
+    }*/
 
     // Start is called before the first frame update
 
-    private IEnumerator StartGameAfterDelay()
+    /*private IEnumerator StartGameAfterDelay()
     {
         yield return new WaitForSeconds(delay);
 
@@ -92,6 +97,6 @@ public class SentenceGame : MonoBehaviour
         startTime = Time.time;
 
         StartCoroutine(instructionsTimer());
-    }
+    }*/
 
 }

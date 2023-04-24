@@ -242,7 +242,7 @@ MonoBehaviour:
     m_FontSize: 23
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -339,7 +339,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: ab9673a70aa3a8845b65de112f243221, type: 3}
-    m_FontSize: 23
+    m_FontSize: 25
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
@@ -1221,7 +1221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &696762886
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2519,7 +2519,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: ab9673a70aa3a8845b65de112f243221, type: 3}
-    m_FontSize: 23
+    m_FontSize: 25
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
@@ -2548,6 +2548,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1049498620}
     m_Modifications:
+    - target: {fileID: 1557520366293852027, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.654419
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557520366293852027, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.2772217
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216045666609970946, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.654419
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216045666609970946, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.2772217
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987302510905402813, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0025024414
+      objectReference: {fileID: 0}
     - target: {fileID: 6437187133058712686, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: canvas2
       value: 
@@ -2557,6 +2577,10 @@ PrefabInstance:
       value: "This is Grammar\n  \nDetermine if the given sentence is grammatically
         correct."
       objectReference: {fileID: 0}
+    - target: {fileID: 6437187133835046195, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -320.53833
+      objectReference: {fileID: 0}
     - target: {fileID: 6437187135105073730, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Name
       value: TutorialCanvas
@@ -2565,6 +2589,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6437187135105073753, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 539843695}
     - target: {fileID: 6437187135105073757, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2853,7 +2881,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: ab9673a70aa3a8845b65de112f243221, type: 3}
-    m_FontSize: 23
+    m_FontSize: 25
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
@@ -3357,10 +3385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0749339023b90e45b35cb56b3ea75e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameActive: 0
+  gameActive: 1
   timeText: {fileID: 213932462}
-  gameTime: 60
-  instructionsLabel: {fileID: 696762885}
-  timer: 7
-  delay: 7
+  gameTime: 30
   timerForFunction: 0
