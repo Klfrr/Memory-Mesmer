@@ -5,7 +5,11 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
+/* Image Links:
+ * https://pngtree.com/so/fabric fabric png from pngtree.com
+ * https://unsplash.com/photos/K5OLjMlPe4U green gradient from Sincerely Media
+ * https://www.vecteezy.com/free-png/white-rectangle white button from Vecteezy
+ */
 public class settingsMenu : MonoBehaviour
 {
     [SerializeField] public Slider volumeSlider;
