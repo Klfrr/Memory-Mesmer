@@ -22,7 +22,7 @@ public class LetterTrackingScript : MonoBehaviour
     private float startTime = 0;
     public GameObject instructionsLabel;
     public int timers = 0;
-    public float delay =8;
+    public float delay = 0;
     public float timerForFunction;
     private gameManager gameScript;
 
