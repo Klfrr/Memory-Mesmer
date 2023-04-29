@@ -37,6 +37,7 @@ public class Registration : MonoBehaviour
         if(countOf == 0)
         {
             writeFunction(dataBaseConn);
+            createDifficulty(dataBaseConn);
             
         }
         else
@@ -92,6 +93,29 @@ public class Registration : MonoBehaviour
                 gameScript.saveUISettings();
             }
 
+            dbconn.Close();
+        }
+    }
+
+    private void createDifficulty(string dataBaseConn)
+    {
+        using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
+        {
+            dbconn.Open();
+            using(IDbCommand cmnd = dbconn.CreateCommand())
+            {
+                string valueWriter = userName.text;
+                
+                cmnd.CommandText = "INSERT INTO Difficulty (User,Orientation,Simon,Pattern,Naming,Serialization,Text2Speech,LetterTracking) VALUES (\"";
+                cmnd.CommandText += valueWriter + "\"";
+
+                for(int i = 0; i < 7;i++)
+                {
+                    cmnd.CommandText += ", 4"; 
+                } 
+                cmnd.CommandText += ")";
+                cmnd.ExecuteNonQuery();
+            }
             dbconn.Close();
         }
     }

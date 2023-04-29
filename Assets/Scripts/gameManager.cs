@@ -59,6 +59,7 @@ public class gameManager : MonoBehaviour
             Destroy(gameObject);
             
         }
+        loadDifficulty();
 
     }
 
@@ -233,6 +234,32 @@ public class gameManager : MonoBehaviour
 
     public void saveDifficulty()
     {
+        if(userInfo.getUserName() != "temp")
+        {
+            string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
 
+            using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
+            {
+                dbconn.Open();
+
+                using(IDbCommand writeCmnd = dbconn.CreateCommand())
+                {
+                    string newDifficulty = "UPDATE Difficulty SET ";
+                    newDifficulty += "Orientation = " + difficulty[0]; 
+                    newDifficulty += "Simon = " + difficulty[0]; 
+                    newDifficulty += "Pattern = " + difficulty[0]; 
+                    newDifficulty += "Naming = " + difficulty[0]; 
+                    newDifficulty += "Serialization = " + difficulty[0]; 
+                    newDifficulty += "Text2Speech = " + difficulty[0]; 
+                    newDifficulty += "LetterTracking = " + difficulty[0]; 
+                    newDifficulty += " WHERE User = \"" + userInfo.getUserName() +"\"";
+
+                    writeCmnd.CommandText = newDifficulty;
+                    
+                }
+
+                dbconn.Close();
+            }
+        }
     }
 }
