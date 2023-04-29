@@ -89,6 +89,7 @@ public class Registration : MonoBehaviour
                 cmnd.ExecuteNonQuery();
                 results.text = "Account Successfully created";
                 gameScript.loadInformation(userName.text);
+                gameScript.saveUISettings();
             }
 
             dbconn.Close();

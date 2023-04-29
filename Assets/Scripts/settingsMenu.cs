@@ -16,6 +16,8 @@ public class settingsMenu : MonoBehaviour
 
     public const string volumeMixer = "Volume";
 
+    private UIManager uiMgr;
+
     private void Awake()
     {
         volumeSlider.onValueChanged.AddListener(setVolume);
@@ -25,6 +27,7 @@ public class settingsMenu : MonoBehaviour
     void Start()
     {
         volumeSlider.value = PlayerPrefs.GetFloat(audioMgr.volumeKey, 1f);
+        uiMgr = FindObjectOfType<UIManager>();
     }
     //sets value for number shown to user and allows audio mixer to be adjusted using slider
     public void setVolume(float volume)
@@ -41,6 +44,7 @@ public class settingsMenu : MonoBehaviour
 
     public void mainMenu()
     {
+        uiMgr.updateSettings();
         SceneManager.LoadScene(0);
     }
 }

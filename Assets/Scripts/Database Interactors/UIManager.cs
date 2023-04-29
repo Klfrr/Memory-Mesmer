@@ -14,14 +14,12 @@ public class UIManager : MonoBehaviour
     private static GameObject onlyInstance = null;
     private backgroundDrop panelMgr;
     private audioMgr audio;
+    private textureDrop texture;
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
         userName = "temp";
-
-        panelMgr = FindObjectOfType<backgroundDrop>();
-        audio = FindObjectOfType<audioMgr>();
 
         if(onlyInstance == null)
         {
@@ -38,7 +36,9 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        panelMgr = FindObjectOfType<backgroundDrop>();
+        audio = FindObjectOfType<audioMgr>();
+        texture = FindObjectOfType<textureDrop>();
     }
 
     public void loadInformation(string currentUserName)
@@ -101,8 +101,8 @@ public class UIManager : MonoBehaviour
                     using(IDbCommand writeCmnd = dbconn.CreateCommand())
                     {
                         string settingCommand = "";
-                        writeCmnd.CommandText ="INSERT INTO UIPref (Background,Volume,Username) VALUES (";
-                        settingCommand += panelMgr.backDrop.value + "," +  PlayerPrefs.GetFloat("Volume") + ",\"" + userName + "\")";
+                        writeCmnd.CommandText ="INSERT INTO UIPref (Background,Volume,Texture,Username) VALUES (";
+                        settingCommand += panelMgr.backDrop.value + "," +  PlayerPrefs.GetFloat("Volume") + "," +  texture.textureDropdown.value + ",\"" + userName + "\")";
                         writeCmnd.CommandText +=settingCommand;
                         writeCmnd.ExecuteNonQuery();
                     }
@@ -149,6 +149,7 @@ public class UIManager : MonoBehaviour
                         {
                             panelMgr.backDrop.value = Int32.Parse(reader[0].ToString());
                             PlayerPrefs.SetFloat("Volume", float.Parse(reader[1].ToString()));
+                            texture.textureDropdown.value = Int32.Parse(reader[2].ToString());
                             panelMgr.backgroundChange();
                             audio.loadVolume();
                         }
@@ -160,7 +161,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void updateSettings(int backDropValue, float volumeValue)
+    public void updateSettings()
     {
         int countOf = 0;
         if(userName != "temp")
@@ -175,16 +176,18 @@ public class UIManager : MonoBehaviour
                 {
                     string nameChecker = "SELECT COUNT(*) FROM UIPref WHERE Username = \"" + userName +"\"";
 
-
+                    
+                    Debug.Log(nameChecker);
                     //Checks if the account already exists
                     readCmnd.CommandText = nameChecker;
                     using(IDataReader reader = readCmnd.ExecuteReader())
                     {
+                        Debug.Log(reader[0].ToString());
                         countOf = Int32.Parse(reader[0].ToString());
                         reader.Close();
                     }
                 }
-
+                
                 if(countOf == 1)
                 {
                     using(IDbCommand writeCmnd = dbconn.CreateCommand())
@@ -192,9 +195,11 @@ public class UIManager : MonoBehaviour
                         string changeCommand = "";
                         writeCmnd.CommandText ="UPDATE UIPref SET ";
                         changeCommand += "Background = " + panelMgr.backDrop.value;
-                        changeCommand += "," + "Volume = " + PlayerPrefs.GetFloat("Volume");
-                        changeCommand += "WHERE Username = \"" + userName + "\"";
+                        changeCommand += "," + " Volume = " + PlayerPrefs.GetFloat("Volume");
+                        changeCommand += "," + " Texture = " + texture.textureDropdown.value;
+                        changeCommand += " WHERE Username = \"" + userName + "\"";
                         writeCmnd.CommandText += changeCommand;
+                        Debug.Log(writeCmnd.CommandText);
                         writeCmnd.ExecuteNonQuery();
                     }
                 }

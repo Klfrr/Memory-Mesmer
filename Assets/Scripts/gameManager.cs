@@ -12,6 +12,7 @@ public class gameManager : MonoBehaviour
     private const int arraySize = 7;
     private int[] scenes = new int[arraySize];
     private double[] scores = new double[arraySize];
+    private int[] difficulty = new int[arraySize];
     private int currentScene;
     private Touch touch;
     private float bufferTimer;
@@ -191,5 +192,47 @@ public class gameManager : MonoBehaviour
     public void destroySelf()
     {
         Destroy(gameObject);
+    }
+
+    public void loadDifficulty()
+    {
+        if(userInfo.getUserName() != "temp")
+        {
+            string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+
+            using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
+            {
+                dbconn.Open();
+
+                using(IDbCommand readCmnd = dbconn.CreateCommand())
+                {
+                    string nameChecker = "SELECT * FROM Difficulty WHERE User = \"" + userInfo.getUserName() +"\"";
+
+                    readCmnd.CommandText = nameChecker;
+                    using(IDataReader reader = readCmnd.ExecuteReader())
+                    {
+                        for(int i = 0;i< arraySize;i++)
+                        {
+                            difficulty[i] = Int32.Parse(reader[i+1].ToString());
+                        }
+                        reader.Close();
+                    }
+                }
+
+                dbconn.Close();
+            }
+        }
+        else
+        {
+            for(int i = 0;i< arraySize;i++)
+            {
+                difficulty[i] = 4;
+            }
+        }
+    }
+
+    public void saveDifficulty()
+    {
+
     }
 }

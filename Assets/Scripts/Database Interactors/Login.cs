@@ -65,6 +65,7 @@ public class Login : MonoBehaviour
                     {
                         loginUserName = reader[0].ToString();
                         gameScript.loadInformation(loginUserName);
+                        gameScript.loadUISettings();
                         results.text = "Login Successful";
                     }
                     reader.Close();
