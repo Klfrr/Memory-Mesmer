@@ -12,6 +12,7 @@ public class LetterTrackingScript : MonoBehaviour
     public int repeats;
     public int timer = 0;
     public int score = 0;
+    public int mina;
 
     public float currentwait = 2;
 
@@ -31,11 +32,18 @@ public class LetterTrackingScript : MonoBehaviour
         startTime = Time.time;
         gameScript = FindObjectOfType<gameManager>();
         letterButton.interactable = false;
-        StartCoroutine(StartGameAfterDelay());
-        
-        instructionsLabel.SetActive(true);
+        //StartCoroutine(StartGameAfterDelay());
+
+        //Game starts
+        gameActive = true;
+        timeText.text = "Time: " + GetTimeDisplay(gameTime);
+        startTime = Time.time;
 
         StartCoroutine(instructionsTimer());
+        StartCoroutine(startLetterTimer());
+        letterButton.interactable = true;
+
+        //StartCoroutine(instructionsTimer());
         //StartCoroutine(startWaitTimer());
     }
 
@@ -63,7 +71,7 @@ public class LetterTrackingScript : MonoBehaviour
     //StartCoroutine(startWatchTimer());
 
     // function controls the timer
-    public IEnumerator startWaitTimer()
+    public IEnumerator startLetterTimer()
     {
         int counter = 0;
 
@@ -107,10 +115,13 @@ public class LetterTrackingScript : MonoBehaviour
             letters[i] = (char)randnum;
         }
 
-        int mina = 5;
+        //Guarantee a minimum number mina of A's
         for(int i = 0; i < mina; i++)
         {
+            // pick random index
             int randI = Random.Range(0, repeats);
+            // put A at random index
+            letters[randI] = 'A';
         }
 
         return letters;
@@ -126,6 +137,7 @@ public class LetterTrackingScript : MonoBehaviour
     
     public void checkButton(Text label)
     {
+        //If the user clicks, disable button so they can't spam
         disableButton(letterButton);
 
         if(label.text == "A")
@@ -148,14 +160,14 @@ public class LetterTrackingScript : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        gameActive = true;
+/*        gameActive = true;
         timeText.text = "Time: " + GetTimeDisplay(gameTime);
         startTime = Time.time;
 
         StartCoroutine(instructionsTimer());
         StartCoroutine(startWaitTimer());
         letterButton.interactable = true;
-
+*/
     }
 
       public IEnumerator instructionsTimer()
@@ -169,6 +181,7 @@ public class LetterTrackingScript : MonoBehaviour
             }
         }
         
+        // Deactivate the button while instructions are onscreen
         instructionsLabel.SetActive(false);
     }
 

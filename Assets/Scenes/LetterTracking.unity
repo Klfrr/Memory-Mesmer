@@ -416,6 +416,7 @@ MonoBehaviour:
   repeats: 15
   timer: 0
   score: 0
+  mina: 5
   currentwait: 2
   gameActive: 0
   timeText: {fileID: 311028507}
