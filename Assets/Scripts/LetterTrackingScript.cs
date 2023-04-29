@@ -39,7 +39,7 @@ public class LetterTrackingScript : MonoBehaviour
         timeText.text = "Time: " + GetTimeDisplay(gameTime);
         startTime = Time.time;
 
-        StartCoroutine(instructionsTimer());
+        //StartCoroutine(instructionsTimer());
         StartCoroutine(startLetterTimer());
         letterButton.interactable = true;
 
@@ -50,19 +50,22 @@ public class LetterTrackingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timerForFunction += Time.deltaTime;
-        if (timerForFunction > delay)
-        {
-            if(Time.time - startTime < gameTime)
+        //timerForFunction += Time.deltaTime;
+
+        if(Time.time - startTime < gameTime)
         {
             float ElapsedTime = Time.time - startTime;
             SetTimeDisplay(gameTime - ElapsedTime);
         }
         else
         {
-            gameActive = false;
-            SetTimeDisplay(0);
-        }
+            if(gameActive)
+            {
+                gameActive = false;
+                SetTimeDisplay(0);
+                gameScript.gameComplete(score);
+            }
+            //SceneManager.LoadScene(4);
         }
         scoreLabel.text = score.ToString();
 
@@ -86,7 +89,7 @@ public class LetterTrackingScript : MonoBehaviour
             // increment counter
             counter++;
 
-            if(counter == repeats)
+            if(counter >= repeats)
             {
                 gameScript.gameComplete(score);
             }
@@ -170,7 +173,7 @@ public class LetterTrackingScript : MonoBehaviour
 */
     }
 
-      public IEnumerator instructionsTimer()
+    public IEnumerator instructionsTimer()
     {
         while(timers > 0)
         {
