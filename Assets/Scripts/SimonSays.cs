@@ -23,6 +23,8 @@ public class SimonSays : MonoBehaviour
     private int patternVersion;
     private gameManager gameScript;
     private bool gameFinished = false;
+    private int topScore = 0;
+
     //Time info
     public Text timeText;
     public int gameTime = 120;
@@ -40,7 +42,7 @@ public class SimonSays : MonoBehaviour
         startTime = Time.time;
         StartCoroutine(StartGameAfterDelay());
         gameScript = FindObjectOfType<gameManager>();
-        level = 5;
+        level = gameScript.currentDifficulty();
         currentTest = new GameObject[10];
         blinkArray = new int[10];
         colorArray[0] = red;
@@ -68,7 +70,7 @@ public class SimonSays : MonoBehaviour
                 if(!gameFinished)
                 {
                     gameFinished = true;
-                    gameOver(level-1);
+                    gameOver(topScore);
                     SetTimeDisplay(0);
                 }
             }
@@ -134,6 +136,7 @@ public class SimonSays : MonoBehaviour
         //If the players missclicks an object button, the game restarts the button clicked to 0, and says try again
         else
         {
+            topScore = buttonClicked;
             ButtonActivity.text = "Try \nAgain"; 
             blinkColor(click, 1, colorIndex);
             buttonClicked = 0;

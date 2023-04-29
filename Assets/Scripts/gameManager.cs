@@ -262,4 +262,10 @@ public class gameManager : MonoBehaviour
             }
         }
     }
+
+    public int currentDifficulty()
+    {
+        return difficulty[SceneManager.GetActiveScene().buildIndex - 1];
+    }
+
 }
