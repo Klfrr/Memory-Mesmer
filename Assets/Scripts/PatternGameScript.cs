@@ -36,7 +36,7 @@ public class PatternGameScript : MonoBehaviour
     {
         startTime = Time.time;
         gameScript = FindObjectOfType<gameManager>();
-        timers = 5/gameScript.currentDifficulty();
+        timers = 5/gameScript.currentDifficulty(); //missing instance
 
         //Disable buttons before watching
         WatchLabel.SetActive(true);
@@ -62,6 +62,20 @@ public class PatternGameScript : MonoBehaviour
                 whiteCount++;
             }
         }
+
+        // Case where there are no whites randomly generated
+        if(whiteCount == 0)
+        {
+            // pick random button from list
+            int b = Random.Range(0, buttonList.Count);
+            // Update blackwhiteList to match
+            blackWhiteList[b] = true; 
+            // Set button to white
+            setWhite(buttonList[b]);
+            // Update count for bookkeeping
+            whiteCount++;
+        }
+
     }
 
     // Update is called once per frame
