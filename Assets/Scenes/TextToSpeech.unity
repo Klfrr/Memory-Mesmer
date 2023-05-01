@@ -542,78 +542,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 278318611}
-  QnA:
-  - Question: Rachel is very smart she began reading when she was three years old.
-    Answers:
+  senAndAns:
+  - sentenceAsked: Rachel is very smart she began reading when she was three years
+      old.
+    sentenceAnswers:
     - Yes
     - No
-    CorrectAnswer: 2
+    correctAnswer: 2
     aClip: {fileID: 0}
-  - Question: How are you today?
-    Answers:
+  - sentenceAsked: How are you today?
+    sentenceAnswers:
     - Yes
     - No
-    CorrectAnswer: 1
+    correctAnswer: 1
     aClip: {fileID: 0}
-  - Question: We has been learning how to play chess.
-    Answers:
+  - sentenceAsked: We has been learning how to play chess.
+    sentenceAnswers:
     - Yes
     - No
-    CorrectAnswer: 2
+    correctAnswer: 2
     aClip: {fileID: 0}
-  - Question: There dog ran away while they were in the park.
-    Answers:
+  - sentenceAsked: There dog ran away whle they were in the park.
+    sentenceAnswers:
     - Yes
     - No
-    CorrectAnswer: 2
+    correctAnswer: 2
     aClip: {fileID: 0}
-  - Question: He took the train to get to work.
-    Answers:
+  - sentenceAsked: He took the train to get to work.
+    sentenceAnswers:
     - Yes
     - No
-    CorrectAnswer: 1
+    correctAnswer: 1
     aClip: {fileID: 0}
-  - Question: Are you sure that you don't have no shirts left?
-    Answers:
+  - sentenceAsked: Are you sure that you don't have no shirts left?
+    sentenceAnswers:
     - Yes
     - No
-    CorrectAnswer: 2
+    correctAnswer: 2
     aClip: {fileID: 0}
-  - Question: He had, by far, the best dog in the show.
-    Answers:
+  - sentenceAsked: He had, by far, the best dog in the show.
+    sentenceAnswers:
     - Yes
     - No
-    CorrectAnswer: 1
+    correctAnswer: 1
     aClip: {fileID: 0}
-  - Question: We decided to go a movie after we worked.
-    Answers:
+  - sentenceAsked: We decided to go a movie after we worked.
+    sentenceAnswers:
     - Yes
     - No
-    CorrectAnswer: 2
+    correctAnswer: 2
     aClip: {fileID: 0}
-  - Question: She decided to take her dog, cat, and bird to see the vet, but he couldn't
-      see her.
-    Answers:
+  - sentenceAsked: She decided to take her dog, cat, and bird to see the vet, but
+      he couldn't see her.
+    sentenceAnswers:
     - Yes
     - No
-    CorrectAnswer: 1
+    correctAnswer: 1
     aClip: {fileID: 0}
-  - Question: He thought he had a great idea but his manager didn't agree.
-    Answers:
+  - sentenceAsked: He thought he had a great idea but his manager didn't agree.
+    sentenceAnswers:
     - Yes
     - No
-    CorrectAnswer: 2
+    correctAnswer: 1
     aClip: {fileID: 0}
   options:
   - {fileID: 1537578987}
   - {fileID: 2030423403}
-  currentQuestion: 0
+  currentSentence: 0
   QuestionTxt: {fileID: 206534533}
   ScoreTxt: {fileID: 1974504713}
   SentenceNumTxt: {fileID: 1850608517}
-  totalQuestions: 0
+  totalSentences: 0
   score: 0
-  answeredQuestions: 0
+  answeredSentences: 0
   delay: 7
   yesButton: {fileID: 1537578989}
   noButton: {fileID: 2030423405}
@@ -2975,7 +2976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6437187135105073730, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6437187135105073753, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Camera
@@ -3694,7 +3695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2137639748
 RectTransform:
   m_ObjectHideFlags: 0

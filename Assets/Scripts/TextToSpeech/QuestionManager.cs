@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement; // Remove after testing
 public class QuestionManager : MonoBehaviour
 {   
     [SerializeField] public AudioSource audioSource;
-    public List<QuestionsAndAnswers> QnA;
+    public List<sentenceAndAnswers> senAndAns;
     public GameObject[] options;
-    public int currentQuestion;
+    public int currentSentence;
 
     public Text QuestionTxt;
     public Text ScoreTxt;
     public Text SentenceNumTxt;
-    public int totalQuestions = 0;
+    public int totalSentences = 0;
     public int score = 0;
-    public int answeredQuestions = 0;
+    public int answeredSentences = 0;
     public float delay = 8;
     public Button yesButton;
     public Button noButton;
@@ -27,7 +27,7 @@ public class QuestionManager : MonoBehaviour
     void Start()
     {   
         gameScript = FindObjectOfType<gameManager>();
-        totalQuestions = gameScript.currentDifficulty();
+        totalSentences = gameScript.currentDifficulty(); //prevents first sentence from being generated.
         generateQuestion();
         //yesButton.interactable = false;
         //noButton.interactable = false;
@@ -40,12 +40,12 @@ public class QuestionManager : MonoBehaviour
     public void correct()
     {
         score += 1;
-        answeredQuestions+=1;
-        QnA.RemoveAt(currentQuestion);
+        answeredSentences+=1;
+        senAndAns.RemoveAt(currentSentence);
         ScoreTxt.text = "Score: " + score.ToString();
         generateQuestion();
 
-        if(answeredQuestions == totalQuestions)
+        if(answeredSentences == totalSentences)
         {
             if(gameScript == null)
             {
@@ -53,9 +53,9 @@ public class QuestionManager : MonoBehaviour
             }
             else
             {
-                if(score == totalQuestions)
+                if(score == totalSentences)
                     gameScript.gameComplete(score,"pass");
-                else if(score > totalQuestions/2)
+                else if(score > totalSentences /2)
                     gameScript.gameComplete(score,"same");
                 else
                     gameScript.gameComplete(score,"fail");
@@ -70,9 +70,9 @@ public class QuestionManager : MonoBehaviour
         for(int i = 0; i < options.Length; i++)
         {
             options[i].GetComponent<AnswersScript>().isCorrect = false;
-            options[i].transform.GetChild(0).GetComponent<Text>().text = QnA[currentQuestion].Answers[i];
+            options[i].transform.GetChild(0).GetComponent<Text>().text = senAndAns[currentSentence].sentenceAnswers[i];
 
-            if(QnA[currentQuestion].CorrectAnswer == i + 1)
+            if(senAndAns[currentSentence].correctAnswer == i + 1)
             {
                 options[i].GetComponent<AnswersScript>().isCorrect = true;
             }
@@ -82,10 +82,10 @@ public class QuestionManager : MonoBehaviour
     public void wrong()
     {
 
-        QnA.RemoveAt(currentQuestion);
+        senAndAns.RemoveAt(currentSentence);
         generateQuestion();
-        answeredQuestions+=1;
-        if(answeredQuestions == totalQuestions)
+        answeredSentences += 1;
+        if(answeredSentences == totalSentences)
         {
             if(gameScript == null)
             {
@@ -93,9 +93,9 @@ public class QuestionManager : MonoBehaviour
             }
             else
             {
-                if(score == totalQuestions)
+                if(score == totalSentences)
                     gameScript.gameComplete(score,"pass");
-                else if(score > totalQuestions/2)
+                else if(score > totalSentences /2)
                     gameScript.gameComplete(score,"same");
                 else
                     gameScript.gameComplete(score,"fail");
@@ -106,16 +106,16 @@ public class QuestionManager : MonoBehaviour
 
     void generateQuestion()
     {
-        if(QnA.Count > 0)
+        if(senAndAns.Count > 0)
         {
-            //totalQuestions += 1;
-            currentQuestion = Random.Range(0, QnA.Count);
-            SentenceNumTxt.text = "Sentence: " + totalQuestions.ToString();
-            QuestionTxt.text = QnA[currentQuestion].Question;
+            //totalSentences += 1;
+            currentSentence = Random.Range(0, senAndAns.Count);
+            SentenceNumTxt.text = "Sentence: " + totalSentences.ToString();
+            QuestionTxt.text = senAndAns[currentSentence].sentenceAsked;
             SetAnswers();
 
             AudioSource audioClip = GetComponent<AudioSource>();
-            audioClip.clip = QnA[currentQuestion].aClip;
+            audioClip.clip = senAndAns[currentSentence].aClip;
             audioClip.Play();
 
         }
@@ -152,9 +152,9 @@ public class QuestionManager : MonoBehaviour
 
     public string getResults()
     {  
-        if(score == totalQuestions)
+        if(score == totalSentences)
             return "pass";
-        else if(score > totalQuestions/2)
+        else if(score > totalSentences /2)
             return "same";
         else
             return "fail";
