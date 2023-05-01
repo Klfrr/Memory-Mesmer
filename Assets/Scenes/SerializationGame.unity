@@ -314,7 +314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &179208667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2426,6 +2426,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -1.2772217
       objectReference: {fileID: 0}
+    - target: {fileID: 3289185937701970205, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.654419
+      objectReference: {fileID: 0}
     - target: {fileID: 4564775198974721775, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -2438,21 +2442,50 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -1.2772217
       objectReference: {fileID: 0}
+    - target: {fileID: 5719106668060979593, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.654419
+      objectReference: {fileID: 0}
     - target: {fileID: 5987302510905402813, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.0025024414
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437187133053129613, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6437187133058712686, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: canvas2
       value: 
       objectReference: {fileID: 179208666}
+    - target: {fileID: 6437187133058712687, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437187133126504117, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_Text
+      value: "This is Serialization\n  \nStart with the given number and calculate
+        the given operation."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437187133126504122, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437187133512046247, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437187134648095275, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6437187135105073730, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Name
       value: TutorialCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 6437187135105073730, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6437187135105073753, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Camera
@@ -2542,10 +2575,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7917075187807824039, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 8136848688965015444, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: backDrop
       value: 
       objectReference: {fileID: 1290570585}
+    - target: {fileID: 8830931526031042423, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
 --- !u!224 &1379467868 stripped

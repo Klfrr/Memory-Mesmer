@@ -4685,8 +4685,8 @@ PrefabInstance:
       objectReference: {fileID: 953946466464383262}
     - target: {fileID: 6437187133126504117, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Text
-      value: "This is Orientation\n  \nYou'll be shown buttones and need to track
-        the green ones."
+      value: "This is Pattern Replication\n  \nYou will be shown buttons and need
+        to track the green ones."
       objectReference: {fileID: 0}
     - target: {fileID: 6437187133835046195, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4698,7 +4698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6437187135105073730, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6437187135105073753, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Camera
@@ -5200,7 +5200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &953946466464383263
 RectTransform:
   m_ObjectHideFlags: 0
