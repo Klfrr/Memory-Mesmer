@@ -12,6 +12,7 @@ public class SerializationGameScript : MonoBehaviour
     public int correct = 0;
     private int attempts = 2;
     private int input;
+    private int correctNeeded;
     public TMP_Text inputError;
     public TMP_Text outputText;
     public TMP_InputField userInput;
@@ -39,6 +40,7 @@ public class SerializationGameScript : MonoBehaviour
     {
         startTime = Time.time;
         gameScript = FindObjectOfType<gameManager>();
+        correctNeeded = gameScript.currentDifficulty();
         StartCoroutine(StartGameAfterDelay()); 
 
         //instructionsLabel.SetActive(true);
@@ -68,7 +70,10 @@ public class SerializationGameScript : MonoBehaviour
             {
                 gameActive = false;
                 SetTimeDisplay(0);
-                gameScript.gameComplete(score);
+                if(score >= correctNeeded/2)
+                    gameScript.gameComplete(score,"same");
+                else
+                    gameScript.gameComplete(score,"fail");
             }
             //SceneManager.LoadScene(4);
         }
@@ -108,7 +113,10 @@ public class SerializationGameScript : MonoBehaviour
                     }
                     else
                     {
-                        gameScript.gameComplete(score);
+                        if(score >= correctNeeded/2)
+                            gameScript.gameComplete(score,"same");
+                        else
+                            gameScript.gameComplete(score,"fail");
                     }
                 }
             }
@@ -128,7 +136,7 @@ public class SerializationGameScript : MonoBehaviour
         userInput.text = "";
 
         //win condition
-        if(correct == 5)
+        if(correct == correctNeeded)
         {
             outputText.text = "You win!";
             userInput.text = "";
@@ -140,7 +148,12 @@ public class SerializationGameScript : MonoBehaviour
             }
             else
             {
-                gameScript.gameComplete(score);
+                if(score == 2)
+                    gameScript.gameComplete(score,"pass");
+                else if(score == 1)
+                    gameScript.gameComplete(score,"same");
+                else
+                    gameScript.gameComplete(score,"fail");
             }
         }
     }

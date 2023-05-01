@@ -50,7 +50,7 @@ public class SentenceGame : MonoBehaviour
                 QuestionManager scoreTracker = FindObjectOfType<QuestionManager>();
                 gameActive = false;
                 SetTimeDisplay(0);
-                gameScript.gameComplete(scoreTracker.getScore());
+                gameScript.gameComplete(scoreTracker.getScore(),scoreTracker.getResults());
             }
             //SceneManager.LoadScene(4);
         }

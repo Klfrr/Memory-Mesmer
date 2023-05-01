@@ -36,6 +36,7 @@ public class PatternGameScript : MonoBehaviour
     {
         startTime = Time.time;
         gameScript = FindObjectOfType<gameManager>();
+        timers = 5/gameScript.currentDifficulty();
 
         //Disable buttons before watching
         WatchLabel.SetActive(true);
@@ -80,7 +81,12 @@ public class PatternGameScript : MonoBehaviour
             {
                 gameActive = false;
                 SetTimeDisplay(0);
-                gameScript.gameComplete(score);
+                if(score == whiteCount)
+                    gameScript.gameComplete(score,"pass");
+                else if(score > whiteCount/2)
+                    gameScript.gameComplete(score,"same");
+                else
+                    gameScript.gameComplete(score,"fail");
             }
             //SceneManager.LoadScene(4);
         }
@@ -281,7 +287,12 @@ public class PatternGameScript : MonoBehaviour
             }
             else
             {
-                gameScript.gameComplete(score);
+                if(score == whiteCount)
+                    gameScript.gameComplete(score,"pass");
+                else if(score > whiteCount/2)
+                    gameScript.gameComplete(score,"same");
+                else
+                    gameScript.gameComplete(score,"fail");
             }
         }
 

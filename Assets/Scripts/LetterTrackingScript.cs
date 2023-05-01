@@ -31,6 +31,8 @@ public class LetterTrackingScript : MonoBehaviour
     {
         startTime = Time.time;
         gameScript = FindObjectOfType<gameManager>();
+        repeats = gameScript.currentDifficulty() * 5;
+        mina = gameScript.currentDifficulty();
         letterButton.interactable = false;
         //StartCoroutine(StartGameAfterDelay());
 
@@ -63,7 +65,12 @@ public class LetterTrackingScript : MonoBehaviour
             {
                 gameActive = false;
                 SetTimeDisplay(0);
-                gameScript.gameComplete(score);
+                if(score == mina)
+                    gameScript.gameComplete(score,"pass");
+                if(score > mina/2)
+                    gameScript.gameComplete(score,"same");
+                else
+                    gameScript.gameComplete(score,"fail");
             }
             //SceneManager.LoadScene(4);
         }
@@ -91,7 +98,12 @@ public class LetterTrackingScript : MonoBehaviour
 
             if(counter >= repeats)
             {
-                gameScript.gameComplete(score);
+                if(score == mina)
+                    gameScript.gameComplete(score,"pass");
+                if(score > mina/2)
+                    gameScript.gameComplete(score,"same");
+                else
+                    gameScript.gameComplete(score,"fail");
             }
 
             // Wait for 2 seconds between changing letters

@@ -20,7 +20,7 @@ public class NamingGameScript : MonoBehaviour
 
     //Variables for checking game over;
     private gameManager gameScript;
-    private int gameOver = 0;
+    private int finalScore = 0;
     public int round = 0;
 
     Button correctButton;
@@ -31,6 +31,7 @@ public class NamingGameScript : MonoBehaviour
     void Start()
     {
         gameScript = FindObjectOfType<gameManager>();
+        finalScore = gameScript.currentDifficulty();
         //Set all images to not appear
         resetImages();
 
@@ -116,7 +117,7 @@ public class NamingGameScript : MonoBehaviour
         // Wait 1 second, then change scenes
         // 
         //Jacky's Code 
-        if(round >= 3) // After 3 rounds, the game will end
+        if(round >= finalScore) // After 3 rounds, the game will end
         {
             if(gameScript == null)
             {
@@ -124,7 +125,12 @@ public class NamingGameScript : MonoBehaviour
             }
             else
             {
-                gameScript.gameComplete(score);
+                if(score == finalScore)
+                    gameScript.gameComplete(score,"pass");
+                else if(score > finalScore/2)
+                    gameScript.gameComplete(score,"same");
+                else
+                    gameScript.gameComplete(score,"fail");
             }
         }
     }

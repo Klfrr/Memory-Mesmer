@@ -27,6 +27,7 @@ public class QuestionManager : MonoBehaviour
     void Start()
     {   
         gameScript = FindObjectOfType<gameManager>();
+        totalQuestions = gameScript.currentDifficulty();
         generateQuestion();
         //yesButton.interactable = false;
         //noButton.interactable = false;
@@ -52,7 +53,12 @@ public class QuestionManager : MonoBehaviour
             }
             else
             {
-                gameScript.gameComplete(score);
+                if(score == totalQuestions)
+                    gameScript.gameComplete(score,"pass");
+                else if(score > totalQuestions/2)
+                    gameScript.gameComplete(score,"same");
+                else
+                    gameScript.gameComplete(score,"fail");
             }
         }
 
@@ -87,7 +93,12 @@ public class QuestionManager : MonoBehaviour
             }
             else
             {
-                gameScript.gameComplete(score);
+                if(score == totalQuestions)
+                    gameScript.gameComplete(score,"pass");
+                else if(score > totalQuestions/2)
+                    gameScript.gameComplete(score,"same");
+                else
+                    gameScript.gameComplete(score,"fail");
             }
         }
         
@@ -97,7 +108,7 @@ public class QuestionManager : MonoBehaviour
     {
         if(QnA.Count > 0)
         {
-            totalQuestions += 1;
+            //totalQuestions += 1;
             currentQuestion = Random.Range(0, QnA.Count);
             SentenceNumTxt.text = "Sentence: " + totalQuestions.ToString();
             QuestionTxt.text = QnA[currentQuestion].Question;
@@ -137,6 +148,16 @@ public class QuestionManager : MonoBehaviour
     public int getScore()
     {
         return score;
+    }
+
+    public string getResults()
+    {  
+        if(score == totalQuestions)
+            return "pass";
+        else if(score > totalQuestions/2)
+            return "same";
+        else
+            return "fail";
     }
     /*private IEnumerator playAudio(){
 

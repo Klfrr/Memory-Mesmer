@@ -82,11 +82,24 @@ public class gameManager : MonoBehaviour
         */
     }
 
-    public void gameComplete(int gameScore)
+    public void gameComplete(int gameScore,string value)
     {
         //calls the input score to save score, and then attempts next scene
         pastValue = SceneManager.GetActiveScene().buildIndex;
-        inputScore(gameScore);
+        switch(value)
+        {
+            case "pass":
+                inputScore(gameScore,1);
+                break;
+            case "same":
+                inputScore(gameScore,0);
+                break;
+            case "fail":
+                inputScore(gameScore,-1);
+                break;
+            default:
+                break; 
+        }
         currentScene++; 
         if(gameType == "Single")
         {
@@ -98,7 +111,7 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    private void inputScore(int gameScore)
+    private void inputScore(int gameScore,int change)
     {
         if(gameType == "Single")
         {
@@ -107,6 +120,7 @@ public class gameManager : MonoBehaviour
         else
         {
             scores[scenes[currentScene]-1] = gameScore;
+            difficulty[scenes[currentScene]-1] = difficulty[scenes[currentScene]-1] + change;
         }
     }
 
@@ -142,6 +156,8 @@ public class gameManager : MonoBehaviour
 
             dbconn.Close();
 
+            saveDifficulty();
+
         
     }
 
@@ -156,7 +172,7 @@ public class gameManager : MonoBehaviour
 
     private IEnumerator sceneChange()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0);
         if(currentScene == arraySize)
         {
             finishGame();
@@ -245,16 +261,19 @@ public class gameManager : MonoBehaviour
                 using(IDbCommand writeCmnd = dbconn.CreateCommand())
                 {
                     string newDifficulty = "UPDATE Difficulty SET ";
-                    newDifficulty += "Orientation = " + difficulty[0]; 
-                    newDifficulty += "Simon = " + difficulty[0]; 
-                    newDifficulty += "Pattern = " + difficulty[0]; 
-                    newDifficulty += "Naming = " + difficulty[0]; 
-                    newDifficulty += "Serialization = " + difficulty[0]; 
-                    newDifficulty += "Text2Speech = " + difficulty[0]; 
-                    newDifficulty += "LetterTracking = " + difficulty[0]; 
+                    newDifficulty += " Orientation = " + difficulty[0]; 
+                    newDifficulty += ", Simon = " + difficulty[1]; 
+                    newDifficulty += ", Pattern = " + difficulty[2]; 
+                    newDifficulty += ", Naming = " + difficulty[3]; 
+                    newDifficulty += ", Serialization = " + difficulty[4]; 
+                    newDifficulty += ", Text2Speech = " + difficulty[5]; 
+                    newDifficulty += ", LetterTracking = " + difficulty[6]; 
                     newDifficulty += " WHERE User = \"" + userInfo.getUserName() +"\"";
 
+                    Debug.Log(newDifficulty);
+
                     writeCmnd.CommandText = newDifficulty;
+                    writeCmnd.ExecuteNonQuery();
                     
                 }
 

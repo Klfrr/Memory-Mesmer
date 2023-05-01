@@ -269,7 +269,12 @@ public class SimonSays : MonoBehaviour
         }
         else
         {
-            gameScript.gameComplete(score);
+            if(score == level)
+                gameScript.gameComplete(score,"pass");
+            else if(score > level/2)
+                gameScript.gameComplete(score,"same");
+            else
+                gameScript.gameComplete(score,"fail");
         }
     }
     private IEnumerator StartGameAfterDelay()

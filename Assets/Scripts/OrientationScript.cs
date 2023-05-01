@@ -15,6 +15,7 @@ public class OrientationScript : MonoBehaviour
     private DateTime currentTime;
     private double tempAccuracy;
     private gameManager gameScript;
+    private int difficulty;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class OrientationScript : MonoBehaviour
         showTutorial();
         currentTime = DateTime.Now;
         gameScript = FindObjectOfType<gameManager>();
+        difficulty = gameScript.currentDifficulty();
     }
 
     // Update is called once per frame
@@ -37,14 +39,13 @@ public class OrientationScript : MonoBehaviour
         DateTime testDate = DateTime.Parse(inputDate);
 
         double timeDifference = Math.Abs((testDate-currentTime).TotalHours);
-        Debug.Log(timeDifference);
         if(timeDifference < 1)
         {
             tempAccuracy = 100;
         }
         else
         {
-            tempAccuracy = 100*(1/timeDifference);
+            tempAccuracy = 100 - (10 * timeDifference);
         }
         tempAccuracy = Math.Round(tempAccuracy,2);
         string accuracyScore = "Accuracy: " + tempAccuracy;
@@ -54,8 +55,14 @@ public class OrientationScript : MonoBehaviour
 
     public void sceneChange()
     {   
-        gameScript.gameComplete(10);
-        //SceneManager.LoadScene(0);
+        if(tempAccuracy >= difficulty*10)
+            gameScript.gameComplete(3,"pass");
+        else if(tempAccuracy >= difficulty * 7)
+            gameScript.gameComplete(2,"same");
+        else if(tempAccuracy >= difficulty * 5)
+            gameScript.gameComplete(1,"same");
+        else
+            gameScript.gameComplete(0,"same");
     }
 
     public void showTutorial()
