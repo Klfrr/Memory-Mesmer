@@ -14,6 +14,7 @@ public class QuestionManager : MonoBehaviour
     public Text ScoreTxt;
     public Text SentenceNumTxt;
     public int totalSentences = 0;
+    public int sentenceNumber = 0;
     public int score = 0;
     public int answeredSentences = 0;
     public float delay = 8;
@@ -108,9 +109,9 @@ public class QuestionManager : MonoBehaviour
     {
         if(senAndAns.Count > 0)
         {
-            //totalSentences += 1;
+            sentenceNumber += 1;
             currentSentence = Random.Range(0, senAndAns.Count);
-            SentenceNumTxt.text = "Sentence: " + totalSentences.ToString();
+            SentenceNumTxt.text = "Sentence: " + sentenceNumber.ToString();
             QuestionTxt.text = senAndAns[currentSentence].sentenceAsked;
             SetAnswers();
 
