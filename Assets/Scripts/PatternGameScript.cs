@@ -45,6 +45,7 @@ public class PatternGameScript : MonoBehaviour
         //StartCoroutine(StartGameAfterDelay());
         //StartCoroutine(instructionsTimer());
         StartCoroutine(startWatchTimer());
+        startTime = Time.time;
         blackWhiteList = new bool[buttonList.Count];
 
         // set all buttons to black

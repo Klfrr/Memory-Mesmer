@@ -178,7 +178,7 @@ public class NamingGameScript : MonoBehaviour
         setAllInteractable();
 
         // Remove correct answer so it won't be used again
-        animalNameList.Remove(cAnimal);
+        //animalNameList.Remove(cAnimal);
 
         if(correctButton != null)
             return correctButton;
