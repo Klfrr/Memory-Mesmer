@@ -549,62 +549,62 @@ MonoBehaviour:
     - Yes
     - No
     correctAnswer: 2
-    aClip: {fileID: 0}
+    aClip: {fileID: 8300000, guid: 731c02632624d9045b30ac1e90774f63, type: 3}
   - sentenceAsked: How are you today?
     sentenceAnswers:
     - Yes
     - No
     correctAnswer: 1
-    aClip: {fileID: 0}
+    aClip: {fileID: 8300000, guid: 143d2bfae3a6aab458d554cd06f54fd2, type: 3}
   - sentenceAsked: We has been learning how to play chess.
     sentenceAnswers:
     - Yes
     - No
     correctAnswer: 2
-    aClip: {fileID: 0}
+    aClip: {fileID: 8300000, guid: 0f41e36fc8d903e48b420b6be0e3403c, type: 3}
   - sentenceAsked: There dog ran away whle they were in the park.
     sentenceAnswers:
     - Yes
     - No
     correctAnswer: 2
-    aClip: {fileID: 0}
+    aClip: {fileID: 8300000, guid: 63dc048025da3d64681a0de58c80f0a3, type: 3}
   - sentenceAsked: He took the train to get to work.
     sentenceAnswers:
     - Yes
     - No
     correctAnswer: 1
-    aClip: {fileID: 0}
+    aClip: {fileID: 8300000, guid: 17fb82cbc48c0b74da902e8eae7e80ff, type: 3}
   - sentenceAsked: Are you sure that you don't have no shirts left?
     sentenceAnswers:
     - Yes
     - No
     correctAnswer: 2
-    aClip: {fileID: 0}
+    aClip: {fileID: 8300000, guid: 622948c88d8fc5d4d9b06e22dfe4915b, type: 3}
   - sentenceAsked: He had, by far, the best dog in the show.
     sentenceAnswers:
     - Yes
     - No
     correctAnswer: 1
-    aClip: {fileID: 0}
+    aClip: {fileID: 8300000, guid: 0367095f842b43948a903cd65ed66a34, type: 3}
   - sentenceAsked: We decided to go a movie after we worked.
     sentenceAnswers:
     - Yes
     - No
     correctAnswer: 2
-    aClip: {fileID: 0}
+    aClip: {fileID: 8300000, guid: d4c8cbaeba892ad4e860bec56f69649f, type: 3}
   - sentenceAsked: She decided to take her dog, cat, and bird to see the vet, but
       he couldn't see her.
     sentenceAnswers:
     - Yes
     - No
     correctAnswer: 1
-    aClip: {fileID: 0}
+    aClip: {fileID: 8300000, guid: 94dd4a6c1d6a7f241b0c396a34ff45c2, type: 3}
   - sentenceAsked: He thought he had a great idea but his manager didn't agree.
     sentenceAnswers:
     - Yes
     - No
     correctAnswer: 1
-    aClip: {fileID: 0}
+    aClip: {fileID: 8300000, guid: 914d2d1d8da246f46be799ab76f4885a, type: 3}
   options:
   - {fileID: 1537578987}
   - {fileID: 2030423403}
