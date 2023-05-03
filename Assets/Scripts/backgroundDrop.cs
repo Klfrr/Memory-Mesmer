@@ -12,6 +12,11 @@ public class backgroundDrop : MonoBehaviour
     public GameObject pinkPanel;
     public Dropdown backDrop;
 
+    public GameObject texture1;
+    public GameObject texture2;
+    public GameObject texture3;
+    public GameObject texture4;
+
     //
     //Initial idea but was flawed, I overcomplicated this. Made it way easier to understand
     //will be easier using other idea when adding more options.
@@ -186,40 +191,49 @@ public class backgroundDrop : MonoBehaviour
         // Turn on the GreenPanel
         greenPanel.SetActive(true);
 
+        // Turn on the Texture1
+        texture1.SetActive(true);
+
         // Check the active state of the OrangePanel
-        if (PlayerPrefs.GetInt("OrangePanelActive", 0) == 1)
+        if (PlayerPrefs.GetInt("Background2Active", 0) == 1)
         {
             // If it's active, turn it on
             orangePanel.SetActive(true);
+            texture2.SetActive(true);
         }
         else
         {
             // If it's not active, turn it off
             orangePanel.SetActive(false);
+            texture2.SetActive(false);
         }
 
         // Check the active state of the BluePanel
-        if (PlayerPrefs.GetInt("BluePanelActive", 0) == 1)
+        if (PlayerPrefs.GetInt("Background3Active", 0) == 1)
         {
             // If it's active, turn it on
             bluePanel.SetActive(true);
+            texture3.SetActive(true);
         }
         else
         {
             // If it's not active, turn it off
             bluePanel.SetActive(false);
+            texture3.SetActive(false);
         }
 
         // Check the active state of the PinkPanel
-        if (PlayerPrefs.GetInt("PinkPanelActive", 0) == 1)
+        if (PlayerPrefs.GetInt("Background4Active", 0) == 1)
         {
             // If it's active, turn it on
             pinkPanel.SetActive(true);
+            texture4.SetActive(true);
         }
         else
         {
             // If it's not active, turn it off
             pinkPanel.SetActive(false);
+            texture4.SetActive(false);
         }
 
         //loads dropdown value to stored value
@@ -242,32 +256,46 @@ public class backgroundDrop : MonoBehaviour
         bluePanel.SetActive(false);
         pinkPanel.SetActive(false);
 
+        // Turn off all textures
+        texture1.SetActive(false);
+        texture2.SetActive(false);
+        texture3.SetActive(false);
+        texture4.SetActive(false);
+
         // Turn on the selected panel
         switch (selectedOption)
         {
             case 0:
                 // Turn on the GreenPanel
                 greenPanel.SetActive(true);
+                // Turn on texture1
+                texture1.SetActive(true);
                 // Save the active state of the GreenPanel
-                PlayerPrefs.SetInt("GreenPanelActive", 1);
+                PlayerPrefs.SetInt("Background1Active", 1);
                 break;
             case 1:
                 // Turn on the OrangePanel
                 orangePanel.SetActive(true);
+                // Turn on texture2
+                texture2.SetActive(true);
                 // Save the active state of the OrangePanel
-                PlayerPrefs.SetInt("OrangePanelActive", 1);
+                PlayerPrefs.SetInt("Background2Active", 1);
                 break;
             case 2:
                 // Turn on the BluePanel
                 bluePanel.SetActive(true);
+                // Turn on texture3
+                texture3.SetActive(true);
                 // Save the active state of the BluePanel
-                PlayerPrefs.SetInt("BluePanelActive", 1);
+                PlayerPrefs.SetInt("Background3Active", 1);
                 break;
             case 3:
                 // Turn on the PinkPanel
                 pinkPanel.SetActive(true);
+                // Turn on texture4
+                texture4.SetActive(true);
                 // Save the active state of the PinkPanel
-                PlayerPrefs.SetInt("PinkPanelActive", 1);
+                PlayerPrefs.SetInt("Background4Active", 1);
                 break;
         }
     }

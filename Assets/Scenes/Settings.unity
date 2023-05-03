@@ -471,6 +471,10 @@ MonoBehaviour:
   bluePanel: {fileID: 2115121609}
   pinkPanel: {fileID: 736795775}
   backDrop: {fileID: 1982136586}
+  texture1: {fileID: 0}
+  texture2: {fileID: 0}
+  texture3: {fileID: 0}
+  texture4: {fileID: 0}
 --- !u!114 &246660890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,7 +839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.990566, g: 0.7465961, b: 0.4625756, a: 1}
+  m_Color: {r: 0.7264151, g: 0.6900031, b: 0.5311054, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1304,7 +1308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8cdd6f88f037645a7a6a7f4304ea5e65, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9da32caeef9714948b2e74a9cb732089, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1613,6 +1617,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918013102}
   m_CullTransparentMesh: 1
+--- !u!114 &947754566 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 98874362793095615, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
+  m_PrefabInstance: {fileID: 7356267708198970091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dff61f9ec9b6494a92d5a5a0f3961a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1066067386
 GameObject:
   m_ObjectHideFlags: 0
@@ -2354,7 +2369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1714537811
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2799,7 +2814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5144719126919792574, guid: 4e95ac44958dc413eb1cac816d267b1e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5863276609021712177, guid: 4e95ac44958dc413eb1cac816d267b1e, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2888,6 +2903,22 @@ PrefabInstance:
     m_TransformParent: {fileID: 246660886}
     m_Modifications:
     - target: {fileID: 98874362793095615, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
+      propertyPath: texture1
+      value: 
+      objectReference: {fileID: 918013102}
+    - target: {fileID: 98874362793095615, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
+      propertyPath: texture2
+      value: 
+      objectReference: {fileID: 178087386}
+    - target: {fileID: 98874362793095615, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
+      propertyPath: texture3
+      value: 
+      objectReference: {fileID: 566638406}
+    - target: {fileID: 98874362793095615, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
+      propertyPath: texture4
+      value: 
+      objectReference: {fileID: 1714537810}
+    - target: {fileID: 98874362793095615, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
       propertyPath: bluePanel
       value: 
       objectReference: {fileID: 2115121609}
@@ -2933,7 +2964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2301190420646439462, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 2301190420646439462, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2973,23 +3004,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7356267706888578017, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
       propertyPath: m_Options.m_Options.Array.data[0].m_Text
-      value: Green
+      value: Background1
       objectReference: {fileID: 0}
     - target: {fileID: 7356267706888578017, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
       propertyPath: m_Options.m_Options.Array.data[1].m_Text
-      value: Orange
+      value: Background2
       objectReference: {fileID: 0}
     - target: {fileID: 7356267706888578017, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
       propertyPath: m_Options.m_Options.Array.data[2].m_Text
-      value: Blue
+      value: Background3
       objectReference: {fileID: 0}
     - target: {fileID: 7356267706888578017, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
       propertyPath: m_Options.m_Options.Array.data[3].m_Text
-      value: Pink
+      value: Background4
       objectReference: {fileID: 0}
     - target: {fileID: 7356267706888578017, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 246660889}
+      objectReference: {fileID: 947754566}
+    - target: {fileID: 7356267706888578017, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: backgroundChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356267708482803120, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
+      propertyPath: m_Text
+      value: Green
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a19c634c7f51425ab34546d8f444a9b, type: 3}
