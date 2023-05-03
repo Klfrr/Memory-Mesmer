@@ -132,7 +132,16 @@ public class gameManager : MonoBehaviour
             //Add code to upload scores
             SceneManager.LoadScene(8);
 
-            string dataBaseConn = "URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+            string dataBaseConn;
+            switch(Application.platform)
+            {
+                case RuntimePlatform.IPhonePlayer:
+                    dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                    break;
+                default:
+                    dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+                    break;
+            } 
 
             //Creates the connection to the database
             IDbConnection dbconn;
@@ -215,7 +224,16 @@ public class gameManager : MonoBehaviour
     {
         if(userInfo.getUserName() != "temp")
         {
-            string dataBaseConn = "URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+            string dataBaseConn;
+            switch(Application.platform)
+            {
+                case RuntimePlatform.IPhonePlayer:
+                    dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                    break;
+                default:
+                    dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+                    break;
+            } 
 
             using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
             {
@@ -252,7 +270,16 @@ public class gameManager : MonoBehaviour
     {
         if(userInfo.getUserName() != "temp")
         {
-            string dataBaseConn = "URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+            string dataBaseConn;
+            switch(Application.platform)
+            {
+                case RuntimePlatform.IPhonePlayer:
+                    dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                    break;
+                default:
+                    dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+                    break;
+            } 
 
             using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
             {

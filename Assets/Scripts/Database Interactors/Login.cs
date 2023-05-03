@@ -33,7 +33,16 @@ public class Login : MonoBehaviour
 
     public void onClick()
     {
-        string dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+        string dataBaseConn;
+        switch(Application.platform)
+        {
+            case RuntimePlatform.IPhonePlayer:
+                dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                break;
+            default:
+                dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+                break;
+        }
         
         using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
         {

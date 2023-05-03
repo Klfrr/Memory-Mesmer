@@ -30,7 +30,16 @@ public class Registration : MonoBehaviour
 
     public void onClick()
     {
-        string dataBaseConn = "URI=file:" + Application.persistentDataPath + "/Database/Database.db"; 
+        string dataBaseConn;
+        switch(Application.platform)
+        {
+            case RuntimePlatform.IPhonePlayer:
+                dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                break;
+            default:
+                dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+                break;
+        }
         int countOf = 0;
         
         countOf = readFunction(dataBaseConn);

@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     private static GameObject onlyInstance = null;
     private backgroundDrop panelMgr;
     private audioMgr audio;
-    private textureDrop texture;
+    //private textureDrop texture;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
     {
         panelMgr = FindObjectOfType<backgroundDrop>();
         audio = FindObjectOfType<audioMgr>();
-        texture = FindObjectOfType<textureDrop>();
+        //texture = FindObjectOfType<textureDrop>();
     }
 
     public void loadInformation(string currentUserName)
@@ -75,7 +75,16 @@ public class UIManager : MonoBehaviour
         int countOf = 0;
         if(userName != "temp")
         {
-            string dataBaseConn = "URI=file:" +Application.persistentDataPath + "/Database/Database.db";
+            string dataBaseConn;
+            switch(Application.platform)
+            {
+                case RuntimePlatform.IPhonePlayer:
+                    dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                    break;
+                default:
+                    dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+                    break;
+            }
 
             using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
             {
@@ -101,7 +110,7 @@ public class UIManager : MonoBehaviour
                     {
                         string settingCommand = "";
                         writeCmnd.CommandText ="INSERT INTO UIPref (Background,Volume,Texture,Username) VALUES (";
-                        settingCommand += panelMgr.backDrop.value + "," +  PlayerPrefs.GetFloat("Volume") + "," +  texture.textureDropdown.value + ",\"" + userName + "\")";
+                        settingCommand += panelMgr.backDrop.value + "," +  PlayerPrefs.GetFloat("Volume") + "," +  panelMgr.backDrop.value + ",\"" + userName + "\")";
                         writeCmnd.CommandText +=settingCommand;
                         writeCmnd.ExecuteNonQuery();
                     }
@@ -117,7 +126,16 @@ public class UIManager : MonoBehaviour
         int countOf = 0;
         if(userName != "temp")
         {
-            string dataBaseConn = "URI=file:" +Application.persistentDataPath + "/Database/Database.db";
+            string dataBaseConn;
+            switch(Application.platform)
+            {   
+                case RuntimePlatform.IPhonePlayer:
+                    dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                    break;
+                default:
+                    dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+                    break;
+            }   
 
             using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
             {
@@ -148,7 +166,7 @@ public class UIManager : MonoBehaviour
                         {
                             panelMgr.backDrop.value = Int32.Parse(reader[0].ToString());
                             PlayerPrefs.SetFloat("Volume", float.Parse(reader[1].ToString()));
-                            texture.textureDropdown.value = Int32.Parse(reader[2].ToString());
+                            panelMgr.backDrop.value = Int32.Parse(reader[2].ToString());
                             panelMgr.backgroundChange();
                             audio.loadVolume();
                         }
@@ -165,7 +183,16 @@ public class UIManager : MonoBehaviour
         int countOf = 0;
         if(userName != "temp")
         {
-            string dataBaseConn = "URI=file:" +Application.persistentDataPath + "/Database/Database.db";
+            string dataBaseConn;
+        switch(Application.platform)
+            {   
+                case RuntimePlatform.IPhonePlayer:
+                    dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                    break;
+                default:
+                    dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+                    break;
+            }   
 
             using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
             {
@@ -195,7 +222,7 @@ public class UIManager : MonoBehaviour
                         writeCmnd.CommandText ="UPDATE UIPref SET ";
                         changeCommand += "Background = " + panelMgr.backDrop.value;
                         changeCommand += "," + " Volume = " + PlayerPrefs.GetFloat("Volume");
-                        changeCommand += "," + " Texture = " + texture.textureDropdown.value;
+                        changeCommand += "," + " Texture = " + panelMgr.backDrop.value;
                         changeCommand += " WHERE Username = \"" + userName + "\"";
                         writeCmnd.CommandText += changeCommand;
                         Debug.Log(writeCmnd.CommandText);
@@ -212,7 +239,16 @@ public class UIManager : MonoBehaviour
     {
         createTable();
         
-        string dataBaseConn = "URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+        string dataBaseConn;
+        switch(Application.platform)
+            {   
+                case RuntimePlatform.IPhonePlayer:
+                    dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                    break;
+                default:
+                    dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+                    break;
+            }   
         using(IDbConnection dbconn = (IDbConnection) new SqliteConnection(dataBaseConn))
             {
                 dbconn.Open();
