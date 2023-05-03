@@ -132,7 +132,7 @@ public class gameManager : MonoBehaviour
             //Add code to upload scores
             SceneManager.LoadScene(8);
 
-            string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+            string dataBaseConn = "URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
 
             //Creates the connection to the database
             IDbConnection dbconn;
@@ -215,7 +215,7 @@ public class gameManager : MonoBehaviour
     {
         if(userInfo.getUserName() != "temp")
         {
-            string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+            string dataBaseConn = "URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
 
             using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
             {
@@ -252,7 +252,7 @@ public class gameManager : MonoBehaviour
     {
         if(userInfo.getUserName() != "temp")
         {
-            string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+            string dataBaseConn = "URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
 
             using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
             {

@@ -30,7 +30,7 @@ public class Registration : MonoBehaviour
 
     public void onClick()
     {
-        string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+        string dataBaseConn = "URI=file:" + Application.persistentDataPath + "/Database/Database.db"; 
         int countOf = 0;
         
         countOf = readFunction(dataBaseConn);
@@ -91,6 +91,8 @@ public class Registration : MonoBehaviour
                 results.text = "Account Successfully created";
                 gameScript.loadInformation(userName.text);
                 gameScript.saveUISettings();
+                gameScript.loadInformation(userName.text);
+                homeScreen();
             }
 
             dbconn.Close();

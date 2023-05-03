@@ -380,7 +380,7 @@ public class PatternGameScript : MonoBehaviour
 
     }
 
-      public IEnumerator instructionsTimer()
+    public IEnumerator instructionsTimer()
     {
         while(timers > 0)
         {       

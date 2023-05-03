@@ -20,7 +20,6 @@ public class UIManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         userName = "temp";
-
         if(onlyInstance == null)
         {
             onlyInstance = gameObject;
@@ -76,7 +75,7 @@ public class UIManager : MonoBehaviour
         int countOf = 0;
         if(userName != "temp")
         {
-            string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+            string dataBaseConn = "URI=file:" +Application.persistentDataPath + "/Database/Database.db";
 
             using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
             {
@@ -118,7 +117,7 @@ public class UIManager : MonoBehaviour
         int countOf = 0;
         if(userName != "temp")
         {
-            string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+            string dataBaseConn = "URI=file:" +Application.persistentDataPath + "/Database/Database.db";
 
             using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
             {
@@ -166,7 +165,7 @@ public class UIManager : MonoBehaviour
         int countOf = 0;
         if(userName != "temp")
         {
-            string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+            string dataBaseConn = "URI=file:" +Application.persistentDataPath + "/Database/Database.db";
 
             using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
             {
@@ -211,35 +210,47 @@ public class UIManager : MonoBehaviour
 
     private void createDatabase()
     {
-        if(!Directory.Exists(Application.dataPath + "/Database"))
-        {
-            Directory.CreateDirectory(Application.dataPath + "/Database");
-            File.Create(Application.dataPath + "/Database/Database.db");
-        }
+        createTable();
         
-
-        string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
-        using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
+        string dataBaseConn = "URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+        using(IDbConnection dbconn = (IDbConnection) new SqliteConnection(dataBaseConn))
             {
                 dbconn.Open();
 
                 using(IDbCommand createCmnd = dbconn.CreateCommand())
                 {
                     string loginTable = "CREATE TABLE IF NOT EXISTS Login (User_Name TEXT, Password TEXT, PRIMARY KEY (User_Name,Password))";
-
                     createCmnd.CommandText = loginTable;
                     createCmnd.ExecuteNonQuery();
 
-                    string UITable = "CREATE TABLE IF NOT EXISTS UIPref (Background INTEGER, Volume REAL,Username TEXT, PRIMARY KEY (Username))";
+                    string UITable = "CREATE TABLE IF NOT EXISTS UIPref (Background INTEGER, Volume REAL,Texture INTEGER,Username TEXT, PRIMARY KEY (Username))";
                     createCmnd.CommandText = UITable;
                     createCmnd.ExecuteNonQuery();
 
                     string ScoreTables = "CREATE TABLE IF NOT EXISTS Scores (User TEXT, Date TEXT, Time TEXT, Orientation NUMERIC, Simon TEXT, Pattern INTEGER, Naming INTEGER, Serialization INTEGER, Text2Speech INTEGER, LetterTracking INTEGER, PRIMARY KEY (User,Date,Time))";
                     createCmnd.CommandText = ScoreTables;
                     createCmnd.ExecuteNonQuery();
+
+                    string difficultyTable = "CREATE TABLE IF NOT EXISTS Difficulty (User TEXT,Orientation NUMERIC, Simon TEXT, Pattern INTEGER, Naming INTEGER, Serialization INTEGER, Text2Speech INTEGER, LetterTracking INTEGER, PRIMARY KEY (User))";
+                    createCmnd.CommandText = difficultyTable;
+                    createCmnd.ExecuteNonQuery();
                 }
                 dbconn.Close();
             }
+
+
+    }
+
+    private IEnumerator createTable()
+    {
+        if(!File.Exists(Application.persistentDataPath + "/Database/Database.db"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + "/Database");
+            File.Create(Application.persistentDataPath + "/Database/Database.db");
+        }
+
+        yield return new WaitForSeconds(1);
+        
     }
 
 }

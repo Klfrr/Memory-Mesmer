@@ -33,7 +33,7 @@ public class Login : MonoBehaviour
 
     public void onClick()
     {
-        string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+        string dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
         
         using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
         {
@@ -66,7 +66,7 @@ public class Login : MonoBehaviour
                         loginUserName = reader[0].ToString();
                         gameScript.loadInformation(loginUserName);
                         gameScript.loadUISettings();
-                        results.text = "Login Successful";
+                        homeScreen();
                     }
                     reader.Close();
                 }
