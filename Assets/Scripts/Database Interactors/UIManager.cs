@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
             
         }
+        createTable();
         createDatabase();
     }
 
@@ -76,12 +77,13 @@ public class UIManager : MonoBehaviour
         if(userName != "temp")
         {
             string dataBaseConn;
-            switch(Application.platform)
-            {
+            switch(UnityEngine.Device.Application.platform)
+            {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
                     break;
                 default:
+                    
                     dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
                     break;
             }
@@ -127,12 +129,13 @@ public class UIManager : MonoBehaviour
         if(userName != "temp")
         {
             string dataBaseConn;
-            switch(Application.platform)
+            switch(UnityEngine.Device.Application.platform)
             {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
                     break;
                 default:
+                    
                     dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
                     break;
             }   
@@ -184,15 +187,16 @@ public class UIManager : MonoBehaviour
         if(userName != "temp")
         {
             string dataBaseConn;
-        switch(Application.platform)
+            switch(UnityEngine.Device.Application.platform)
             {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
                     break;
                 default:
+                    
                     dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
                     break;
-            }   
+            }  
 
             using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
             {
@@ -237,18 +241,20 @@ public class UIManager : MonoBehaviour
 
     private void createDatabase()
     {
-        createTable();
         
         string dataBaseConn;
-        switch(Application.platform)
+        switch(UnityEngine.Device.Application.platform)
             {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
                     break;
                 default:
+                    
                     dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
                     break;
             }   
+            if(File.Exists(Application.dataPath + "/Raw" + "/Database/Database.db"))
+                Debug.Log(dataBaseConn);
         using(IDbConnection dbconn = (IDbConnection) new SqliteConnection(dataBaseConn))
             {
                 dbconn.Open();
@@ -277,15 +283,26 @@ public class UIManager : MonoBehaviour
 
     }
 
-    private IEnumerator createTable()
+    private void createTable()
     {
-        if(!File.Exists(Application.persistentDataPath + "/Database/Database.db"))
-        {
-            Directory.CreateDirectory(Application.persistentDataPath + "/Database");
-            File.Create(Application.persistentDataPath + "/Database/Database.db");
+        
+        switch(UnityEngine.Device.Application.platform)
+        {   
+            case RuntimePlatform.IPhonePlayer:
+                if(!File.Exists(Application.dataPath + "/Raw" + "/Database/Database.db"))
+                {
+                    Directory.CreateDirectory(Application.dataPath + "/Raw" + "/Database");
+                    File.Create(Application.dataPath + "/Raw" + "/Database/Database.db");
+                }
+                break;
+            default:
+                if(!File.Exists(Application.persistentDataPath + "/Database/Database.db"))
+                {
+                    Directory.CreateDirectory(Application.persistentDataPath + "/Database");
+                    File.Create(Application.persistentDataPath + "/Database/Database.db");
+                }
+                break;
         }
-
-        yield return new WaitForSeconds(1);
         
     }
 
