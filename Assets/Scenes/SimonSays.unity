@@ -600,7 +600,8 @@ PrefabInstance:
       objectReference: {fileID: 2137639747}
     - target: {fileID: 6437187133126504117, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Text
-      value: "This is Sequence\n  \nTrack the order the lights blink."
+      value: "This is Sequence\n  \nYou will be given an order of colors and will
+        repeat it following the  instructions at the top of screen."
       objectReference: {fileID: 0}
     - target: {fileID: 6437187135105073730, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Name
