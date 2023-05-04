@@ -10,7 +10,7 @@ public class LetterTrackingScript : MonoBehaviour
     public Text scoreLabel;
     
     public int repeats;
-    public int timer = 0;
+    //public int timer = 0;
     public int score = 0;
     public int mina;
 
@@ -53,7 +53,7 @@ public class LetterTrackingScript : MonoBehaviour
     void Update()
     {
         //timerForFunction += Time.deltaTime;
-
+/*
         if(Time.time - startTime < gameTime)
         {
             float ElapsedTime = Time.time - startTime;
@@ -75,7 +75,7 @@ public class LetterTrackingScript : MonoBehaviour
             //SceneManager.LoadScene(4);
         }
         scoreLabel.text = score.ToString();
-
+*/
     }
 
     //StartCoroutine(startWatchTimer());
@@ -130,13 +130,21 @@ public class LetterTrackingScript : MonoBehaviour
             letters[i] = (char)randnum;
         }
 
-        //Guarantee a minimum number mina of A's
+        int lastI = -1;
+        // add a minimum number mina of A's
         for(int i = 0; i < mina; i++)
         {
             // pick random index
             int randI = Random.Range(0, repeats);
-            // put A at random index
+
+            if(randI == lastI)
+            {
+                randI = Random.Range(0, repeats);
+            }
+
             letters[randI] = 'A';
+
+            lastI = randI;
         }
 
         return letters;
