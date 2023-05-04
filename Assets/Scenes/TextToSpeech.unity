@@ -562,7 +562,7 @@ MonoBehaviour:
     - No
     correctAnswer: 2
     aClip: {fileID: 8300000, guid: 0f41e36fc8d903e48b420b6be0e3403c, type: 3}
-  - sentenceAsked: There dog ran away whle they were in the park.
+  - sentenceAsked: There dog ran away while they were in the park.
     sentenceAnswers:
     - Yes
     - No
