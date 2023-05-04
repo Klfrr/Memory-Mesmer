@@ -200,14 +200,19 @@ public class gameManager : MonoBehaviour
 
     public string getScore()
     {
+        //order of games stored - Orientation,Simon,Pattern,Naming,Serialization,Text2Speech,LetterTracking
+        double[] modifier = {5, 4, 5, 4, 4, 4, 4};
+        double[] adjustedScore = new double[arraySize];
         double value = 0;
         if(gameType == "Full")
         {
             for(int i = 0; i < arraySize; i++)
             {
                 value += scores[i];
+                //value += Math.Truncate(scores[i]/5*modifier[i]);
             }
             return value + "/" + "50";
+            // return value + "/" + "30";
         }
         else
         {
