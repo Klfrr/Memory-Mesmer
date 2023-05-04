@@ -80,7 +80,7 @@ public class UIManager : MonoBehaviour
             switch(UnityEngine.Device.Application.platform)
             {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
+                    dataBaseConn = "URI=file:" + Application.persistentDataPath + "/Database/Database.db";
                     break;
                 default:
                     
@@ -132,7 +132,7 @@ public class UIManager : MonoBehaviour
             switch(UnityEngine.Device.Application.platform)
             {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
+                    dataBaseConn = "URI=file:" + Application.persistentDataPath + "/Database/Database.db";
                     break;
                 default:
                     
@@ -190,7 +190,7 @@ public class UIManager : MonoBehaviour
             switch(UnityEngine.Device.Application.platform)
             {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
+                    dataBaseConn = "URI=file:" + Application.persistentDataPath + "/Database/Database.db";
                     break;
                 default:
                     
@@ -246,7 +246,8 @@ public class UIManager : MonoBehaviour
         switch(UnityEngine.Device.Application.platform)
             {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
+                    dataBaseConn ="URI=file:" + Application.persistentDataPath + "/Database/Database.db";
+                    Debug.Log(Application.persistentDataPath);
                     break;
                 default:
                     
@@ -289,10 +290,10 @@ public class UIManager : MonoBehaviour
         switch(UnityEngine.Device.Application.platform)
         {   
             case RuntimePlatform.IPhonePlayer:
-                if(!File.Exists(Application.dataPath + "/Raw" + "/Database/Database.db"))
+                if(!File.Exists(Application.persistentDataPath + "/Database/Database.db"))
                 {
-                    Directory.CreateDirectory(Application.dataPath + "/Raw" + "/Database");
-                    File.Create(Application.dataPath + "/Raw" + "/Database/Database.db");
+                    Directory.CreateDirectory(Application.persistentDataPath + "/Database");
+                    File.Create(Application.persistentDataPath + "/Database/Database.db");
                 }
                 break;
             default:
