@@ -26,7 +26,7 @@ public class StatisticsScript : MonoBehaviour
         switch(UnityEngine.Device.Application.platform)
             {   
                 case RuntimePlatform.IPhonePlayer:
-                dataBaseConn = "URI=file:" + Application.persistentDataPath + "/Database/Database.db";
+                dataBaseConn = "URI=file:" + Application.persistentDataPath + "/Database/Database.db";  
                 break;
                 default:
                     
