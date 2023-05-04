@@ -21,8 +21,18 @@ public class StatisticsScript : MonoBehaviour
         gameScript = FindObjectOfType<UIManager>();
         date = new List<string>();
         db_score = new List<float>();
+        string dataBaseConn;
         //Single test for now, just to show data can be shown. Code not complex enough to allow selection. I will alter the code later to make it score all scores. For now just single use
-        string dataBaseConn = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
+        switch(UnityEngine.Device.Application.platform)
+            {   
+                case RuntimePlatform.IPhonePlayer:
+                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
+                    break;
+                default:
+                    
+                    dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
+                    break;
+            } 
         
         using(IDbConnection dbconn = new SqliteConnection(dataBaseConn))
         {

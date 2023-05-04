@@ -133,12 +133,13 @@ public class gameManager : MonoBehaviour
             SceneManager.LoadScene(8);
 
             string dataBaseConn;
-            switch(Application.platform)
-            {
+            switch(UnityEngine.Device.Application.platform)
+            {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
                     break;
                 default:
+                    
                     dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
                     break;
             } 
@@ -225,12 +226,13 @@ public class gameManager : MonoBehaviour
         if(userInfo.getUserName() != "temp")
         {
             string dataBaseConn;
-            switch(Application.platform)
-            {
+            switch(UnityEngine.Device.Application.platform)
+            {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
                     break;
                 default:
+                    
                     dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
                     break;
             } 
@@ -271,12 +273,13 @@ public class gameManager : MonoBehaviour
         if(userInfo.getUserName() != "temp")
         {
             string dataBaseConn;
-            switch(Application.platform)
-            {
+            switch(UnityEngine.Device.Application.platform)
+            {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="Data Source:" +Application.persistentDataPath + "/Database/Database.db";
+                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
                     break;
                 default:
+                    
                     dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
                     break;
             } 
