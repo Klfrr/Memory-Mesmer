@@ -294,7 +294,8 @@ public class PatternGameScript : MonoBehaviour
         whiteClicked++;
 
         //Jacky added code, Kalista double check this section
-        if(whiteClicked == whiteCount)
+        float ElapsedTime = Time.time - startTime;
+        if(whiteClicked == whiteCount || (gameTime - ElapsedTime) <= 0)
         {
             if(gameScript == null)
             {
