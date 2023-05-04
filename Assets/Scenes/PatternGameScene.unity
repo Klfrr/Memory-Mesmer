@@ -4706,7 +4706,7 @@ PrefabInstance:
     - target: {fileID: 6437187133126504117, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_Text
       value: "This is Pattern Replication\n  \nYou will be shown buttons and need
-        to track the green ones."
+        to track the white ones."
       objectReference: {fileID: 0}
     - target: {fileID: 6437187133835046195, guid: b1c455b0d723e3f49bc6a77fe33bbc17, type: 3}
       propertyPath: m_AnchoredPosition.y

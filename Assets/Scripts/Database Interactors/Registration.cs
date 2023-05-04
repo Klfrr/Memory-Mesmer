@@ -34,8 +34,8 @@ public class Registration : MonoBehaviour
         switch(UnityEngine.Device.Application.platform)
             {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
-                    break;
+                dataBaseConn = "URI=file:" + Application.persistentDataPath + "/Database/Database.db";
+                break;
                 default:
                     
                     dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 

@@ -54,7 +54,8 @@ public class OrientationScript : MonoBehaviour
     }  
 
     public void sceneChange()
-    {   
+    {
+        onClick();
         if(tempAccuracy >= difficulty*10)
             gameScript.gameComplete(3,"pass");
         else if(tempAccuracy >= difficulty * 7)

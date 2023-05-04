@@ -136,8 +136,8 @@ public class gameManager : MonoBehaviour
             switch(UnityEngine.Device.Application.platform)
             {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
-                    break;
+                dataBaseConn = "URI=file:" + Application.persistentDataPath + "/Database/Database.db";
+                break;
                 default:
                     
                     dataBaseConn ="URI=file:" +Application.persistentDataPath + "/Database/Database.db"; 
@@ -234,7 +234,7 @@ public class gameManager : MonoBehaviour
             switch(UnityEngine.Device.Application.platform)
             {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
+                    dataBaseConn = "URI=file:" + Application.persistentDataPath + "/Database/Database.db";
                     break;
                 default:
                     
@@ -281,7 +281,7 @@ public class gameManager : MonoBehaviour
             switch(UnityEngine.Device.Application.platform)
             {   
                 case RuntimePlatform.IPhonePlayer:
-                    dataBaseConn ="URI=file:" + Application.dataPath + "/Raw" + "/Database/Database.db";
+                    dataBaseConn = "URI=file:" + Application.persistentDataPath + "/Database/Database.db";
                     break;
                 default:
                     
