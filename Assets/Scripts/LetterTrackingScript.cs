@@ -6,13 +6,15 @@ using UnityEngine.UI;
 public class LetterTrackingScript : MonoBehaviour
 {
     public Button letterButton;
-    public Text letter;
+    public Text letterLabel;
     public Text scoreLabel;
     
     public int repeats;
     //public int timer = 0;
     public int score = 0;
     public int mina;
+    char[] randomLetters;
+    int c = 0;
 
     public float currentwait = 2;
 
@@ -47,13 +49,14 @@ public class LetterTrackingScript : MonoBehaviour
 
         //StartCoroutine(instructionsTimer());
         //StartCoroutine(startWaitTimer());
+        randomLetters = randLetterString();
     }
 
     // Update is called once per frame
     void Update()
     {
         //timerForFunction += Time.deltaTime;
-/*
+
         if(Time.time - startTime < gameTime)
         {
             float ElapsedTime = Time.time - startTime;
@@ -75,7 +78,7 @@ public class LetterTrackingScript : MonoBehaviour
             //SceneManager.LoadScene(4);
         }
         scoreLabel.text = score.ToString();
-*/
+        
     }
 
     //StartCoroutine(startWatchTimer());
@@ -88,7 +91,7 @@ public class LetterTrackingScript : MonoBehaviour
         while(counter < repeats)
         {
             // Change to random Capital letter
-            changeButton();
+            changeButton(randomLetters);
 
             // Enable button if clicked
             enableButton(letterButton);
@@ -150,11 +153,12 @@ public class LetterTrackingScript : MonoBehaviour
         return letters;
     }
 
-    public void changeButton()
+    public void changeButton(char[] randomLetters)
     {
-        letter.text = randLetterString()[1].ToString();
-
-
+        
+        letterLabel.text = randLetterString()[c].ToString();
+        c++;
+        
     }
 
     

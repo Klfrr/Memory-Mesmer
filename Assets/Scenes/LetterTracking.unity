@@ -415,9 +415,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterButton: {fileID: 2025206256}
-  letter: {fileID: 815127885}
+  letterLabel: {fileID: 815127885}
   scoreLabel: {fileID: 520805913}
-  repeats: 15
+  repeats: 10
   score: 0
   mina: 5
   currentwait: 2
