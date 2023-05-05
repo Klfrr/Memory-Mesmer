@@ -54,11 +54,6 @@ public class QuestionManager : MonoBehaviour
             }
             else
             {
-                //normalizes score to 4
-                if(score > 0)
-                    {
-                        score = (int)((double)score / totalSentences * 4);
-                    }
                 if(score == totalSentences)
                     gameScript.gameComplete(score,"pass");
                 else if(score > totalSentences /2)
@@ -99,11 +94,6 @@ public class QuestionManager : MonoBehaviour
             }
             else
             {
-                //Vincent, normalizes score to 4
-                if(score > 0)
-                    {
-                        score = (int)((double)score / totalSentences * 4);
-                    }
                 if(score == totalSentences)
                     gameScript.gameComplete(score,"pass");
                 else if(score > totalSentences /2)
@@ -158,11 +148,6 @@ public class QuestionManager : MonoBehaviour
 
     public int getScore()
     {
-        //Vincent, normalizes score to 4
-        if(score > 0)
-            {
-                score = (int)((double)score / totalSentences * 4);
-            }
         return score;
     }
 

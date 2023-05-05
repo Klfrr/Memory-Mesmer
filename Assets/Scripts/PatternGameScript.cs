@@ -86,31 +86,25 @@ public class PatternGameScript : MonoBehaviour
         if (timerForFunction > delay)
         {
             if(Time.time - startTime < gameTime)
+        {
+            float ElapsedTime = Time.time - startTime;
+            SetTimeDisplay(gameTime - ElapsedTime);
+        }
+        else
+        {
+            if(gameActive)
             {
-                float ElapsedTime = Time.time - startTime;
-                SetTimeDisplay(gameTime - ElapsedTime);
+                gameActive = false;
+                SetTimeDisplay(0);
+                if(score == whiteCount)
+                    gameScript.gameComplete(score,"pass");
+                else if(score > whiteCount/2)
+                    gameScript.gameComplete(score,"same");
+                else
+                    gameScript.gameComplete(score,"fail");
             }
-            else
-            {
-                if(gameActive)
-                {
-                    gameActive = false;
-                    score = 9;
-                    whiteCount = 10;
-                    if(score > 0)
-                    {
-                        score = (int)((double)score / whiteCount * 5);
-                    }
-                    SetTimeDisplay(0);
-                    if(score == whiteCount)
-                        gameScript.gameComplete(score,"pass");
-                    else if(score > whiteCount/2)
-                        gameScript.gameComplete(score,"same");
-                    else
-                        gameScript.gameComplete(score,"fail");
-                }
-                //SceneManager.LoadScene(4);
-            }
+            //SceneManager.LoadScene(4);
+        }
         }
         ScoreLabel.text = score.ToString();
     }
@@ -303,12 +297,6 @@ public class PatternGameScript : MonoBehaviour
         float ElapsedTime = Time.time - startTime;
         if(whiteClicked == whiteCount || (gameTime - ElapsedTime) <= 0)
         {
-            //Vincent, I'm confused why there's two sets of game complete but I'm putting normalization on both and praying
-            //normalizes score to 5
-            if(score > 0)
-                {
-                    score = (int)((double)score / whiteCount * 5);
-                }
             if(gameScript == null)
             {
                 StartCoroutine(sceneDelay());

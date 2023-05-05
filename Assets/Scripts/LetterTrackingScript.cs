@@ -27,7 +27,6 @@ public class LetterTrackingScript : MonoBehaviour
     public float delay = 0;
     public float timerForFunction;
     private gameManager gameScript;
-    private int chosenRepeats = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -67,16 +66,11 @@ public class LetterTrackingScript : MonoBehaviour
         {
             if(gameActive)
             {
-                //Vincent, normalizes score to 4
-                if(score > 0)
-                    {
-                        score = (int)((double)score / chosenRepeats * 4);
-                    }
                 gameActive = false;
                 SetTimeDisplay(0);
-                if(score == chosenRepeats)
+                if(score == mina)
                     gameScript.gameComplete(score,"pass");
-                if(score > chosenRepeats/2)
+                if(score > mina/2)
                     gameScript.gameComplete(score,"same");
                 else
                     gameScript.gameComplete(score,"fail");
@@ -107,15 +101,9 @@ public class LetterTrackingScript : MonoBehaviour
 
             if(counter >= repeats)
             {
-                //Vincent, normalizes score to 4
-                Debug.Log(chosenRepeats);
-                if(score > 0)
-                    {
-                        score = (int)((double)score / chosenRepeats * 4);
-                    }
-                if(score == chosenRepeats)
+                if(score == mina)
                     gameScript.gameComplete(score,"pass");
-                if(score > chosenRepeats/2)
+                if(score > mina/2)
                     gameScript.gameComplete(score,"same");
                 else
                     gameScript.gameComplete(score,"fail");
@@ -133,11 +121,6 @@ public class LetterTrackingScript : MonoBehaviour
         int randnum = 0;
         randnum = Random.Range(65, 90);
 
-        if(randnum == 65)
-        {
-            chosenRepeats++;
-        }
-
         return (char)randnum;
     }
 
@@ -147,10 +130,6 @@ public class LetterTrackingScript : MonoBehaviour
         for(int i = 0; i < repeats; i++)
         {
             int randnum = Random.Range(65, 90);
-            if(randnum == 65)
-            {
-                chosenRepeats++;
-            }
             letters[i] = (char)randnum;
         }
 
