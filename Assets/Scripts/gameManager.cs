@@ -160,7 +160,7 @@ public class gameManager : MonoBehaviour
             scoreValues += ")";
 
             IDbCommand cmnd = dbconn.CreateCommand();
-            cmnd.CommandText = "INSERT INTO Scores (User,Date,Time,Orientation,Sequence,Pattern,Naming,Serialization,Text2Speech,LetterTracking) VALUES" ;
+            cmnd.CommandText = "INSERT INTO Scores (User,Date,Time,Orientation,Simon,Pattern,Naming,Serialization,Text2Speech,LetterTracking) VALUES" ;
             cmnd.CommandText += scoreValues;
             cmnd.ExecuteNonQuery();
 
