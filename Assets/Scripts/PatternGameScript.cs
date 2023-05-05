@@ -99,7 +99,7 @@ public class PatternGameScript : MonoBehaviour
                     whiteCount = 10;
                     if(score > 0)
                     {
-                        score = (int)((double)score / whiteCount * 5);
+                        score = (int)((double)score / (double)whiteCount * 5);
                     }
                     SetTimeDisplay(0);
                     if(score == whiteCount)
@@ -307,7 +307,7 @@ public class PatternGameScript : MonoBehaviour
             //normalizes score to 5
             if(score > 0)
                 {
-                    score = (int)((double)score / whiteCount * 5);
+                    score = (int)((double)score / (double)whiteCount * 5);
                 }
             if(gameScript == null)
             {
