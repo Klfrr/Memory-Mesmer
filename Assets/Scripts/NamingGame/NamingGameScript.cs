@@ -125,6 +125,8 @@ public class NamingGameScript : MonoBehaviour
             }
             else
             {
+                //Vincent, normalize score to 4
+                score = (int)((double)score / finalScore * 4);
                 if(score == finalScore)
                     gameScript.gameComplete(score,"pass");
                 else if(score > finalScore/2)
