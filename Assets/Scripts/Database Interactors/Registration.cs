@@ -102,7 +102,7 @@ public class Registration : MonoBehaviour
                 gameScript.loadInformation(userName.text);
                 gameScript.saveUISettings();
                 gameScript.loadInformation(userName.text);
-                homeScreen();
+                GameObject.Find("Canvas").GetComponent<buttonController>().loginScene();
             }
 
             dbconn.Close();

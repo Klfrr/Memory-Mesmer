@@ -67,10 +67,10 @@ public class buttonController : MonoBehaviour
         SceneManager.LoadScene(7);    
     }
 
-    public void accountManage()
+    public void accountSubMenu()
     {
         
-        SceneManager.LoadScene(10);
+        SceneManager.LoadScene(15);
     }
 
     public void toScoresMoca()
@@ -79,19 +79,26 @@ public class buttonController : MonoBehaviour
         SceneManager.LoadScene(11);
         
     }
+
     public void settings()
     {
         SceneManager.LoadScene(12);
     }
+
      public void toMoca()
     {
-        
         SceneManager.LoadScene(13);
     }
 
+    public void loginScene()
+    {
+        SceneManager.LoadScene(10);
+    }
 
-
-
+    public void registerScene()
+    {
+        SceneManager.LoadScene(9);
+    }
 
     public void exitGame()
     {

@@ -9,6 +9,7 @@ using System.IO;
 
 public class gameManager : MonoBehaviour
 {
+    
     private const int arraySize = 7;
     private int[] scenes = new int[arraySize];
     private double[] scores = new double[arraySize];
@@ -21,6 +22,9 @@ public class gameManager : MonoBehaviour
     private string gameType = "";
     private int pastValue;
     private static GameObject onlyInstance = null;
+
+    //order of games stored - Orientation,Sequence,Pattern,Naming,Serialization,Text2Speech,LetterTracking
+    private double[] modifier = {5, 4, 5, 4, 4, 4, 4};
 
     // Start is called before the first frame update
     void Start()
@@ -105,10 +109,16 @@ public class gameManager : MonoBehaviour
         {
             SceneManager.LoadScene(8);
         }
-        else
+        
+        if(currentScene < arraySize)
         {
-            StartCoroutine(sceneChange());
+            SceneManager.LoadScene(14);
         }
+    }
+
+    public void nextGame()
+    {
+        StartCoroutine(sceneChange());
     }
 
     private void inputScore(int gameScore,int change)
@@ -160,13 +170,14 @@ public class gameManager : MonoBehaviour
             scoreValues += ")";
 
             IDbCommand cmnd = dbconn.CreateCommand();
-            cmnd.CommandText = "INSERT INTO Scores (User,Date,Time,Orientation,Simon,Pattern,Naming,Serialization,Text2Speech,LetterTracking) VALUES" ;
+            cmnd.CommandText = "INSERT INTO Scores (User,Date,Time,Orientation,Sequence,Pattern,Naming,Serialization,Text2Speech,LetterTracking) VALUES" ;
             cmnd.CommandText += scoreValues;
             cmnd.ExecuteNonQuery();
 
             dbconn.Close();
 
             saveDifficulty();
+            quitGame();
 
         
     }
@@ -183,7 +194,7 @@ public class gameManager : MonoBehaviour
     private IEnumerator sceneChange()
     {
         yield return new WaitForSeconds(0);
-        if(currentScene == arraySize)
+        if(currentScene >= arraySize)
         {
             finishGame();
         }
@@ -200,24 +211,21 @@ public class gameManager : MonoBehaviour
 
     public string getScore()
     {
-        //order of games stored - Orientation,Simon,Pattern,Naming,Serialization,Text2Speech,LetterTracking
-        double[] modifier = {5, 4, 5, 4, 4, 4, 4};
         double[] adjustedScore = new double[arraySize];
         double value = 0;
-        if(gameType == "Full")
+        if(gameType == "Full" && currentScene >= arraySize)
         {
             for(int i = 0; i < arraySize; i++)
             {
                 value += scores[i];
-                //value += Math.Truncate(scores[i]/5*modifier[i]);
+                Debug.Log(scores[i]);
             }
-            return value + "/" + "50";
-            // return value + "/" + "30";
+            return value + "/" + "30";
         }
         else
         {
             value = scores[pastValue-1];
-            return value + "/" + "5";
+            return value + "/" + modifier[pastValue-1];
         }
     }
 

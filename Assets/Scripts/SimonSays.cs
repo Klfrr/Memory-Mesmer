@@ -136,7 +136,9 @@ public class SimonSays : MonoBehaviour
         //If the players missclicks an object button, the game restarts the button clicked to 0, and says try again
         else
         {
-            topScore = buttonClicked;
+            if(buttonClicked > topScore)
+                topScore = buttonClicked;
+            Debug.Log(topScore);
             ButtonActivity.text = "Try \nAgain"; 
             blinkColor(click, 1, colorIndex);
             buttonClicked = 0;
@@ -262,6 +264,8 @@ public class SimonSays : MonoBehaviour
     //Calls the game manager script to go to next scene passing in a score, or for independent testing, goes to game over.
     private void gameOver(int score)
     {
+        //score normalized to 4
+        score = (int)((double)score / (double)level * 4);
         if(gameScript == null)
         {
             SetTimeDisplay(0);

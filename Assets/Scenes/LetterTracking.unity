@@ -417,8 +417,8 @@ MonoBehaviour:
   letterButton: {fileID: 2025206256}
   letterLabel: {fileID: 815127885}
   scoreLabel: {fileID: 520805913}
-  repeats: 10
   score: 0
+  totalA: 0
   mina: 5
   currentwait: 2
   gameActive: 0
@@ -426,7 +426,7 @@ MonoBehaviour:
   gameTime: 20
   instructionsLabel: {fileID: 1927612546}
   timers: 7
-  delay: 7
+  delay: 1
   timerForFunction: 0
 --- !u!114 &103051620
 MonoBehaviour:
