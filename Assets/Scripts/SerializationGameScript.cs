@@ -68,6 +68,8 @@ public class SerializationGameScript : MonoBehaviour
         {
             if(gameActive)
             {
+                //Vincent, normalize score to 4
+                score = (int)((double)score / correctNeeded * 4);
                 gameActive = false;
                 SetTimeDisplay(0);
                 if(score >= correctNeeded/2)
@@ -113,6 +115,8 @@ public class SerializationGameScript : MonoBehaviour
                     }
                     else
                     {
+                        //Vincent, normalize score to 4
+                        score = (int)((double)score / correctNeeded * 4);
                         if(score >= correctNeeded/2)
                             gameScript.gameComplete(score,"same");
                         else
@@ -148,6 +152,8 @@ public class SerializationGameScript : MonoBehaviour
             }
             else
             {
+                //Vincent, normalize score to 4
+                score = (int)((double)score / correctNeeded * 4);
                 if(score == 2)
                     gameScript.gameComplete(score,"pass");
                 else if(score == 1)
