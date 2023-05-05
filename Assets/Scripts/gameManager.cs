@@ -209,6 +209,7 @@ public class gameManager : MonoBehaviour
             for(int i = 0; i < arraySize; i++)
             {
                 value += scores[i];
+                Debug.Log(scores[i]);
             }
             return value + "/" + "30";
         }
