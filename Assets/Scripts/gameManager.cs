@@ -109,16 +109,11 @@ public class gameManager : MonoBehaviour
         {
             SceneManager.LoadScene(8);
         }
-        
-        if(currentScene < arraySize)
+        else
         {
-            SceneManager.LoadScene(14);
+            //SceneManager.LoadScene(14);
+            StartCoroutine(sceneChange());
         }
-    }
-
-    public void nextGame()
-    {
-        StartCoroutine(sceneChange());
     }
 
     private void inputScore(int gameScore,int change)
@@ -177,7 +172,6 @@ public class gameManager : MonoBehaviour
             dbconn.Close();
 
             saveDifficulty();
-            quitGame();
 
         
     }
@@ -194,7 +188,7 @@ public class gameManager : MonoBehaviour
     private IEnumerator sceneChange()
     {
         yield return new WaitForSeconds(0);
-        if(currentScene >= arraySize)
+        if(currentScene == arraySize)
         {
             finishGame();
         }
