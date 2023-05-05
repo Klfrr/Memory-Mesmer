@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     private string userName;
+    private static GameObject nameTextBox;
     private static GameObject onlyInstance = null;
     private backgroundDrop panelMgr;
     private audioMgr audio;
@@ -31,6 +32,7 @@ public class UIManager : MonoBehaviour
         }
         createTable();
         createDatabase();
+        userText();
     }
 
     // Update is called once per frame
@@ -39,6 +41,26 @@ public class UIManager : MonoBehaviour
         panelMgr = FindObjectOfType<backgroundDrop>();
         audio = FindObjectOfType<audioMgr>();
         //texture = FindObjectOfType<textureDrop>();
+    }
+
+    void userText()
+    {
+        GameObject nameTextBox = null;
+        if(nameTextBox == null)
+        {
+            nameTextBox = GameObject.Find("CurrentUser");
+        }
+
+        if(onlyInstance.GetComponent<UIManager>().getUserName() != "temp")
+        {
+            nameTextBox.SetActive(true);
+            nameTextBox.GetComponent<Text>().text = "Logged in:\n" +
+                                                    onlyInstance.GetComponent<UIManager>().getUserName();
+        }
+        else
+        {
+            nameTextBox.SetActive(false);
+        }
     }
 
     public void loadInformation(string currentUserName)
