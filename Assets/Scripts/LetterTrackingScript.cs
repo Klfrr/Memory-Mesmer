@@ -126,6 +126,11 @@ public class LetterTrackingScript : MonoBehaviour
                 {
                     score = (int)((double)score / (double)totalA * 4);
                 }
+                else
+                {
+                    score = 0;    
+                }
+                
                 if(score == totalA)
                     gameScript.gameComplete(score,"pass");
                 if(score > totalA/2)

@@ -46,20 +46,20 @@ public class UIManager : MonoBehaviour
     void userText()
     {
         GameObject nameTextBox = null;
-        if(nameTextBox == null)
+        nameTextBox = GameObject.Find("CurrentUser");
+        
+        if(nameTextBox != null)
         {
-            nameTextBox = GameObject.Find("CurrentUser");
-        }
-
-        if(onlyInstance.GetComponent<UIManager>().getUserName() != "temp")
-        {
-            nameTextBox.SetActive(true);
-            nameTextBox.GetComponent<Text>().text = "Logged in:\n" +
-                                                    onlyInstance.GetComponent<UIManager>().getUserName();
-        }
-        else
-        {
-            nameTextBox.SetActive(false);
+            if(onlyInstance.GetComponent<UIManager>().getUserName() != "temp")
+            {
+                nameTextBox.SetActive(true);
+                nameTextBox.GetComponent<Text>().text = "Logged in:\n" +
+                                                        onlyInstance.GetComponent<UIManager>().getUserName();
+            }
+            else
+            {
+                nameTextBox.SetActive(false);
+            }
         }
     }
 

@@ -14,12 +14,11 @@ public class TempScoreScreen : MonoBehaviour
     {
         gameScript = FindObjectOfType<gameManager>();
         scoreText.text = gameScript.getScore();
-        gameScript.destroySelf();
     }
 
     public void next()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        gameScript.nextGame();
     }
 
 }
