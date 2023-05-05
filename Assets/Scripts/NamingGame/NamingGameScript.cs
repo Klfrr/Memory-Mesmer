@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 // Cat picture: https://coloringonly.com/pages/somali-cat-coloring-page/
 // Dog Picture: https://edgcoloringpages.s3.us-east-2.amazonaws.com/1315-easy-realistic-dog-coloring-page.pdf
 // Pig Picture: https://www.supercoloring.com/coloring-pages/fat-pig
+// Rabbit picture: https://pngtree.com/element/down?id=NTMyOTQ3Mg==&type=1&time=1683263243&token=ZjVlNzdhNDlhNjc2OWFhYmFkNmEwN2ZjMmVmOWJmMjA=&t=0
+// Tiger Picture: https://clipartix.com/tiger-clip-art-image-53726/
+// Mouse Picture: https://www.deviantart.com/ashleyphotographics/art/FREE-Mouse-Lineart-316441007
 
 public class NamingGameScript : MonoBehaviour
 {
@@ -180,7 +183,7 @@ public class NamingGameScript : MonoBehaviour
         setAllInteractable();
 
         // Remove correct answer so it won't be used again
-        //animalNameList.Remove(cAnimal);
+        animalNameList.Remove(cAnimal);
 
         if(correctButton != null)
             return correctButton;
@@ -210,6 +213,15 @@ public class NamingGameScript : MonoBehaviour
             case "Pig":
                 animalImage[5].SetActive(true);
                 break;
+            case "Rabbit":
+                animalImage[6].SetActive(true);
+                break;
+            case "Tiger":
+                animalImage[7].SetActive(true);
+                break;
+            case "Mouse":
+                animalImage[8].SetActive(true);
+                break;
             default:
                 print("Image failed!!");
                 break;
@@ -234,7 +246,7 @@ public class NamingGameScript : MonoBehaviour
         button.GetComponent<Button>().interactable = false;
         Debug.Log(button.name + " is incorrect.");
         button.transform.GetChild(0).GetComponent<Text>().color = Color.red;
-        button.transform.GetChild(0).GetComponent<Text>().text = "WRONG";
+        button.transform.GetChild(0).GetComponent<Text>().text = "X";
         score--;
     }
 
@@ -244,7 +256,7 @@ public class NamingGameScript : MonoBehaviour
         setAllUninteractable();
         Debug.Log(button.name + " is correct.");
         button.transform.GetChild(0).GetComponent<Text>().color = Color.green;
-        button.transform.GetChild(0).GetComponent<Text>().text = "CORRECT";
+        button.transform.GetChild(0).GetComponent<Text>().text = "Correct!";
         score++;
         round++;
         // Add wait for 1 second here before moving to the next round
