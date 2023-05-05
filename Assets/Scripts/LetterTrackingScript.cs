@@ -126,8 +126,6 @@ public class LetterTrackingScript : MonoBehaviour
                 {
                     score = (int)((double)score / (double)totalA * 4);
                 }
-                Debug.Log(score);
-                Debug.Log("total" + totalA);
                 if(score == totalA)
                     gameScript.gameComplete(score,"pass");
                 if(score > totalA/2)

@@ -9,6 +9,7 @@ using System.IO;
 
 public class gameManager : MonoBehaviour
 {
+    
     private const int arraySize = 7;
     private int[] scenes = new int[arraySize];
     private double[] scores = new double[arraySize];
@@ -21,6 +22,9 @@ public class gameManager : MonoBehaviour
     private string gameType = "";
     private int pastValue;
     private static GameObject onlyInstance = null;
+
+    //order of games stored - Orientation,Sequence,Pattern,Naming,Serialization,Text2Speech,LetterTracking
+    private double[] modifier = {5, 4, 5, 4, 4, 4, 4};
 
     // Start is called before the first frame update
     void Start()
@@ -107,6 +111,7 @@ public class gameManager : MonoBehaviour
         }
         else
         {
+            //SceneManager.LoadScene(14);
             StartCoroutine(sceneChange());
         }
     }
@@ -200,11 +205,9 @@ public class gameManager : MonoBehaviour
 
     public string getScore()
     {
-        //order of games stored - Orientation,Sequence,Pattern,Naming,Serialization,Text2Speech,LetterTracking
-        double[] modifier = {5, 4, 5, 4, 4, 4, 4};
         double[] adjustedScore = new double[arraySize];
         double value = 0;
-        if(gameType == "Full")
+        if(gameType == "Full" && currentScene >= arraySize)
         {
             for(int i = 0; i < arraySize; i++)
             {
