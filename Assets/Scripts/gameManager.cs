@@ -208,7 +208,6 @@ public class gameManager : MonoBehaviour
         {
             for(int i = 0; i < arraySize; i++)
             {
-                Debug.Log(scores[i]);
                 value += scores[i];
             }
             return value + "/" + "30";
@@ -216,7 +215,7 @@ public class gameManager : MonoBehaviour
         else
         {
             value = scores[pastValue-1];
-            return value + "/" + "5";
+            return value + "/" + modifier[pastValue-1];
         }
     }
 

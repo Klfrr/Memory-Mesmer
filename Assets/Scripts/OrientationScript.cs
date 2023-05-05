@@ -55,7 +55,6 @@ public class OrientationScript : MonoBehaviour
 
     public void sceneChange()
     {
-        Debug.Log(tempAccuracy);
         onClick();
         if(tempAccuracy >= difficulty*10)
             gameScript.gameComplete(5,"pass");

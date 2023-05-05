@@ -69,7 +69,7 @@ public class SerializationGameScript : MonoBehaviour
             if(gameActive)
             {
                 //Vincent, normalize score to 4
-                score = (int)((double)score / correctNeeded * 4);
+                score = (int)((double)score / (double)correctNeeded * 4);
                 gameActive = false;
                 SetTimeDisplay(0);
                 if(score >= correctNeeded/2)

@@ -265,7 +265,7 @@ public class SimonSays : MonoBehaviour
     private void gameOver(int score)
     {
         //score normalized to 4
-        score = (int)((double)score / level * 4);
+        score = (int)((double)score / (double)level * 4);
         if(gameScript == null)
         {
             SetTimeDisplay(0);

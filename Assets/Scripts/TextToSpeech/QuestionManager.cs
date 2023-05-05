@@ -102,7 +102,7 @@ public class QuestionManager : MonoBehaviour
                 //Vincent, normalizes score to 4
                 if(score > 0)
                     {
-                        score = (int)((double)score / totalSentences * 4);
+                        score = (int)((double)score / (double)totalSentences * 4);
                     }
                 if(score == totalSentences)
                     gameScript.gameComplete(score,"pass");
@@ -161,7 +161,7 @@ public class QuestionManager : MonoBehaviour
         //Vincent, normalizes score to 4
         if(score > 0)
             {
-                score = (int)((double)score / totalSentences * 4);
+                score = (int)((double)score / (double)totalSentences * 4);
             }
         return score;
     }

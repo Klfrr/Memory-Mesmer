@@ -121,6 +121,13 @@ public class LetterTrackingScript : MonoBehaviour
 
             if(counter >= repeats)
             {
+                //Vincent, normalize score to 4
+                if(score > 0)
+                {
+                    score = (int)((double)score / (double)totalA * 4);
+                }
+                Debug.Log(score);
+                Debug.Log("total" + totalA);
                 if(score == totalA)
                     gameScript.gameComplete(score,"pass");
                 if(score > totalA/2)
