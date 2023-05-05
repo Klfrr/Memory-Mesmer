@@ -9,12 +9,13 @@ public class LetterTrackingScript : MonoBehaviour
     public Text letterLabel;
     public Text scoreLabel;
     
-    public int repeats;
+    public static int repeats;
     //public int timer = 0;
     public int score = 0;
+    public int totalA = 0;
     public int mina;
     char[] randomLetters;
-    int c = 0;
+    //int f = 0;
 
     public float currentwait = 2;
 
@@ -24,7 +25,7 @@ public class LetterTrackingScript : MonoBehaviour
     private float startTime = 0;
     public GameObject instructionsLabel;
     public int timers = 0;
-    public float delay = 0;
+    public float delay;
     public float timerForFunction;
     private gameManager gameScript;
     private int chosenRepeats = 0;
@@ -32,6 +33,7 @@ public class LetterTrackingScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         startTime = Time.time;
         gameScript = FindObjectOfType<gameManager>();
         repeats = gameScript.currentDifficulty() * 5;
@@ -44,6 +46,7 @@ public class LetterTrackingScript : MonoBehaviour
         timeText.text = "Time: " + GetTimeDisplay(gameTime);
         startTime = Time.time;
 
+        randomLetters = new char[repeats]; // this?
         //StartCoroutine(instructionsTimer());
         StartCoroutine(startLetterTimer());
         letterButton.interactable = true;
@@ -51,6 +54,14 @@ public class LetterTrackingScript : MonoBehaviour
         //StartCoroutine(instructionsTimer());
         //StartCoroutine(startWaitTimer());
         randomLetters = randLetterString();
+        Debug.Log("Random Letters Array: " + randomLetters.ToString());
+
+        foreach (char letter in randomLetters)
+        {
+            if(letter == 'A')
+                totalA++;
+        }
+
     }
 
     // Update is called once per frame
@@ -58,7 +69,7 @@ public class LetterTrackingScript : MonoBehaviour
     {
         //timerForFunction += Time.deltaTime;
 
-        if(Time.time - startTime < gameTime)
+   /*     if(Time.time - startTime < gameTime)
         {
             float ElapsedTime = Time.time - startTime;
             SetTimeDisplay(gameTime - ElapsedTime);
@@ -74,15 +85,16 @@ public class LetterTrackingScript : MonoBehaviour
                     }
                 gameActive = false;
                 SetTimeDisplay(0);
-                if(score == chosenRepeats)
+                if(score == totalA)
                     gameScript.gameComplete(score,"pass");
-                if(score > chosenRepeats/2)
+                if(score > totalA/2)
                     gameScript.gameComplete(score,"same");
                 else
                     gameScript.gameComplete(score,"fail");
             }
             //SceneManager.LoadScene(4);
-        }
+        }*/
+
         scoreLabel.text = score.ToString();
         
     }
@@ -96,10 +108,12 @@ public class LetterTrackingScript : MonoBehaviour
 
         while(counter < repeats)
         {
-            // Change to random Capital letter
-            changeButton(randomLetters);
+            // Change Label to random Capital letter
+            // Debug.Log("Index c: " + counter.ToString());
+            letterLabel.text = randomLetters[counter].ToString();
+            //changeLabel(counter);
 
-            // Enable button if clicked
+            // Enable button if ready
             enableButton(letterButton);
 
             // increment counter
@@ -107,26 +121,21 @@ public class LetterTrackingScript : MonoBehaviour
 
             if(counter >= repeats)
             {
-                //Vincent, normalizes score to 4
-                Debug.Log(chosenRepeats);
-                if(score > 0)
-                    {
-                        score = (int)((double)score / chosenRepeats * 4);
-                    }
-                if(score == chosenRepeats)
+                if(score == totalA)
                     gameScript.gameComplete(score,"pass");
-                if(score > chosenRepeats/2)
+                if(score > totalA/2)
                     gameScript.gameComplete(score,"same");
                 else
                     gameScript.gameComplete(score,"fail");
             }
 
             // Wait for 2 seconds between changing letters
-            yield return new WaitForSecondsRealtime(2);
+            yield return new WaitForSecondsRealtime(delay);
         }
     }
 
     //Function works, but may need to implement logic to include at least one A
+    // Outputs one character at a time
     char randomizeLetter()
     {
         // Capital letters between 65 and 90
@@ -141,6 +150,7 @@ public class LetterTrackingScript : MonoBehaviour
         return (char)randnum;
     }
 
+    // Randomizes a whole char array and adds a minimum # of a's
     char[] randLetterString()
     {
         char[] letters = new char[repeats];
@@ -154,8 +164,23 @@ public class LetterTrackingScript : MonoBehaviour
             letters[i] = (char)randnum;
         }
 
-        int lastI = -1;
         // add a minimum number mina of A's
+        // find UNIQUE indeces
+        Debug.Log(mina);
+
+        for(int i = 0; i < mina; i++)
+        {
+            // pick random index
+            int randI = Random.Range(0, repeats);
+
+            // Use Recursion so A won't be shown again
+            int ind = recursiveA(letters, randI);
+
+            letters[ind] = 'A';
+
+        }
+
+        /*
         for(int i = 0; i < mina; i++)
         {
             // pick random index
@@ -170,18 +195,27 @@ public class LetterTrackingScript : MonoBehaviour
 
             lastI = randI;
         }
+        */
 
         return letters;
     }
 
-    public void changeButton(char[] randomLetters)
+    int recursiveA(char[] letters, int k)
     {
-        
-        letterLabel.text = randLetterString()[c].ToString();
-        c++;
-        
+        if(letters[k] == 'A')
+        {
+            int randI = Random.Range(0, repeats);
+            return recursiveA(letters, randI);
+        }
+        else
+            return k;
     }
-
+/*
+    public void changeLabel(int f)
+    {
+        letterLabel.text = randLetterString()[f].ToString();
+    }
+*/
     
     public void checkButton(Text label)
     {
@@ -203,12 +237,12 @@ public class LetterTrackingScript : MonoBehaviour
     {
         button.interactable = true;
     }
-
+/* 
     private IEnumerator StartGameAfterDelay()
     {
         yield return new WaitForSeconds(delay);
 
-/*        gameActive = true;
+       gameActive = true;
         timeText.text = "Time: " + GetTimeDisplay(gameTime);
         startTime = Time.time;
 
@@ -216,7 +250,7 @@ public class LetterTrackingScript : MonoBehaviour
         StartCoroutine(startWaitTimer());
         letterButton.interactable = true;
 */
-    }
+   // }
 
     public IEnumerator instructionsTimer()
     {
