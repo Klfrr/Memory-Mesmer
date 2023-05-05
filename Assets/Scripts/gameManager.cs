@@ -110,7 +110,12 @@ public class gameManager : MonoBehaviour
             SceneManager.LoadScene(8);
         }
         
-        if(currentScene < arraySize)
+        if(currentScene >= arraySize)
+        {
+            finishGame();
+        }
+
+        if(currentScene < arraySize && gameType != "Single")
         {
             SceneManager.LoadScene(14);
         }
@@ -118,6 +123,10 @@ public class gameManager : MonoBehaviour
 
     public void nextGame()
     {
+        if(arraySize == currentScene)
+        {
+            finishGame();
+        }
         StartCoroutine(sceneChange());
     }
 
