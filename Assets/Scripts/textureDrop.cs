@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* Texture Links: 
+ * https://pngtree.com/freepng/fabric-silk-texture-transparent-overlays-velvet-cloth_9070466.html
+ * https://www.pexels.com/search/black%20texture/
+ */
 public class textureDrop : MonoBehaviour
 {
     public GameObject texture1;

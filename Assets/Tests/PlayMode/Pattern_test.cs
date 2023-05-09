@@ -23,7 +23,8 @@ public class Pattern_test
         // Activate Button
         b.onClick.Invoke();
 
-        // Check to see if the 
+        // Check to see if the button has debug logged.
+        
         Debug.Log("Test Finished.");
 
         // Use yield to skip a frame.
